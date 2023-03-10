@@ -1,6 +1,6 @@
 <header role="header">
-    <div class="header-logo">
-        <a href="<?php echo HOME_URL; ?>"><img src="/favicon/favicon.ico" width="100px" alt="Logo"></a>
+    <div class="logo">
+        <a href="<?php echo HOME_URL; ?>"><img src="/img/FIGMA.png" width="100px" alt="Logo"></a>
     </div>
     <div class="header-menu">
         <ul>
@@ -11,9 +11,6 @@
             ?>
         </ul>
         <nav class="menu" role="navigation">
-            <div class="m-left">
-                <h1 class="logo">EAM+</h1>
-            </div>
             <div class="m-left">
                 <a href="#"></a>
                 <a href="#"></a>
