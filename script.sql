@@ -13,7 +13,5 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-
-
--- Path: EAM/seed.sql
+-- Path: EAM/script.sql
 
