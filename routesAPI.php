@@ -13,7 +13,7 @@ if (!CONFIG_LOADED) {
 
 require_once __DIR__.'/router.php';
 
+get('/api', 'api/redirect.php');
+
 // Static API GET
 get('/api/test', 'api/test.php');
-
-any('/404','views/404.php');
