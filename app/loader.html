@@ -1,0 +1,12 @@
+<script>
+    $loader = $('#loader');
+    $body = $('#body');
+    $(document).ready(function () {
+        // Wait for page to load first + 500ms
+        setTimeout(function () {
+            $loader.fadeOut(500, function () {
+                $body.fadeTo(500, 1);
+            });
+        }, 500);
+    });
+    </script>
