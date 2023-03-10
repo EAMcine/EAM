@@ -12,7 +12,7 @@
         </ul>
         <nav class="menu" role="navigation">
             <div class="m-left">
-                <h1 class="logo">EA+</h1>
+                <h1 class="logo">EAM+</h1>
             </div>
             <div class="m-left">
                 <a href="#"></a>
