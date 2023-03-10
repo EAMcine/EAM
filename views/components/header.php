@@ -1,6 +1,6 @@
 <header>
     <div class="header-logo">
-        <a href="<?php echo HOME_URL; ?>"><img src="/logo.png" width="100px" alt="Logo"></a>
+        <a href="<?php echo HOME_URL; ?>"><img src="/favicon/favicon.ico" width="100px" alt="Logo"></a>
     </div>
     <div class="header-menu">
         <ul>
