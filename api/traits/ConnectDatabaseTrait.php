@@ -1,6 +1,7 @@
 <?php
 
-class ConnectDatabase
+class ConnectDatabaseTrait
+
 {
 private $db;
 
