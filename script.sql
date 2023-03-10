@@ -1,3 +1,7 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
+-- noinspection SqlDialectInspectionForFile
+
 CREATE DATABASE EAM;
 USE EAM;
 
@@ -12,6 +16,8 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+ALTER TABLE `users` CHANGE `group` `group` INT(11) NULL DEFAULT NULL;
 
 -- Path: EAM/script.sql
 

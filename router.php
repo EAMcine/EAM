@@ -11,11 +11,11 @@
 
 // We can have in the same project a MVC structure for a webapp and a REST API
 // For the api we can use the functions get(), post(), put(), patch(), delete()
-// Example: get('/api/user', 'api/user.php');
+// Example: get('/api/users', 'api/users.php');
 
 // Any route can call a function or include a file
-// Example: any('/user', 'user.php');
-// Example: any('/user', function(){ echo 'Hello World'; });
+// Example: any('/users', 'users.php');
+// Example: any('/users', function(){ echo 'Hello World'; });
 
 if (!file_exists(SITE_NAME.".log")) {
     $logfile = fopen(SITE_NAME.".log", "w");
@@ -94,6 +94,6 @@ function route($route, $path_to_include){
   exit();
 }
 
-// This function is used to escape HTML special characters (use this instead of echo when you want to display user input)
+// This function is used to escape HTML special characters (use this instead of echo when you want to display users input)
 
 function out($text){echo htmlspecialchars($text);}
