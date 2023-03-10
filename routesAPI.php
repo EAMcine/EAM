@@ -1,11 +1,9 @@
 <?php
 
-include_once 'routesAPI.php';
-
 set_exception_handler(function ($e) {
   $message = $e->getMessage();
   $code = $e->getCode();
-  include_once 'views/error.php';
+  echo $message . ' Erreur n°' . $code;
 });
 
 require_once 'app/config.php';
@@ -15,7 +13,7 @@ if (!CONFIG_LOADED) {
 
 require_once __DIR__.'/router.php';
 
-// Static GET
-get('/', 'src/controllers/indexController.php');
+// Static API GET
+get('/api/test', 'api/test.php');
 
 any('/404','views/404.php');
