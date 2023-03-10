@@ -1,6 +1,3 @@
-# ignore the public/img folder
-public/img/*
-
 # ignore the .env file
 .env
 
