@@ -12,7 +12,7 @@ $envLoader->load();
 define('DEV_NAME', 'Alban, Enzo, Mathis');
 define('SITE_NAME', 'EAM+');
 define('SEPARATOR', ' - ');
-define('HOME_URL', 'http://eam');
+define('HOME_URL', getenv('HOME_URL'));
 
 // Informations about the database
 
