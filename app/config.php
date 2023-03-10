@@ -16,11 +16,11 @@ define('HOME_URL', getenv('HOME_URL'));
 
 // Informations about the database
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'eam');
+define('DB_HOST', getenv('DB_HOST'));
+define('DB_NAME', getenv('DB_NAME'));
 define('DB_PASSWORD' ,getenv('DB_PASSWORD'));
-define('DB_PORT', '3306');
-define('DB_USER', 'root');
+define('DB_PORT', getenv('DB_PORT'));
+define('DB_USER', getenv('DB_USER'));
 
 // Informations about HTML definition
 
