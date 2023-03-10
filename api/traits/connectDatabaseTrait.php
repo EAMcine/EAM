@@ -1,9 +1,9 @@
 <?php
 
-class ConnectDatabaseTrait
+class connectDatabaseTrait
 
 {
-private $db;
+    private $db;
 
     public function __construct()
     {
