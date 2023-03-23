@@ -5,7 +5,7 @@
     <div class="header-menu">
         <ul>
             <?php
-                foreach ($linkedPages as $pageName => $pageLink) {
+                foreach ($data['linkedPages'] as $pageName => $pageLink) {
                     echo "<li><a href='".HOME_URL."$pageLink'>$pageName</a></li>";
                 }
             ?>

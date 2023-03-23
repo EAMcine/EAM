@@ -28,10 +28,8 @@ define('DOCTYPE', 'html');
 define('LANG', 'fr');
 define('CHARSET', 'UTF-8');
 define('HTTP_EQUIV', 'X-UA-Compatible');
-define('CONTENT', 'IE=edge');
+define('HTTP_EQUIV_CONTENT', 'IE=edge');
 define('NAME_VIEWPORT', 'viewport');
 define('CONTENT_VIEWPORT', 'width=device-width, initial-scale=1.0');
 
 define('CONFIG_LOADED', true);
-
-?>
