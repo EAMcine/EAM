@@ -18,7 +18,7 @@ class userEntity extends databaseTrait {
         ]);
     }
 
-    public function deleteUser($id)
+    public static function deleteUser($id)
     {
         $query = databaseTrait::getDb()->prepare('DELETE FROM users WHERE id = :id');
         $query->execute([

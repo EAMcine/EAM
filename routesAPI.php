@@ -51,6 +51,14 @@ get('', 'Controllers/redirectController.php');
 // Static API GET
 get('/test', 'Controllers/testController.php');
 
+// User API
+
+include_once 'src/ApiBundle/controllers/userController.php';
+
+use ApiBundle\controllers\userController as userController;
+
+get('/user/add', function() { userController::addUser(); } );
+
 \Framework\Router::class::any('/api/$path', function($path) {
   throw new \Exception("La requête demandée n'a pas été trouvée ou n'est pas disponible : $path", 404);
 });

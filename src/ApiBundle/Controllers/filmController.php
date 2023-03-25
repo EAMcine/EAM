@@ -23,8 +23,7 @@ class filmController {
         echo json_encode($success);
     }
 
-    public static function getFilm($id)
-    {
+    public static function getFilm($id) {
         $film = filmEntity::getFilm($id);
         echo json_encode($film);
     }

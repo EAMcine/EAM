@@ -4,28 +4,33 @@ namespace ApiBundle\controllers;
 
 include_once 'src/ApiBundle/entities/userEntity.php';
 
-use ApiBundle\Entities\filmEntity as filmEntity;
+use ApiBundle\Entities\userEntity as userEntity;
 
-class filmController {
+class userController {
 
-    public static function addFilm($title, $description, $year, $duration, $director, $trailer, $genre) {
-        $success = filmEntity::addFilm($title, $description, $year, $duration, $director, $trailer, $genre);
+    public static function addUser() {
+        if (isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['name'], $_POST['surname'], $_POST['birthdate'], $_POST['gender'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['postalCode'], $_POST['phone'], $_POST['role'])) {
+            $success = userEntity::addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['name'], $_POST['surname'], $_POST['birthdate'], $_POST['gender'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['postalCode'], $_POST['phone'], $_POST['role']);
+            header('content-type: application/json; charset=utf-8');
+            echo json_encode($success);
+        }
+        header('content-type: application/json; charset=utf-8');
+        echo json_encode(false);
+    }
+
+    public static function deleteUser($id) {
+        $success = userEntity::deleteUser($id);
         echo json_encode($success);
     }
 
-    public static function deleteFilm($id) {
-        $success = filmEntity::deleteFilm($id);
+    public static function modifyUser($id, $username, $password, $email, $name, $surname, $birthdate, $gender, $country, $city, $address, $postalCode, $phone, $role) {
+        $success = userEntity::modifyUser($id, $username, $password, $email, $name, $surname, $birthdate, $gender, $country, $city, $address, $postalCode, $phone, $role);
         echo json_encode($success);
     }
 
-    public static function modifyFilm($id, $title, $description, $year, $duration, $director, $trailer, $genre) {
-        $success = filmEntity::modifyFilm($id, $title, $description, $year, $duration, $director, $trailer, $genre);
-        echo json_encode($success);
+    public static function getUser($id) {
+        $user = userEntity::getUser($id);
+        echo json_encode($user);
     }
 
-    public static function getFilm($id)
-    {
-        $film = filmEntity::getFilm($id);
-        echo json_encode($film);
-    }
 }
