@@ -1,11 +1,13 @@
 <?php
 
+namespace FrameworkBundle\Traits;
+
 class DotEnv {
     private $path;
 
     public function __construct(string $path) {
         if(!file_exists($path)) {
-            throw new Exception("Un fichier d'environnement serveur n'a pas été trouvé.", 503);
+            throw new \Exception("Un fichier d'environnement serveur n'a pas été trouvé.", 503);
         }
         $this->path = $path;
     }

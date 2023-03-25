@@ -2,15 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+	font-family: 'Tahoma', sans-serif;
+    background: #fafafa;
+	scroll-behavior: smooth;
 }
 
 html {
-    scroll-behavior: smooth;
-  }
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 
 #loader {
