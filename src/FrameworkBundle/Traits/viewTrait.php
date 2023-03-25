@@ -1,7 +1,7 @@
 <?php
 
 function render($path, $data = []) {
-    include_once $_SERVER['DOCUMENT_ROOT']. '/views' . $path;
+    include_once 'views' . $path;
 }
 
 function renderComponent($path, $data = []) {

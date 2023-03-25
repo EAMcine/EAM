@@ -1,6 +1,6 @@
 <?php
 
-namespace FrameworkBundle\Traits;
+namespace FrameworkBundle\traits;
 
 class DotEnv {
     private $path;

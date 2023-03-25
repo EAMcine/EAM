@@ -16,7 +16,7 @@ if (!CONFIG_LOADED) {
 }
 
 require_once __DIR__.'/router.php';
-require_once 'src/FrameworkBundle/Traits/viewTrait.php';
+require_once 'src/FrameworkBundle/traits/viewTrait.php';
 
 function get($route, $path_to_include) {
   if (is_string($path_to_include)) {

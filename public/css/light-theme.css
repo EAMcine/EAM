@@ -1,5 +1,5 @@
 * {
-    transition: all 0.3s ease-in-out;
+    --separator-color: #cfcfcf;
 }
 
 header {
@@ -8,6 +8,7 @@ header {
 
 .header-logo {
     background-color: inherit;
+    border-right-color: var(--separator-color);
 }
 
 .header-main {
@@ -16,6 +17,7 @@ header {
 
 .header-menu {
     background-color: inherit;
+    border-left-color: var(--separator-color);
 }
 
 .header-link {
@@ -28,8 +30,4 @@ header {
 .header-link:hover {
     color: #313131;
     background-color: #fafafa;
-}
-
-.header-separator {
-    background-color: #565d5f;
 }

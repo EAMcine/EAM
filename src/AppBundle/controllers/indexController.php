@@ -9,12 +9,15 @@ class indexController {
         $linkedPages = [
             'About' => '/about',
             'Contact' => '/contact',
-            'Login' => '/login'
+            'Login' => '/login',
+            'Register' => '/register'
         ];
+
         $data = array(
             'title' => $title,
             'linkedPages' => $linkedPages
         );
+
         render('/index.view.php', $data);
     }
 
