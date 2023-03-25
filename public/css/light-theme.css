@@ -1,0 +1,35 @@
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+header {
+    background-color: #8e98b5;
+}
+
+.header-logo {
+    background-color: inherit;
+}
+
+.header-main {
+    background-color: inherit;
+}
+
+.header-menu {
+    background-color: inherit;
+}
+
+.header-link {
+    font-weight: bold;
+    text-decoration: none;
+    color: #fafafa;
+    background-color: inherit;
+}
+
+.header-link:hover {
+    color: #313131;
+    background-color: #fafafa;
+}
+
+.header-separator {
+    background-color: #565d5f;
+}
