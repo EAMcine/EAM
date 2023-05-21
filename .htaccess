@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf|\.ico|\.webmanifest)$
-RewriteRule (.*) routes.php [QSA,L]
+RewriteRule (.*) main.php [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ public/$1 [L]

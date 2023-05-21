@@ -2,9 +2,7 @@
 
 // Load the .env file
 
-require_once 'src/FrameworkBundle/traits/envTrait.php';
-
-use FrameworkBundle\traits\DotEnv as DotEnv;
+use Framework\Core\DotEnv as DotEnv;
 
 $envLoader = new DotEnv(__DIR__.'/.env');
 $envLoader->load();
