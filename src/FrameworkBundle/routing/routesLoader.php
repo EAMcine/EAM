@@ -23,6 +23,12 @@ class RoutesLoader {
         while (!feof($file)) {
             $line = fgets($file);
             $line = trim($line);
+
+            // Ignore comments
+            if (strpos(trim($line), '#') === 0) {
+                continue;
+            }
+
             if ($line != '') {
                 $line = explode('|', $line);
                 $method = trim($line[0]);

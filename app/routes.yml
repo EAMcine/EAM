@@ -1,0 +1,7 @@
+# routes for the App bundle
+# route format:
+# method | url | controller | action
+get | / | AppBundle\Controllers\defaultController | indexAction
+get | /test/{id}/ | AppBundle\Controllers\defaultController | testAction
+get | /debug/routes/ | AppBundle\Controllers\defaultController | showRoutesAction
+any | /404/ | AppBundle\Controllers\defaultController | errorAction

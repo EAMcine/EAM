@@ -10,7 +10,7 @@ class databaseTrait extends \PDO {
         parent::__construct('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASSWORD);
     }
 
-    public static function getDb() {
+    public static function getDb() : databaseTrait {
         if (self::$instance == null) {
             self::$instance = new databaseTrait();
         }

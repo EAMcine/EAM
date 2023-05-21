@@ -1,0 +1,67 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Core\View as View;
+
+final class showRoutes extends View {
+
+    protected function render() {
+        ?>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Routes</title>
+                <style>
+                    body {
+                        font-family: sans-serif;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+                    th, td {
+                        text-align: left;
+                        padding: 8px;
+                    }
+                    tr:nth-child(even){background-color: #f2f2f2}
+                    th {
+                        background-color: #4CAF50;
+                        color: white;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Routes</h1>
+                <h2>API</h2>
+                <?php $this->routeTable($this->get('routesAPI')); ?>
+                <h2>Web</h2>
+                <?php $this->routeTable($this->get('routes')); ?>
+            </body>
+        </html>
+        <?php
+    }
+
+    private function routeTable($routes) {
+        ?>
+        <table>
+            <tr>
+                <th>Route</th>
+                <th>Controller</th>
+                <th>Action</th>
+                <th>Method</th>
+            </tr>
+            <?php foreach ($routes as $route): ?>
+                <tr>
+                    <td><a href="<?= HOME_URL . $route->getRoute(); ?>"><?= $route->getRoute(); ?></a></td>
+                    <td><?= $route->getController(); ?></td>
+                    <td><?= $route->getAction(); ?></td>
+                    <td><?= $route->getMethod(); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php
+    }
+
+}

@@ -4,13 +4,17 @@ namespace ApiBundle\Controllers;
 
 use Framework\Core\Controller as Controller;
 
-class defaultController extends Controller {
+final class defaultController extends Controller {
 
-    public static function redirectAction() {
-        header('Location: https://www.google.com');
+    public function redirectAction() {
+        header('Location: /');
     }
 
-    public static function indexAction() {
-        echo 'Hello World!';
+    public function pingAction() {    
+        $this->json(array(
+            'status' => 200,
+            'message' => 'pong',
+            'server_time' => microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]
+        ));
     }
 }

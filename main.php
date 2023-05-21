@@ -10,22 +10,40 @@ $loader->loadFolder('src/FrameworkBundle/');
 
 use Framework\Routing as Routing;
 
+Main::main();
 
-class Main
-{
+class Main {
     public static function main() {
+
+        include_once 'app/config.php';
 
         $router = Routing\Router::getInstance();
         $loader = new ClassLoader();
         $routesLoader = Routing\RoutesLoader::getInstance();
         $loader->loadFolder('src/ApiBundle/');
-        $routesLoader->scanRoutesFile('routesAPI.txt');
+        $routesLoader->scanRoutesFile('app/routesAPI.yml');
+
+        header('Content-Type: application/json');
+
+        set_exception_handler(function($exception) {
+            echo json_encode([
+                'status' => $exception->getCode(),
+                'message' => $exception->getMessage()
+            ]);
+        });
+
+        $router->run() ? exit() : $router->reset();
+
         $loader->loadFolder('src/AppBundle/');
-        $routesLoader->scanRoutesFile('routes.txt');
+        $routesLoader->scanRoutesFile('app/routes.yml');
+
+        header('Content-Type: text/html');
+
+        set_exception_handler(function($exception) {
+            echo $exception->getMessage();
+        });
 
         $router->run();
 
     }
 }
-
-Main::main();

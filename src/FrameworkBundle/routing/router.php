@@ -46,9 +46,14 @@ class Router {
       $action = $tested_route->getAction();
       $route_found = self::$method($route, $controller, $action);
       if ($route_found) {
-        break;
+        return true;
       }
     }
+    return false;
+  }
+
+  public static function reset() {
+    self::$routes = [];
   }
 
   private static function get(string $route, string $controller, string $action) {

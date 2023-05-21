@@ -1,3 +1,0 @@
-get | /test/ | AppBundle\Controllers\defaultController | testAction
-get | / | AppBundle\Controllers\defaultController | indexAction
-any | /404/ | AppBundle\Controllers\defaultController | errorAction
