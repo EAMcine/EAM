@@ -2,14 +2,18 @@
 
 namespace AppBundle\Controllers;
 
-use Framework\Core\Controller as Controller;
+use Framework\Components\Controller as Controller;
 use Framework\Routing\Router as Router;
 use Framework\Routing as Routing;
 
 final class defaultController extends Controller {
 
     public function indexAction() {
-        echo 'index';
+        $this->render('index', array('header-links' => array(
+            array('url' => HOME_URL, 'name' => 'Home'),
+            array('url' => HOME_URL . '/debug/', 'name' => 'Debug'),
+            array('url' => HOME_URL . '/debug/routes/', 'name' => 'Show Routes')
+        )));
     }
 
     public function showRoutesAction() {

@@ -1,16 +1,12 @@
 <?php
 
-namespace Framework\Core;
-
-use Framework\Core\View as View;
+namespace Framework\Components;
 
 abstract class Controller {
-    private $view;
 
-    public function render(string $viewName, array $data = []) {
+    protected function render(string $viewName, array $data = [], string $viewTitle = null) {
         $viewName = 'AppBundle\\Views\\' . $viewName;
-        $this->view = new $viewName($data);
-
+        new $viewName($data, $viewTitle);
     }
 
     public function redirect(string $url) {

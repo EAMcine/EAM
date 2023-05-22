@@ -10,10 +10,22 @@ $loader->loadFolder('src/FrameworkBundle/');
 
 use Framework\Routing as Routing;
 
-Main::main();
+Main::run();
 
 class Main {
-    public static function main() {
+    private static bool $isRunning = false;
+
+    public static function run() {
+        if (!self::isRunning()) {
+            self::main();
+        }
+    }
+
+    private static function isRunning() {
+        return self::$isRunning;
+    }
+
+    private static function main() {
 
         include_once 'app/config.php';
 

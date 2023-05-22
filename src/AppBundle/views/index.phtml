@@ -1,0 +1,28 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class index extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Home';
+
+    protected function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+    
+<main>
+    <h1>Home</h1>
+    <p>Home page</p>
+</main>
+        <?php $this->postLoader(); ?>
+
+</body>
+</html>
+        <?php
+    }
+
+}
