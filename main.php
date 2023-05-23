@@ -9,6 +9,7 @@ $loader = new ClassLoader();
 $loader->loadFolder('src/FrameworkBundle/');
 
 use Framework\Routing as Routing;
+use \tidy as tidy;
 
 Main::run();
 
@@ -46,6 +47,9 @@ class Main {
 
         $router->run() ? exit() : $router->reset();
 
+        session_start();
+        ob_start();
+
         $loader->loadFolder('src/AppBundle/');
         $routesLoader->scanRoutesFile('app/routes.yml');
 
@@ -57,5 +61,17 @@ class Main {
 
         $router->run();
 
+        $output = ob_get_clean();
+        $tidyConfig = array(
+          'indent' => true,
+          'indent-spaces' => 4,
+          'wrap' => 0,
+          'output-xhtml' => true,
+          'show-errors' => 0,
+        );
+        $tidy = new tidy();
+        $tidy->parseString($output, $tidyConfig);
+        $tidy->cleanRepair();
+        echo $tidy;
     }
 }

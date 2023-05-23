@@ -12,16 +12,17 @@ final class index extends View {
     protected function render() {
         $this->head(); 
         $this->header();
-        ?>
-    
-<main>
-    <h1>Home</h1>
-    <p>Home page</p>
-</main>
+        ?>    
+        <main>
+        <h1 id="title">Salut mon pote</h1>
+        <p id="ping">Pinging API . . .</p>
+        <p id="pong"></p>
+        <button id="ping_button">Ping API</button>
+        </main>
         <?php $this->postLoader(); ?>
-
-</body>
-</html>
+        <script src="/js/views/index.js" type="module" namespace="index"></script>
+        </body>
+        </html>
         <?php
     }
 

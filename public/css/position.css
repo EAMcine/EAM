@@ -4,6 +4,10 @@
  * We might want to split this file into multiple files (depending on the view) if it gets too big.
  */
 
+#body {
+    min-height: 100vh;
+}
+
 header {
     display: flex;
     width: 100%;
