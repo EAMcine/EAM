@@ -14,9 +14,8 @@ final class index extends View {
         $this->header();
         ?>    
         <main>
-        <h1 id="title">Salut mon pote</h1>
-        <p id="ping">Pinging API . . .</p>
-        <p id="pong"></p>
+        <h1><span id="title">Bienvenue sur </span><span id="title_name"><?= SITE_NAME; ?></span><span class="loading gray typewriter no-select">|</span></h1>
+        <p id="ping" class="no-select">Ping de l'API en approche . . .</p>
         <button id="ping_button">Ping API</button>
         </main>
         <?php $this->postLoader(); ?>

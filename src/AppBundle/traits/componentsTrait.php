@@ -31,7 +31,7 @@ trait componentsTrait {
         <div id="loader" style="opacity:0;">
         <div class="spinner"></div>
         </div>
-        <div id="body" style="opacity:1;"> <!-- THIS IS THE BODY OF THE WEBSITE ONCE IT'S FULLY LOADED -->
+        <div id="body" class="loading" style="opacity:1;"> <!-- THIS IS THE BODY OF THE WEBSITE ONCE IT'S FULLY LOADED -->
         <script src="/js/preLoader.js"></script>
         <?php
     }

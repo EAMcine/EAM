@@ -68,3 +68,46 @@ header {
     justify-content: space-around;
     border-left: 1px solid;
 }
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.gray {
+    color: rgb(58, 58, 58);
+}
+
+.typewriter {
+    font-weight: 100;
+    animation: blinking 1s step-end 3.5s infinite;
+}
+
+@keyframes blinking {
+    from,
+    to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.loading {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.loaded {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

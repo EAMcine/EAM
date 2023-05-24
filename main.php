@@ -2,7 +2,7 @@
 
 namespace Main;
 
-require_once 'src\FrameworkBundle\core\classLoader.php';
+require_once 'src/FrameworkBundle/core/classLoader.php';
 use Framework\Core\ClassLoader as ClassLoader;
 
 $loader = new ClassLoader();
@@ -13,11 +13,12 @@ use \tidy as tidy;
 
 Main::run();
 
-class Main {
+final class Main {
     private static bool $isRunning = false;
 
     public static function run() {
         if (!self::isRunning()) {
+            self::$isRunning = true;
             self::main();
         }
     }
