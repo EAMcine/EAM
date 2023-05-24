@@ -10,19 +10,21 @@ async function fillText(htmlelement, text, speed, random) {
 let $title = $('#title');
 let title_content = title.innerHTML;
 title.innerHTML = '';
+let $title_name = $('#title_name');
+let title_name_content = title_name.innerHTML;
+title_name.innerHTML = '';
 let $ping = $('#ping');
 let ping_content = ping.innerHTML;
 ping.innerHTML = '';
-let $pong = $('#pong');
 let ping_button = $('#ping_button');
 
 async function pingpong() {
-    pong.innerHTML = ''; ping.innerHTML = '';
+    ping.innerHTML = '';
     await fillText(ping, ping_content, 75, 50);
     fetch('/api/ping/')
     .then(response => response.json())
     .then(data => {
-        pong.innerHTML = upfirst(data.message) + ' !';
+        ping.innerHTML = upfirst(data.message) + ' !';
     });
     ping_button.attr('disabled', false);
 }
@@ -30,8 +32,9 @@ async function pingpong() {
 $(document).ready(
     async function () {
         ping_button.attr('disabled', true);
-        await delay(500);
+        await delay(1000);
         await fillText(title, title_content, 50, 50);
+        await fillText(title_name, title_name_content, 250, 50);
         await pingpong();
     }
 );

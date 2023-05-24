@@ -2,15 +2,13 @@
 
 namespace ApiBundle\Entities;
 
-include_once 'src/ApiBundle/traits/databaseTrait.php';
+use \Framework\Core\Database as Database;
 
-use ApiBundle\Traits\databaseTrait as databaseTrait;
-
-class userEntity extends databaseTrait {
+class userEntity {
 
     public static function addUser($name, $email, $password)
     {
-        $query = databaseTrait::getDb()->prepare('INSERT INTO users (name, email, password, group ) VALUES (:name, :email, :password)');
+        $query = Database::getDb()->prepare('INSERT INTO users (name, email, password, group ) VALUES (:name, :email, :password)');
         $query->execute([
             'name' => $name,
             'email' => $email,
@@ -20,7 +18,7 @@ class userEntity extends databaseTrait {
 
     public static function deleteUser($id)
     {
-        $query = databaseTrait::getDb()->prepare('DELETE FROM users WHERE id = :id');
+        $query = Database::getDb()->prepare('DELETE FROM users WHERE id = :id');
         $query->execute([
             'id' => $id
         ]);
@@ -28,7 +26,7 @@ class userEntity extends databaseTrait {
 
     public static function modifyUser($id, $name, $email, $password)
     {
-        $query = databaseTrait::getDb()->prepare('UPDATE users SET name = :name, email = :email, password = :password WHERE id = :id');
+        $query = Database::getDb()->prepare('UPDATE users SET name = :name, email = :email, password = :password WHERE id = :id');
         $query->execute([
             'id' => $id,
             'name' => $name,
@@ -39,7 +37,7 @@ class userEntity extends databaseTrait {
 
     public static function getUser($id)
     {
-        $query = databaseTrait::getDb()->prepare('SELECT * FROM users WHERE id = :id');
+        $query = Database::getDb()->prepare('SELECT * FROM users WHERE id = :id');
         $query->execute([
             'id' => $id
         ]);

@@ -2,7 +2,7 @@
 
 namespace Main;
 
-require_once 'src\FrameworkBundle\core\classLoader.php';
+require_once 'src/FrameworkBundle/core/classLoader.php';
 use Framework\Core\ClassLoader as ClassLoader;
 
 $loader = new ClassLoader();
