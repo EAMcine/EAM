@@ -41,17 +41,7 @@ trait componentsTrait {
         ?>
         <header role="header">
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
-        <nav class="header-main">
-        <?php
-        if ($this->get('header-links')) :
-            foreach ($this->get('header-links') as $link): 
-            ?> 
-            <a class="header-link" href="<?= $link['url']; ?>"><?= $link['name']; ?></a>
-            <?php
-            endforeach; 
-        endif;
-        ?>
-        </nav>
+        <h1 class="header-title"><?= $this->viewTitle(); ?></h1>
         <nav class="header-menu">
         <a href="#">Theme</a>
         <a href="#">Compte</a>

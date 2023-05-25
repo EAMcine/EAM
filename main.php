@@ -16,18 +16,18 @@ Main::run();
 final class Main {
     private static bool $isRunning = false;
 
-    public static function run() {
+    public static function run() : void {
         if (!self::isRunning()) {
             self::$isRunning = true;
-            self::main();
+            new self();
         }
     }
 
-    private static function isRunning() {
+    private static function isRunning() : bool {
         return self::$isRunning;
     }
 
-    private static function main() {
+    private function __construct() {
 
         include_once 'app/config.php';
 
@@ -37,7 +37,7 @@ final class Main {
         $loader->loadFolder('src/ApiBundle/');
         $routesLoader->scanRoutesFile('app/routesAPI.yml');
 
-        // header('Content-Type: application/json');
+        header('Content-Type: application/json');
 
         set_exception_handler(function($exception) {
             echo json_encode([
