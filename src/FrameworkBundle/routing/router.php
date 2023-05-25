@@ -13,30 +13,30 @@ class Router {
     self::$routes = [];
   }
 
-  public static function getInstance() {
+  public static function getInstance() : Router {
     if (self::$instance == null) {
       self::$instance = new Router();
     }
     return self::$instance;
   }
 
-  public static function getRoutes() {
+  public static function getRoutes() : array {
     return self::$routes;
   }
 
-  public static function addRoute(Route $route) {
+  public static function addRoute(Route $route) : void {
     if ($route instanceof Route) {
       array_push(self::$routes, $route);
     }
   }
 
-  public static function addRoutes(array $routes) {
+  public static function addRoutes(array $routes) : void {
     foreach ($routes as $route) {
       self::addRoute($route);
     }
   }
 
-  public static function run() {
+  public static function run() : bool {
     $routes = self::$routes;
     $route_found = false;
     foreach ($routes as $tested_route) {
@@ -52,41 +52,41 @@ class Router {
     return false;
   }
 
-  public static function reset() {
+  public static function reset() : void {
     self::$routes = [];
   }
 
-  private static function get(string $route, string $controller, string $action) {
+  private static function get(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       return self::route($route, $controller, $action);
     }
   }
 
-  private static function post(string $route, string $controller, string $action) {
+  private static function post(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       return self::route($route, $controller, $action);
     }
   }
 
-  private static function put(string $route, string $controller, string $action) {
+  private static function put(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
       return self::route($route, $controller, $action);
     }
   }
 
-  private static function patch(string $route, string $controller, string $action) {
+  private static function patch(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
       return self::route($route, $controller, $action);
     }
   }
 
-  private static function delete(string $route, string $controller, string $action) {
+  private static function delete(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
       return self::route($route, $controller, $action);
     }
   }
 
-  private static function any(string $route, string $controller, string $action) {
+  private static function any(string $route, string $controller, string $action) : bool {
     return self::route($route, $controller, $action);
   }
 

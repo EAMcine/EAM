@@ -1,33 +1,30 @@
 * {
-    --separator-color: #cfcfcf;
-}
-
-header {
-    background-color: #8e98b5;
-}
-
-.header-logo {
-    background-color: inherit;
-    border-right-color: var(--separator-color);
-}
-
-.header-main {
-    background-color: inherit;
-}
-
-.header-menu {
-    background-color: inherit;
-    border-left-color: var(--separator-color);
-}
-
-.header-link {
-    font-weight: bold;
-    text-decoration: none;
-    color: #fafafa;
-    background-color: inherit;
-}
-
-.header-link:hover {
-    color: #313131;
-    background-color: #fafafa;
+    --title-color: #272727;
+    --title-2-color: #2a2926;
+    --title-3-color: #493d2f;
+    --text-color: #141313;
+    --text-2-color: #383632;
+    --text-3-color: #5f4c37;
+    --link-color: #3131ee;
+    --link-hover-color: #6a6aca;
+    --separator-color: #313131;
+    --background-color: #fafafa;
+    --background-2-color: #c3d2de;
+    --background-3-color: #9aa3bd;
+    --button-color: #6a6aca;
+    --button-hover-color: #5656c1;
+    --button-text-color: #fafafa;
+    --button-text-hover-color: #d4d5d6;
+    --button-border-color: #b5260d;
+    --button-border-hover-color: #f96b06;
+    --shadow-color: #313131;
+    --shadow-hover-color: #161515;
+    --shadow-2-color: #632f0a;
+    --shadow-2-hover-color: #2b0a04;
+    --shadow-3-color: #655609;
+    --shadow-3-hover-color: #2c1404;
+    --loader-background-color: #6aa39f;
+    --loader-color: #efefef;
+    --loader-color-2: #b8b8b8;
+    --loader-shadow-color: #e7eef0;
 }

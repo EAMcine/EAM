@@ -13,9 +13,9 @@ trait componentsTrait {
         <meta http-equiv="<?= HTTP_EQUIV; ?>" content="<?= HTTP_EQUIV_CONTENT ?>">
         <meta name="<?= NAME_VIEWPORT; ?>" content="<?= CONTENT_VIEWPORT; ?>">
         <title><?= $this->viewTitle() . SEPARATOR . SITE_NAME; ?></title>
+        <link id="theme-style" theme="light" rel="stylesheet" href="/css/light-theme.css">
+        <link rel="stylesheet" href="/css/loading.css">
         <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/position.css">
-        <link rel="stylesheet" href="/css/light-theme.css">
         <script src="/js/jquery.js"></script>
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
