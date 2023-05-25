@@ -2,7 +2,7 @@
 
 namespace Framework\Core;
 
-class ClassLoader {
+final class ClassLoader {
 
     public function __construct() {
         

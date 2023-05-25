@@ -13,7 +13,7 @@ abstract class Controller {
         header("Location: $url");
     }
 
-    public function json(array $data) {
+    public function json(mixed $data) {
         header('Content-Type: application/json');
         echo json_encode($data);
     }

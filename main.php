@@ -37,7 +37,7 @@ final class Main {
         $loader->loadFolder('src/ApiBundle/');
         $routesLoader->scanRoutesFile('app/routesAPI.yml');
 
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
 
         set_exception_handler(function($exception) {
             echo json_encode([

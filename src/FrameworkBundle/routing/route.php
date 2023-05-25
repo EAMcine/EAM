@@ -2,8 +2,7 @@
 
 namespace Framework\Routing;
 
-class Route {
-    
+final class Route {
     private string $method;
     private string $route;
     private string $controller;
@@ -16,19 +15,19 @@ class Route {
         $this->action = $action;
     }
     
-    public function getMethod() {
+    public function getMethod() : string {
         return $this->method;
     }
 
-    public function getRoute() {
+    public function getRoute() : string {
         return $this->route;
     }
 
-    public function getController() {
+    public function getController() : string {
         return $this->controller;
     }
 
-    public function getAction() {
+    public function getAction() : string {
         return $this->action;
     }
 

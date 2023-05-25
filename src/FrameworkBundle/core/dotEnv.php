@@ -2,7 +2,7 @@
 
 namespace Framework\Core;
 
-class DotEnv {
+final class DotEnv {
     private $path;
 
     public function __construct(string $path) {
