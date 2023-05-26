@@ -16,11 +16,7 @@ abstract class Model {
         $this->_pk = $data['pk'] ?? null;
     }
 
-    public static function create(array $data) : Model {
-        $model = new self($data);
-        $model->save();
-        return $model;
-    }
+    abstract public static function create(mixed ...$args) : Model|false;
 
     protected function save() : bool {
         if ($this->_pk == null) {

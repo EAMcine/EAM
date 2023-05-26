@@ -1,7 +1,11 @@
 # routes for the App bundle
 # route format:
 # method | url | controller | action
-get | / | AppBundle\Controllers\defaultController | indexAction
-get | /test/{id}/ | AppBundle\Controllers\defaultController | testAction
-get | /debug/routes/ | AppBundle\Controllers\defaultController | showRoutesAction
-any | /404/ | AppBundle\Controllers\defaultController | errorAction
+get | / | AppBundle\Controllers\DefaultController | indexAction
+get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
+get | /debug/routes/ | AppBundle\Controllers\DefaultController | showRoutesAction
+get | /login/ | AppBundle\Controllers\UserController | loginAction
+get | /logout/ | AppBundle\Controllers\UserController | logoutAction
+get | /register/ | AppBundle\Controllers\UserController | registerAction
+get | /confirm/{token}/ | AppBundle\Controllers\UserController | confirmAction
+any | /404/ | AppBundle\Controllers\DefaultController | errorAction
