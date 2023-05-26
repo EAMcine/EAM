@@ -21,6 +21,7 @@ trait componentsTrait {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
+
         </head>
         <body>
         <?php
@@ -40,12 +41,18 @@ trait componentsTrait {
         $this->preLoader();
         ?>
         <header role="header">
-        <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
-        <h1 class="header-title"><?= $this->viewTitle(); ?></h1>
-        <nav class="header-menu">
-        <a href="#">Theme</a>
-        <a href="#">Compte</a>
-        </nav>
+        <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+">
+        </div>
+
+        <div class="navigation">
+
+            <input type="checkbox" class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="header-menu">
+                <li><a href="#">Connexion</a></li>
+            </ul>
+        </div>
         </header>
         <?php
     }
@@ -56,4 +63,18 @@ trait componentsTrait {
         <script src="/js/postloader.js" type="module"></script>
         <?php
     }
+    protected function footer() {
+        $this->preLoader();
+        ?>
+        <footer role="contentinfo">
+
+            <div class="footer">
+                <ul class="footer-menu">
+                    <li><a href="#">Mode sombre</a> </li>
+                </ul>
+            </div>
+        </footer>
+        <?php
+    }
 }
+
