@@ -74,7 +74,12 @@ final class Main {
         header('Content-Type: text/html');
 
         set_exception_handler(function($exception) {
+            echo '<h1>Exception</h1>';
             echo $exception->getMessage();
+            echo '<br>';
+            echo '<pre>';
+            echo $exception->getTraceAsString();
+            echo '</pre>';
         });
 
         $router->run();

@@ -3,6 +3,8 @@
 namespace StandardBundle\Models;
 
 use \Framework\Components\Model as Model;
+use \Framework\Core\Database as Database;
+use \StandardBundle\Traits\SecurityTrait as SecurityTrait;
 
 final class User extends Model {
     protected static string|null $_pkName = 'email';
@@ -25,15 +27,66 @@ final class User extends Model {
         $lastname = $args[3];
         $group = $args[4];
 
+        if ($group instanceof Group) {
+            $group = $group->get('code');
+        }
+
         $data = [
             'email' => $email,
             'password' => $password,
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'group' => $group
+            'group' => $group,
+            'active' => 0
         ];
 
-        return new User($data);
+        if (self::selectOneByPk($email))
+            return false;
+
+        $user = new User($data);
+        $user->insert();
+
+        return $user;
+    }
+
+    public static function select(string $where = null, array $params = null) : array|false {
+        $result = Database::select(static::getTable(), $where, $params);
+        if ($result == false) {
+            return false;
+        }
+        $users = array();
+        foreach ($result as $user) {
+            $users[] = new self($user);
+        }
+        return $users;
+    }
+
+    public static function selectOne(string $where = null, array $params = null) : self|false {
+        $result = Database::selectOne(static::getTable(), $where, $params);
+        if ($result == false) {
+            return false;
+        }
+        return new self($result);
+    }
+
+    public static function selectOneByPk(mixed $pk) : self|false {
+        $result = Database::selectOneByPk(static::getTable(), $pk, static::getPkName());
+        if ($result == false) {
+            return false;
+        }
+        return new self($result);
+    }
+
+    public static function selectAll() : array|false {
+        $result = Database::selectAll(static::getTable());
+        if ($result == false) {
+            return false;
+        }
+        $users = array();
+        foreach ($result as $user) {
+            $users[] = new self($user);
+        }
+        return $users;
     }
 
     public static function initTable() : string {
@@ -42,7 +95,7 @@ final class User extends Model {
             `password` varchar(60) NOT NULL,
             `firstname` varchar(255) NOT NULL,
             `lastname` varchar(255) NOT NULL,
-            `group` int(11) NOT NULL,
+            `group` varchar(255) NOT NULL,
             `active` tinyint(1) NOT NULL DEFAULT 0,
             PRIMARY KEY (`email`)
             )';

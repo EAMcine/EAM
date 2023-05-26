@@ -50,20 +50,10 @@ final class UserController extends Controller {
     }
 
     public function registerPostAction() {
-        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['firstname']) && isset($_POST['lastname'])) {
-            if ($_POST['password'] === $_POST['password2']) {
-                $user = User::selectOneByPk($_POST['email']);
-                if (!$user) {
-                    $user = User::create(
-                        array(
-                            'email' => $_POST['email'],
-                            'password' => SecurityTrait::hash($_POST['password']),
-                            'firstname' => $_POST['firstname'],
-                            'lastname' => $_POST['lastname'],
-                            'group' => Group::selectOneByPk('user'),
-                            'active' => 0
-                        )
-                    );
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordConfirm']) && isset($_POST['firstname']) && isset($_POST['lastname'])) {
+            if ($_POST['password'] === $_POST['passwordConfirm']) {
+                $user = User::create($_POST['email'], SecurityTrait::hash($_POST['password']), $_POST['firstname'], $_POST['lastname'], 'user');
+                if ($user) {
                     $_SESSION['user'] = $user;
                     $this->redirect('/');
                 } else {

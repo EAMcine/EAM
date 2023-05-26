@@ -4,7 +4,7 @@ namespace AppBundle\Views;
 
 use Framework\Components\View as View;
 
-final class Login extends View {
+final class Register extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
     protected static string|null $defaultViewTitle = 'Connexion';
@@ -14,18 +14,24 @@ final class Login extends View {
         $this->header();
         ?>    
         <main>
-        <h1>Connexion</h1>
+        <h1>Inscription</h1>
         <form action="" method="post">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Email" required>
+            <label for="firstname">Prénom</label>
+            <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+            <label for="lastname">Nom</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Nom" required>
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+            <label for="passwordConfirm">Confirmer le mot de passe</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
             <pre><?= $this->get('error') ?? null ?></pre>
-            <button type="submit">Se connecter</button>
+            <button type="submit">S'inscrire</button>
         </form>
         </main>
         <?php $this->postLoader(); ?>
-        <script src="/js/views/login.js" type="module" namespace="login"></script>
+        <script src="/js/views/register.js" type="module" namespace="register"></script>
         </body>
         </html>
         <?php
