@@ -49,6 +49,10 @@ abstract class Model {
         return Database::select($this->table, $where, $params);
     }
 
+    public function selectOne(string $where = null, array $params = null) : array|false {
+        return Database::selectOne($this->table, $where, $params);
+    }
+
     public function getId() : int|null {
         return $this->id;
     }
