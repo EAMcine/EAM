@@ -21,10 +21,10 @@ final class Database extends \PDO {
             throw new \Exception('Le paramètre doit être une instance de Model.', 500);
         }
         $data = $model->get();
-        if ($model->getId() == null) {
+        if ($model->getPk() == null) {
             return self::insert($model->getTable(), $data);
         } else {
-            return self::update($model->getTable(), $data, 'id = '.$model->getId());
+            return self::update($model->getTable(), $data, $model->getPkName().' = '.$model->getPk());
         }
     }
 
