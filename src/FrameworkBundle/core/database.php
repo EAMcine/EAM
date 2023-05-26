@@ -63,4 +63,15 @@ final class Database extends \PDO {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public static function selectOne(string $table, string $where = null, array $params = null) : array|false {
+        $db = self::getDb();
+        $sql = 'SELECT * FROM '.$table;
+        if ($where != null) 
+            $sql .= ' WHERE '.$where;
+        $sql .= ' LIMIT 1';
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
 }
