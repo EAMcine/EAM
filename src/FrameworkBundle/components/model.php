@@ -21,6 +21,8 @@ abstract class Model {
 
     abstract protected static function create(mixed ...$args) : Model|false;
 
+    abstract protected static function initTable() : string;
+
     protected function save() : bool {
         if ($this->_pk == null) {
             return $this->insert();

@@ -26,4 +26,13 @@ final class ImageFormat extends Model {
 
         return new ImageFormat($data);
     }
+
+    public static function initTable() : string {
+        return 'CREATE TABLE IF NOT EXISTS `imageformats` (
+            `receivedformat` varchar(255) NOT NULL,
+            `localformat` varchar(255) NOT NULL,
+            PRIMARY KEY (`receivedformat`) 
+            )';
+    }
+
 }
