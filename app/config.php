@@ -36,4 +36,7 @@ define('HTTP_EQUIV_CONTENT', 'IE=edge');
 define('NAME_VIEWPORT', 'viewport');
 define('CONTENT_VIEWPORT', 'width=device-width, initial-scale=1.0');
 
+// Informations about the password hash
+define('PASSWORD_HASH', getenv('PASSWORD_HASH'));
+
 define('CONFIG_LOADED', true);

@@ -4,8 +4,10 @@
 get | / | AppBundle\Controllers\DefaultController | indexAction
 get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
 get | /debug/routes/ | AppBundle\Controllers\DefaultController | showRoutesAction
-get | /login/ | AppBundle\Controllers\UserController | loginAction
-get | /logout/ | AppBundle\Controllers\UserController | logoutAction
 get | /register/ | AppBundle\Controllers\UserController | registerAction
+post | /register/ | AppBundle\Controllers\UserController | registerPostAction
+get | /login/ | AppBundle\Controllers\UserController | loginAction
+post | /login/ | AppBundle\Controllers\UserController | loginPostAction
+get | /logout/ | AppBundle\Controllers\UserController | logoutAction
 get | /confirm/{token}/ | AppBundle\Controllers\UserController | confirmAction
 any | /404/ | AppBundle\Controllers\DefaultController | errorAction

@@ -9,7 +9,7 @@ use Framework\Routing as Routing;
 final class DefaultController extends Controller {
 
     public function indexAction() {
-        $this->render('index');
+        $this->render('Index');
     }
 
     public function showRoutesAction() {
@@ -23,7 +23,7 @@ final class DefaultController extends Controller {
         $routes = $router->getRoutes();
         $loader = new \Framework\Core\ClassLoader();
         $loader->loadFile('src/AppBundle/Views/showRoutes.phtml');
-        $this->render('showRoutes', [
+        $this->render('ShowRoutes', [
             'routesAPI' => $routesAPI,
             'routes' => $routes
         ]);

@@ -46,6 +46,9 @@ final class Main {
         fwrite($logfile, $numberOfConnections + 1);
         fclose($logfile);
 
+        // Load all files in src/StandardBundle used in both API and website
+        $loader->loadFolder('src/StandardBundle/');
+
         $router = Routing\Router::getInstance();
         $routesLoader = Routing\RoutesLoader::getInstance();
         $loader->loadFolder('src/ApiBundle/');

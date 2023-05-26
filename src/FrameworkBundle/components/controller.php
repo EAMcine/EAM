@@ -10,6 +10,8 @@ abstract class Controller {
     }
 
     public function redirect(string $url) {
+        // set HTTP method to GET for redirection
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         header("Location: $url");
     }
 

@@ -74,4 +74,12 @@ final class Database extends \PDO {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public static function selectOneByPk(string $table, mixed $pk, string $pkName) : array|false {
+        $db = self::getDb();
+        $sql = 'SELECT * FROM '.$table.' WHERE '. $pkName .' = ?';
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$pk]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
 }

@@ -11,12 +11,15 @@ abstract class Model {
     protected static string|null $_pkName;
     protected static string $_table;
 
-    protected function __construct(array $data = null) {
+    public function __construct(array $data = null) {
         $this->_data = $data;
-        $this->_pk = $data['pk'] ?? null;
+        $this->_pk = $data[self::getPkName()] ?? null;
+        if ($this->_pk == null) {
+            $this->save();            
+        }
     }
 
-    abstract public static function create(mixed ...$args) : Model|false;
+    abstract protected static function create(mixed ...$args) : Model|false;
 
     protected function save() : bool {
         if ($this->_pk == null) {
@@ -32,34 +35,70 @@ abstract class Model {
         return Database::save($this->_table, $data);
     }
 
-    protected function update() {
+    protected function update() : bool {
         $data = $this->_data;
         $data['id'] = $this->_pk;
         return Database::update($this->_table, $data, 'id = '.$this->_pk);
     }
 
-    public function delete() {
+    public function delete() : bool {
         return Database::delete($this->_table, 'id = '.$this->_pk);
     }
 
-    public function select(string $where = null, array $params = null) : array|false {
-        return Database::select($this->_table, $where, $params);
+    public static function select(string $where = null, array $params = null) : array|false {
+        $result = Database::select(self::$_table, $where, $params);
+        if ($result == false) {
+            return false;
+        }
+        $models = [];
+        foreach ($result as $data) {
+            $models[] = new self($data);
+        }
+        return $models;
     }
 
-    public function selectOne(string $where = null, array $params = null) : array|false {
-        return Database::selectOne($this->_table, $where, $params);
+    public static function selectOne(string $where = null, array $params = null) : self|false {
+        $result = Database::selectOne(self::$_table, $where, $params);
+        if ($result == false) {
+            return false;
+        }
+        return new self($result);
     }
 
-    public function getPk() : int|null {
+    public static function selectOneByPk(mixed $pk) : self|false {
+        $result = Database::selectOne(self::getTable(), self::getPkName() .' = :'. self::getPkName(), [''.self::getPkName() => $pk]);
+        if ($result == false) {
+            return false;
+        }
+        return new self($result);
+    }
+
+    public static function selectAll() : array|false {
+        $result = Database::select(self::$_table);
+        if ($result == false) {
+            return false;
+        }
+        $models = [];
+        foreach ($result as $data) {
+            $models[] = new self($data);
+        }
+        return $models;
+    }
+
+    public function getData() : array {
+        return $this->_data;
+    }
+
+    public function getPk() : mixed {
         return $this->_pk;
     }
 
     public static function getPkName() : string {
-        return self::$_pkName ?? 'id';
+        return static::$_pkName ?? 'id';
     }
 
     public static function getTable() : string {
-        return self::$_table;
+        return static::$_table;
     }
 
     public function get(string|null $key = null) : mixed {

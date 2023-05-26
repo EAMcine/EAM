@@ -58,32 +58,37 @@ class Router {
 
   private static function get(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-      return self::route($route, $controller, $action);
+      return self::route($route, $controller, $action) ?? false;
     }
+    return false;
   }
 
   private static function post(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      return self::route($route, $controller, $action);
+      return self::route($route, $controller, $action) ?? false;
     }
+    return false;
   }
 
   private static function put(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
       return self::route($route, $controller, $action);
     }
+    return false;
   }
 
   private static function patch(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
       return self::route($route, $controller, $action);
     }
+    return false;
   }
 
   private static function delete(string $route, string $controller, string $action) : bool {
     if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
       return self::route($route, $controller, $action);
     }
+    return false;
   }
 
   private static function any(string $route, string $controller, string $action) : bool {
@@ -91,10 +96,7 @@ class Router {
   }
 
   private static function route(string $route, string $controller, string $action) : bool {
-    // $route is a string like '/user/{id}/edit'
-    // $route is a string like '/user/1/edit'
-    // $controller is a string like 'AppBundle\controllers\userController'
-    // $action is a string like 'editAction' but the method can take parameters  
+
     if ($route == '/404/') {
       $controller = 'AppBundle\\Controllers\\defaultController';
       $action = 'errorAction';
@@ -109,6 +111,7 @@ class Router {
     if (count($route) != count($request)) {
       return false;
     }
+
     for ($i = 0; $i < count($route); $i++) {
       if ($route[$i] != $request[$i]) {
         if (strpos($route[$i], '{') !== false && strpos($route[$i], '}') !== false) {
@@ -120,6 +123,7 @@ class Router {
         }
       }
     }
+
     $controller = new $controller();
     $controller->$action($params);
     return true;
