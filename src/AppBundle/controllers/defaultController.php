@@ -9,11 +9,7 @@ use Framework\Routing as Routing;
 final class defaultController extends Controller {
 
     public function indexAction() {
-        $this->render('index', array('header-links' => array(
-            array('url' => HOME_URL, 'name' => 'Home'),
-            array('url' => HOME_URL . '/debug/', 'name' => 'Debug'),
-            array('url' => HOME_URL . '/debug/routes/', 'name' => 'Show Routes')
-        )));
+        $this->render('index');
     }
 
     public function showRoutesAction() {
