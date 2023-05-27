@@ -50,9 +50,9 @@ final class UserController extends Controller {
     }
 
     public function registerPostAction() {
-        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordConfirm']) && isset($_POST['firstname']) && isset($_POST['lastname'])) {
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordConfirm']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['birthday'])&& isset($_POST['gender'])) {
             if ($_POST['password'] === $_POST['passwordConfirm']) {
-                $user = User::create($_POST['email'], SecurityTrait::hash($_POST['password']), $_POST['firstname'], $_POST['lastname'], 'user');
+                $user = User::create($_POST['email'], SecurityTrait::hash($_POST['password']), $_POST['firstname'], $_POST['lastname'], $_POST['birthday'], $_POST['gender'], 'user');
                 if ($user) {
                     $_SESSION['user'] = $user;
                     $this->redirect('/');

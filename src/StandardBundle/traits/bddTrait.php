@@ -3,6 +3,7 @@
 namespace StandardBundle\Traits;
 
 use Framework\Core\ClassLoader as ClassLoader;
+use StandardBundle\Models\Group as Group;
 
 trait BddTrait {
 
@@ -44,11 +45,28 @@ trait BddTrait {
             $bdd->query('CREATE EVENT IF NOT EXISTS `clean_tokens` ON SCHEDULE EVERY 1 HOUR STARTS CURRENT_TIMESTAMP DO DELETE FROM `users_tokens` WHERE `expiration` < NOW();');
 
             // Création des groupes
-            $user = \StandardBundle\Models\Group::create('user', 'Utilisateur', 'Groupe utilisateur');
-            \StandardBundle\Models\Group::create('premium', 'Premium', 'Groupe premium', $user);
-            $moderator = \StandardBundle\Models\Group::create('moderator', 'Modérateur', 'Groupe modérateur', $user);
-            \StandardBundle\Models\Group::create('admin', 'Administrateur', 'Groupe administrateur', 'user', $moderator);
+            if(Group::selectOneByPk('user') == false)
+                $user = Group::create('user', 'Utilisateur/Utilisatrice', 'Groupe des utilisateurs non abonnés au service premium.');
+            else
+                $user = Group::selectOneByPk('user');
 
+            if(Group::selectOneByPk('premium') == false)
+                Group::create('premium', 'Abonné/Abonnée', 'Groupe des utilisateurs abonnés au service premium.', $user);
+
+            if(Group::selectOneByPk('moderator') == false)
+                $moderator = Group::create('moderator', 'Modérateur/Modératrice', 'Groupe des modérateurs, donne accès aux fonctionnalités de modération.', $user);
+            else
+                $moderator = Group::selectOneByPk('moderator');
+
+            if(Group::selectOneByPk('admin') == false)
+                $admin = Group::create('admin', 'Administrateur/Administratrice', 'Groupe des administrateurs, donne accès aux fonctionnalités d\'administration.', $moderator);
+            else
+                $admin = Group::selectOneByPk('admin');
+
+            if(Group::selectOneByPk('developer') == false)
+                Group::create('developer', 'Développeur/Développeuse', 'Groupe des développeurs, donne accès aux fonctionnalités de développement.', $admin);
+
+            // Création des permissions
 
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());

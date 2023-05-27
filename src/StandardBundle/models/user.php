@@ -15,17 +15,21 @@ final class User extends Model {
      * @param string $password
      * @param string $firstname
      * @param string $lastname
+     * @param string $birthday
+     * @param string $gender
      * @param string $group
      */
     public static function create(mixed ...$args) : User|false {
-        if (count($args) != 5)
+        if (count($args) != 7)
             return false;
 
         $email = $args[0];
         $password = $args[1];
         $firstname = $args[2];
         $lastname = $args[3];
-        $group = $args[4];
+        $birthday = $args[4];
+        $gender = $args[5];
+        $group = $args[6];
 
         if ($group instanceof Group) {
             $group = $group->get('code');
@@ -36,6 +40,8 @@ final class User extends Model {
             'password' => $password,
             'firstname' => $firstname,
             'lastname' => $lastname,
+            'birthday' => $birthday,
+            'gender' => $gender,
             'group' => $group,
             'active' => 0
         ];
@@ -95,6 +101,8 @@ final class User extends Model {
             `password` varchar(60) NOT NULL,
             `firstname` varchar(255) NOT NULL,
             `lastname` varchar(255) NOT NULL,
+            `birthday` date NOT NULL,
+            `gender` varchar(255) NOT NULL,
             `group` varchar(255) NOT NULL,
             `active` tinyint(1) NOT NULL DEFAULT 0,
             PRIMARY KEY (`email`)

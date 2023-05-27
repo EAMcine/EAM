@@ -7,25 +7,47 @@ use Framework\Components\View as View;
 final class Register extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
-    protected static string|null $defaultViewTitle = 'Connexion';
+    protected static string|null $defaultViewTitle = 'Inscription';
 
     protected function render() {
         $this->head(); 
         $this->header();
         ?>    
         <main>
-        <h1>Inscription</h1>
+        <h1><?= $this->viewTitle(); ?></h1>
         <form action="" method="post">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <label for="firstname">Prénom</label>
-            <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
-            <label for="lastname">Nom</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Nom" required>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
-            <label for="passwordConfirm">Confirmer le mot de passe</label>
-            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+            <span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </span>
+            <span>
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+            </span>
+            <span>
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Nom" required>
+            </span>
+            <span>
+                <label for="birthday">Date de naissance</label>
+                <input type="date" name="birthday" id="birthday" placeholder="Date de naissance" required>
+            </span>
+            <span>
+                <label for="gender">Genre</label>
+                <select name="gender" id="gender" required>
+                    <option value="male">Homme</option>
+                    <option value="female">Femme</option>
+                    <option value="other" selected>Autre</option>
+                </select>
+            </span>
+            <span>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+            </span>
+            <span>
+                <label for="passwordConfirm">Confirmer le mot de passe</label>
+                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+            </span>
             <pre><?= $this->get('error') ?? null ?></pre>
             <button type="submit">S'inscrire</button>
         </form>
