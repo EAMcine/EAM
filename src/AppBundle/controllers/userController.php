@@ -67,10 +67,4 @@ final class UserController extends Controller {
         }
         $this->redirect('/register/');
     }
-
-    public function connectAction() {
-        if (isset($_POST['email']) && isset($_POST['password'])) {
-            
-        }
-    }
 }
