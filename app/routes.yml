@@ -1,13 +1,26 @@
 # routes for the App bundle
 # route format:
 # method | url | controller | action
+
+# DefaultController
 get | / | AppBundle\Controllers\DefaultController | indexAction
 get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
-get | /debug/routes/ | AppBundle\Controllers\DefaultController | showRoutesAction
+
+# DebugController
+get | /debug/ | AppBundle\Controllers\DebugController | indexAction
+get | /debug/phpinfo/ | AppBundle\Controllers\DebugController | phpinfoAction
+get | /debug/routes/ | AppBundle\Controllers\DebugController| showRoutesAction
+get | /debug/logs/ | AppBundle\Controllers\DebugController | showLogsAction
+get | /debug/logs/{file}/ | AppBundle\Controllers\DebugController | showLogAction
+
+# UserController
 get | /register/ | AppBundle\Controllers\UserController | registerAction
 post | /register/ | AppBundle\Controllers\UserController | registerPostAction
 get | /login/ | AppBundle\Controllers\UserController | loginAction
 post | /login/ | AppBundle\Controllers\UserController | loginPostAction
 get | /logout/ | AppBundle\Controllers\UserController | logoutAction
 get | /confirm/{email}/{token}/ | AppBundle\Controllers\UserController | confirmAction
+get | /account/ | AppBundle\Controllers\UserController | accountAction
+
+# 404 error action
 any | /404/ | AppBundle\Controllers\DefaultController | errorAction

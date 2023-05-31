@@ -1,6 +1,11 @@
 RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^api\.eam$
+RewriteRule (.*) app/api.php [QSA,L]
+
 RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf|\.ico|\.webmanifest)$
-RewriteRule (.*) main.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) app/app.php [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ public/$1 [L]
