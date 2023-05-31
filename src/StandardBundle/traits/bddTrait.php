@@ -4,6 +4,8 @@ namespace StandardBundle\Traits;
 
 use Framework\Core\ClassLoader as ClassLoader;
 use StandardBundle\Models\Group as Group;
+use StandardBundle\Models\GroupPermission;
+use StandardBundle\Models\Permission;
 
 trait BddTrait {
 
@@ -45,28 +47,42 @@ trait BddTrait {
             $bdd->query('CREATE EVENT IF NOT EXISTS `clean_tokens` ON SCHEDULE EVERY 1 HOUR STARTS CURRENT_TIMESTAMP DO DELETE FROM `users_tokens` WHERE `expiration` < NOW();');
 
             // Création des groupes
-            if(Group::selectOneByPk('user') == false)
+            if (Group::selectOneByPk('user') == false)
                 $user = Group::create('user', 'Utilisateur/Utilisatrice', 'Groupe des utilisateurs non abonnés au service premium.');
             else
                 $user = Group::selectOneByPk('user');
 
-            if(Group::selectOneByPk('premium') == false)
+            if (Group::selectOneByPk('premium') == false)
                 Group::create('premium', 'Abonné/Abonnée', 'Groupe des utilisateurs abonnés au service premium.', $user);
 
-            if(Group::selectOneByPk('moderator') == false)
+            if (Group::selectOneByPk('moderator') == false)
                 $moderator = Group::create('moderator', 'Modérateur/Modératrice', 'Groupe des modérateurs, donne accès aux fonctionnalités de modération.', $user);
             else
                 $moderator = Group::selectOneByPk('moderator');
 
-            if(Group::selectOneByPk('admin') == false)
+            if (Group::selectOneByPk('admin') == false)
                 $admin = Group::create('admin', 'Administrateur/Administratrice', 'Groupe des administrateurs, donne accès aux fonctionnalités d\'administration.', $moderator);
             else
                 $admin = Group::selectOneByPk('admin');
 
-            if(Group::selectOneByPk('developer') == false)
-                Group::create('developer', 'Développeur/Développeuse', 'Groupe des développeurs, donne accès aux fonctionnalités de développement.', $admin);
+            if (Group::selectOneByPk('developer') == false)
+                $developer = Group::create('developer', 'Développeur/Développeuse', 'Groupe des développeurs, donne accès aux fonctionnalités de développement.', $admin);
+            else
+                $developer = Group::selectOneByPk('developer');
+
 
             // Création des permissions
+
+            if (Permission::selectOneByPk('DEBUG') == false)
+                $debug = Permission::create('DEBUG', 'Permission de debug', 'Permission de debug, donne accès aux fonctionnalités de debug.');
+            else
+                $debug = Permission::selectOneByPk('DEBUG');
+
+            // Attribution des permissions
+
+            if ($developer->can($debug) == false)
+                GroupPermission::create($developer, $debug);
+            
 
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());

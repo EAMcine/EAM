@@ -44,6 +44,37 @@ final class Group extends Model {
         return $group;
     }
 
+    private function getPermissionList() : array|false {
+        $permissions = GroupPermission::select('`group` = :group', array(
+            'group' => $this->get('code')
+        ));
+        if ($permissions == false) {
+            return false;
+        }
+        $subgroup = $this->get('subgroup');
+        if ($subgroup != null) {
+            $subgroup = Group::selectOneByPk($subgroup);
+            if ($subgroup == false) {
+                return false;
+            }
+            $permissions = array_merge($permissions, $subgroup->getPermissionList());
+        }
+        return GroupPermission::getPermissions($permissions);
+    }
+        
+
+    public function can(string $permission) : bool {
+        $permissions = $this->getPermissionList();
+        if ($permissions) {
+            foreach ($permissions as $p) {
+                if ($p == $permission) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static function select(string $where = null, array $params = null) : array|false {
         $result = Database::select(static::getTable(), $where, $params);
         if ($result == false) {

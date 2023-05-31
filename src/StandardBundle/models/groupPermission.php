@@ -19,6 +19,14 @@ final class GroupPermission extends Model {
         $group = $args[0];
         $permission = $args[1];
 
+        if ($group instanceof Group) {
+            $group = $group->get('code');
+        }
+        
+        if ($permission instanceof Permission) {
+            $permission = $permission->get('code');
+        }
+
         $data = array(
             'group' => $group,
             'permission' => $permission
@@ -31,6 +39,14 @@ final class GroupPermission extends Model {
         $groupPermission->insert();
 
         return $groupPermission;
+    }
+
+    public static function getPermissions(array $permissions) : array|false {
+        $result = array();
+        foreach ($permissions as $permission) {
+            $result[] = $permission->get('permission');
+        }
+        return $result;
     }
 
     public static function select(string $where = null, array $params = null) : array|false {

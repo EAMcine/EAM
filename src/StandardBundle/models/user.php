@@ -55,6 +55,36 @@ final class User extends Model {
         return $user;
     }
 
+    private function getPermissionList() : array|false {
+        $permissions = UserPermission::select('`user` = :user', array(
+            'user' => $this->get('email')
+        ));
+        if ($permissions == false) {
+            return false;
+        }
+        $group = $this->get('group');
+        if ($group != null) {
+            $group = Group::selectOneByPk($group);
+            if ($group == false) {
+                return false;
+            }
+            $permissions = array_merge($permissions, $group->getPermissionList());
+        }
+        return UserPermission::getPermissions($permissions);
+    }
+
+    public function can(string $permission) : bool {
+        $permissions = $this->getPermissionList();
+        if ($permissions) {
+            foreach ($permissions as $p) {
+                if ($p == $permission) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static function select(string $where = null, array $params = null) : array|false {
         $result = Database::select(static::getTable(), $where, $params);
         if ($result == false) {

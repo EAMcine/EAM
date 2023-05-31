@@ -7,6 +7,10 @@ use Framework\Core\DotEnv as DotEnv;
 $envLoader = new DotEnv(__DIR__.'/.env');
 $envLoader->load();
 
+// Informations about the environment
+
+define('ENV_NAME', getenv('ENV_NAME'));
+
 // Informations about the site
 
 define('DEV_NAME', 'Alban, Enzo, Mathis');

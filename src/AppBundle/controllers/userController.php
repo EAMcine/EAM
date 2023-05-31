@@ -104,5 +104,18 @@ final class UserController extends Controller {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
         $this->redirect('/');
-    }        
+    } 
+
+    // TODO: Make view => /account/
+    public function accountAction() {
+        $user = $_SESSION['user'] ?? null;
+        if ($user) {
+            $this->render('Account', array(
+                'user' => $user
+            ));
+        } else {
+            $_SESSION['error'] = 'Veuillez vous connecter pour accéder à votre compte';
+            $this->redirect('/login/');
+        }
+    }
 }
