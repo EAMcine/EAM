@@ -4,10 +4,10 @@ namespace ApiBundle\Controllers;
 
 use Framework\Components\Controller as Controller;
 
-final class defaultController extends Controller {
+final class DefaultController extends Controller {
 
     public function redirectAction() {
-        header('Location: /');
+        $this->redirect('/');
     }
 
     public function pingAction() {    

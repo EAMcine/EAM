@@ -6,10 +6,17 @@ use Framework\Components\Controller as Controller;
 use Framework\Routing\Router as Router;
 use Framework\Routing as Routing;
 
-final class defaultController extends Controller {
+final class DefaultController extends Controller {
 
     public function indexAction() {
-        $this->render('index');
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['error']);
+        $alert = $_SESSION['alert'] ?? null;
+        unset($_SESSION['alert']);
+        $this->render('Index', [
+            'error' => $error,
+            'alert' => $alert
+        ]);
     }
 
     public function showRoutesAction() {
@@ -23,7 +30,7 @@ final class defaultController extends Controller {
         $routes = $router->getRoutes();
         $loader = new \Framework\Core\ClassLoader();
         $loader->loadFile('src/AppBundle/Views/showRoutes.phtml');
-        $this->render('showRoutes', [
+        $this->render('ShowRoutes', [
             'routesAPI' => $routesAPI,
             'routes' => $routes
         ]);

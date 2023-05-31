@@ -21,6 +21,10 @@ define('DB_NAME', getenv('DB_NAME'));
 define('DB_PASSWORD' ,getenv('DB_PASSWORD'));
 define('DB_PORT', getenv('DB_PORT'));
 define('DB_USER', getenv('DB_USER'));
+define('DB_TYPE', getenv('DB_TYPE'));
+define('DB_CHARSET', getenv('DB_CHARSET'));
+define('DB_CHARSET_COLLATE', getenv('DB_CHARSET_COLLATE'));
+define('DB_ENGINE', getenv('DB_ENGINE'));
 
 // Informations about HTML definition
 
@@ -31,5 +35,8 @@ define('HTTP_EQUIV', 'X-UA-Compatible');
 define('HTTP_EQUIV_CONTENT', 'IE=edge');
 define('NAME_VIEWPORT', 'viewport');
 define('CONTENT_VIEWPORT', 'width=device-width, initial-scale=1.0');
+
+// Informations about the password hash
+define('PASSWORD_HASH', getenv('PASSWORD_HASH'));
 
 define('CONFIG_LOADED', true);

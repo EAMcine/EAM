@@ -30,9 +30,26 @@ final class Main {
     private function __construct() {
 
         include_once 'app/config.php';
+        $loader = new ClassLoader();
+
+        if (!file_exists(__DIR__ . '/' . SITE_NAME . ".log")) {
+            $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "w");
+            fwrite($logfile, 0);
+            fclose($logfile);
+            $loader->loadFile('src/StandardBundle/traits/bddTrait.php');
+            \StandardBundle\traits\bddTrait::bddInit();
+        }
+        
+        $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "r");
+        $numberOfConnections = $logfile ? fread($logfile, filesize(__DIR__ . '/' . SITE_NAME . ".log")) : 0;
+        $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "w");
+        fwrite($logfile, $numberOfConnections + 1);
+        fclose($logfile);
+
+        // Load all files in src/StandardBundle used in both API and website
+        $loader->loadFolder('src/StandardBundle/');
 
         $router = Routing\Router::getInstance();
-        $loader = new ClassLoader();
         $routesLoader = Routing\RoutesLoader::getInstance();
         $loader->loadFolder('src/ApiBundle/');
         $routesLoader->scanRoutesFile('app/routesAPI.yml');
@@ -57,7 +74,12 @@ final class Main {
         header('Content-Type: text/html');
 
         set_exception_handler(function($exception) {
+            echo '<h1>Exception</h1>';
             echo $exception->getMessage();
+            echo '<br>';
+            echo '<pre>';
+            echo $exception->getTraceAsString();
+            echo '</pre>';
         });
 
         $router->run();

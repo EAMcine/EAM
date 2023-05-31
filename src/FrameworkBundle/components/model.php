@@ -11,59 +11,59 @@ abstract class Model {
     protected static string|null $_pkName;
     protected static string $_table;
 
-    protected function __construct(array $data = null) {
+    public function __construct(array $data = null) {
         $this->_data = $data;
-        $this->_pk = $data['pk'] ?? null;
+        $this->_pk = $data[self::getPkName()] ?? null;
     }
 
-    public static function create(array $data) : Model {
-        $model = new self($data);
-        $model->save();
-        return $model;
-    }
+    abstract protected static function create(mixed ...$args) : Model|false;
+    abstract public static function select(string $where = null, array $params = null) : array|false;
+    abstract public static function selectOne(string $where = null, array $params = null) : self|false;
+    abstract public static function selectOneByPk(mixed $pk) : self|false;
+    abstract public static function selectAll() : array|false;
+    abstract protected static function initTable() : string;
 
-    protected function save() : bool {
-        if ($this->_pk == null) {
+    public function save() : int|false {
+        if (static::getPkName() == null || static::getPkName() == 'id' || $this->_pk == null) {
             return $this->insert();
         } else {
             return $this->update();
         }
     }
 
-    protected function insert() : bool {
-        $data = $this->_data;
-        unset($data['pk']);
-        return Database::save($this->_table, $data);
+    protected function insert() : int|false {
+        $db = Database::getDb();
+        $fields = array_keys($this->_data);
+        $values = array_values($this->_data);
+        $fields = implode(', ', array_map(function($field) use ($db) {
+            return "`$field`";
+        }, $fields));
+        $values = implode(', ', array_map(function($value) use ($db) {
+            return isset($value) ? $db->quote($value) : 'NULL';
+        }, $values));
+        $query = "INSERT INTO `".static::getTable()."` ($fields) VALUES ($values)";
+        return $db->exec($query);
     }
 
-    protected function update() {
-        $data = $this->_data;
-        $data['id'] = $this->_pk;
-        return Database::update($this->_table, $data, 'id = '.$this->_pk);
+    public function update() : int|false {
+        $db = Database::getDb();
+        $fields = array_keys($this->_data);
+        $values = array_values($this->_data);
+        $fields = implode(', ', array_map(function($field, $value) use ($db) {
+            return "`$field` = ".(isset($value) ? $db->quote($value) : 'NULL');
+        }, $fields, $values));
+        $query = "UPDATE `".static::getTable()."` SET $fields WHERE `".self::getPkName()."` = ".$db->quote($this->_pk);
+        return $db->exec($query);
     }
 
-    public function delete() {
-        return Database::delete($this->_table, 'id = '.$this->_pk);
+    public function delete() : int|false {
+        $db = Database::getDb();
+        $query = "DELETE FROM `".static::getTable()."` WHERE `".self::getPkName()."` = ".$db->quote($this->_pk);
+        return $db->exec($query);
     }
 
-    public function select(string $where = null, array $params = null) : array|false {
-        return Database::select($this->_table, $where, $params);
-    }
-
-    public function selectOne(string $where = null, array $params = null) : array|false {
-        return Database::selectOne($this->_table, $where, $params);
-    }
-
-    public function getPk() : int|null {
-        return $this->_pk;
-    }
-
-    public static function getPkName() : string {
-        return self::$_pkName ?? 'id';
-    }
-
-    public static function getTable() : string {
-        return self::$_table;
+    public function __toString() : string {
+        return json_encode($this->_data);
     }
 
     public function get(string|null $key = null) : mixed {
@@ -73,4 +73,27 @@ abstract class Model {
         return $this->_data[$key] ?? null;
     }
 
+    public function set(string $key, mixed $value) : bool {
+        if (array_key_exists($key, $this->_data)) {
+            $this->_data[$key] = $value;
+            return true;
+        }
+        return false;
+    }
+
+    public function getData() : array {
+        return $this->_data;
+    }
+
+    public function getPk() : mixed {
+        return $this->_pk;
+    }
+
+    public static function getPkName() : string {
+        return static::$_pkName ?? 'id';
+    }
+
+    public static function getTable() : string {
+        return static::$_table;
+    }
 }
