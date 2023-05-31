@@ -9,7 +9,14 @@ use Framework\Routing as Routing;
 final class DefaultController extends Controller {
 
     public function indexAction() {
-        $this->render('Index');
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['error']);
+        $alert = $_SESSION['alert'] ?? null;
+        unset($_SESSION['alert']);
+        $this->render('Index', [
+            'error' => $error,
+            'alert' => $alert
+        ]);
     }
 
     public function showRoutesAction() {

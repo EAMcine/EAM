@@ -23,7 +23,7 @@ abstract class Model {
     abstract public static function selectAll() : array|false;
     abstract protected static function initTable() : string;
 
-    public function save() : bool {
+    public function save() : int|false {
         if (static::getPkName() == null || static::getPkName() == 'id' || $this->_pk == null) {
             return $this->insert();
         } else {
@@ -31,16 +31,39 @@ abstract class Model {
         }
     }
 
-    protected function insert() : bool {
-        return Database::insert(static::getTable(), $this->_data);
+    protected function insert() : int|false {
+        $db = Database::getDb();
+        $fields = array_keys($this->_data);
+        $values = array_values($this->_data);
+        $fields = implode(', ', array_map(function($field) use ($db) {
+            return "`$field`";
+        }, $fields));
+        $values = implode(', ', array_map(function($value) use ($db) {
+            return isset($value) ? $db->quote($value) : 'NULL';
+        }, $values));
+        $query = "INSERT INTO `".static::getTable()."` ($fields) VALUES ($values)";
+        return $db->exec($query);
     }
 
-    protected function update() : bool {
-        return Database::update(static::getTable(), $this->_data, self::getPkName(), $this->_pk);
+    public function update() : int|false {
+        $db = Database::getDb();
+        $fields = array_keys($this->_data);
+        $values = array_values($this->_data);
+        $fields = implode(', ', array_map(function($field, $value) use ($db) {
+            return "`$field` = ".(isset($value) ? $db->quote($value) : 'NULL');
+        }, $fields, $values));
+        $query = "UPDATE `".static::getTable()."` SET $fields WHERE `".self::getPkName()."` = ".$db->quote($this->_pk);
+        return $db->exec($query);
     }
 
-    public function delete() : bool {
-        return Database::delete(static::getTable(), self::getPkName(), $this->_pk);
+    public function delete() : int|false {
+        $db = Database::getDb();
+        $query = "DELETE FROM `".static::getTable()."` WHERE `".self::getPkName()."` = ".$db->quote($this->_pk);
+        return $db->exec($query);
+    }
+
+    public function __toString() : string {
+        return json_encode($this->_data);
     }
 
     public function get(string|null $key = null) : mixed {
@@ -48,6 +71,14 @@ abstract class Model {
             return $this->_data;
         }
         return $this->_data[$key] ?? null;
+    }
+
+    public function set(string $key, mixed $value) : bool {
+        if (array_key_exists($key, $this->_data)) {
+            $this->_data[$key] = $value;
+            return true;
+        }
+        return false;
     }
 
     public function getData() : array {
@@ -65,5 +96,4 @@ abstract class Model {
     public static function getTable() : string {
         return static::$_table;
     }
-
 }

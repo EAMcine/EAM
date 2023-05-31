@@ -9,5 +9,5 @@ post | /register/ | AppBundle\Controllers\UserController | registerPostAction
 get | /login/ | AppBundle\Controllers\UserController | loginAction
 post | /login/ | AppBundle\Controllers\UserController | loginPostAction
 get | /logout/ | AppBundle\Controllers\UserController | logoutAction
-get | /confirm/{token}/ | AppBundle\Controllers\UserController | confirmAction
+get | /confirm/{email}/{token}/ | AppBundle\Controllers\UserController | confirmAction
 any | /404/ | AppBundle\Controllers\DefaultController | errorAction

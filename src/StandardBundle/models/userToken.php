@@ -18,7 +18,9 @@ final class UserToken extends Model {
 
         $user = $args[0];
 
-        $user = $user->get('email');
+        if ($user instanceof User)
+            $user = $user->get('email');
+            
         $token = bin2hex(random_bytes(32));
         $expiration = date('Y-m-d H:i:s', time()+172800);
 

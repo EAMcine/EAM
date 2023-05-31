@@ -16,51 +16,12 @@ final class Database extends \PDO {
         return self::$instance;
     }
 
-    public static function save($model) : bool {
-        if (!($model instanceof \Framework\Components\Model)) {
-            throw new \Exception('Le paramètre doit être une instance de Model.', 500);
-        }
-        $data = $model->get();
-        if ($model->getPk() == null) {
-            return self::insert($model->getTable(), $data);
-        } else {
-            return self::update($model->getTable(), $data, $model->getPkName().' = '.$model->getPk());
-        }
-    }
-
-    public static function insert(string $table, array $data) : bool {
-        $db = self::getDb();
-        $columns = array_keys($data);
-        $columns = array_map(function($column) {
-            return '`'.$column.'`';
-        }, $columns);
-        $values = array_values($data);
-        $sql = 'INSERT INTO `'.$table.'` ('.implode(', ', $columns).') VALUES ('.implode(', ', array_fill(0, count($columns), '?')).')';
-        $stmt = $db->prepare($sql);
-        return $stmt->execute($values);
-    }
-
-    public static function update(string $table, array $data, string $where) : bool {
-        $db = self::getDb();
-        $columns = array_keys($data);
-        $values = array_values($data);
-        $sql = 'UPDATE `'.$table.'` SET '.implode(' = ?, ', $columns).' = ? WHERE '.$where;
-        $stmt = $db->prepare($sql);
-        return $stmt->execute($values);
-    }
-
-    public static function delete(string $table, string $where) : bool {
-        $db = self::getDb();
-        $sql = 'DELETE FROM `'.$table.'` WHERE '.$where;
-        $stmt = $db->prepare($sql);
-        return $stmt->execute();
-    }
-
     public static function select(string $table, string $where = null, array $params = null) : array|false {
         $db = self::getDb();
-        $sql = 'SELECT * FROM '.$table;
+        $sql = 'SELECT * FROM `'.$table.'`';
         if ($where != null) 
             $sql .= ' WHERE '.$where;
+        $sql .= ';';
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -68,7 +29,7 @@ final class Database extends \PDO {
 
     public static function selectOne(string $table, string $where = null, array $params = null) : array|false {
         $db = self::getDb();
-        $sql = 'SELECT * FROM '.$table;
+        $sql = 'SELECT * FROM `'.$table.'`';
         if ($where != null) 
             $sql .= ' WHERE '.$where;
         $sql .= ' LIMIT 1;';
@@ -87,7 +48,7 @@ final class Database extends \PDO {
 
     public static function selectAll(string $table) : array|false {
         $db = self::getDb();
-        $sql = 'SELECT * FROM '.$table;
+        $sql = 'SELECT * FROM `'.$table.'`;';
         $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
