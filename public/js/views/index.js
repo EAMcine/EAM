@@ -21,7 +21,7 @@ let ping_button = $('#ping_button');
 async function pingpong() {
     ping.innerHTML = '';
     await fillText(ping, ping_content, 75, 50);
-    fetch('/api/ping/')
+    fetch(API_URL + '/ping/', { method: 'GET' })
     .then(response => response.json())
     .then(data => {
         ping.innerHTML = upfirst(data.message) + ' !';

@@ -55,6 +55,7 @@ final class Main {
         $routesLoader->scanRoutesFile('app/routesAPI.yml');
 
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
 
         set_exception_handler(function($exception) {
             echo json_encode([
