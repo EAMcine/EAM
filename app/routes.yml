@@ -2,6 +2,9 @@
 # route format:
 # method | url | controller | action
 
+# TestController // delete this routes after testing
+get | /bddInit/ | AppBundle\Controllers\TestController | bddInitAction
+
 # DefaultController
 get | / | AppBundle\Controllers\DefaultController | indexAction
 get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
