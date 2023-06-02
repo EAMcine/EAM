@@ -15,8 +15,9 @@ define('ENV_NAME', getenv('ENV_NAME'));
 
 define('DEV_NAME', 'Alban, Enzo, Mathis');
 define('SITE_NAME', 'EAM+');
-define('SEPARATOR', ' | ');
+define('SEPARATOR', ' -uo ');
 define('HOME_URL', getenv('HOME_URL'));
+define('API_URL', getenv('API_URL'));
 
 // Informations about the database
 
