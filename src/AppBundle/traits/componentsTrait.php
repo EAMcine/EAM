@@ -44,7 +44,7 @@ trait componentsTrait {
         <h1 class="header-title"><?= $this->viewTitle(); ?></h1>
         <nav class="header-menu">
         <a id="switchTheme">Thème</a>
-        <a href="#">Compte</a>
+        <a id="account">Compte</a>
         </nav>
         </header>
         <?php
