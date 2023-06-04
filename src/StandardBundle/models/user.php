@@ -68,18 +68,18 @@ final class User extends Model {
     private function refreshPermissions() : void {
         $this->_permissions = array();
         $usersPermissions = UserPermission::select('`user` = ?', array($this->get('email')));
-        $groupsPermissions = GroupPermission::selectOneByPk($this->get('group'))->getPermissions();
+        $groupsPermissions = Group::selectOneByPk($this->get('group'))->getPermissions();
         if ($usersPermissions == false && $groupsPermissions == false) {
             return;
         }
         if ($usersPermissions != false) {
             foreach ($usersPermissions as $userPermission) {
-                $this->_permissions[] = $userPermission->get('permission');
+                $this->_permissions[] = $userPermission;
             }
         }
         if ($groupsPermissions != false) {
             foreach ($groupsPermissions as $groupPermission) {
-                $this->_permissions[] = $groupPermission->get('permission');
+                $this->_permissions[] = $groupPermission;
             }
         }
     }
@@ -106,6 +106,13 @@ final class User extends Model {
             }
             return false;
         }
+    }
+
+    public function refreshUser() : self|false {
+        $user = self::selectOneByPk($this->get('email'));
+        $user->refreshPermissions();
+        $_SESSION['user'] = $user;
+        return $user;
     }
 
     public static function select(string $where = null, array $params = null) : array|false {

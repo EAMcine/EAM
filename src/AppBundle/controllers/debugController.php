@@ -10,41 +10,17 @@ final class DebugController extends Controller {
     use \AppBundle\Traits\DebugTrait;
 
     public function indexAction() {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
-            $this->redirect('/login/');
-        }
-        $user = $_SESSION['user'];
-        if ($user->can('debug') == false) {
-            $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-            $this->redirect('/');
-        }
+        $this->canDebug();
         $this->render('Debug');
     }
 
     public function phpinfoAction() {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
-            $this->redirect('/login/');
-        }
-        $user = $_SESSION['user'];
-        if ($user->can('debug.phpinfo') == false) {
-            $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-            $this->redirect('/');
-        }
+        $this->canDebug('debug.phpinfo');
         $this->render('PHPInfo');
     }
 
     public function routesAction() {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
-            $this->redirect('/login/');
-        }
-        $user = $_SESSION['user'];
-        if ($user->can('debug.routes') == false) {
-            $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-            $this->redirect('/');
-        }
+        $this->canDebug('debug.routes');
         $router = Router::getInstance();
         $router->reset();
         $routesLoader = Routing\RoutesLoader::getInstance();
@@ -61,15 +37,7 @@ final class DebugController extends Controller {
     }
 
     public function logsAction() {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
-            $this->redirect('/login/');
-        }
-        $user = $_SESSION['user'];
-        if ($user->can('debug.logs') == false) {
-            $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-            $this->redirect('/');
-        }
+        $this->canDebug('debug.logs');
         $logs = array();
         $files = scandir(__DIR__ . '../../../../app/logs');
         foreach ($files as $file) {
@@ -84,15 +52,7 @@ final class DebugController extends Controller {
     }
 
     public function logAction($request) {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
-            $this->redirect('/login/');
-        }
-        $user = $_SESSION['user'];
-        if ($user->can('debug.logs') == false) {
-            $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-            $this->redirect('/');
-        }
+        $this->canDebug('debug.logs');
         $file = $request['file'];
         $file = __DIR__ . '../../../../app/logs/' . $file . '.log';
         if (!file_exists($file)) {
@@ -104,7 +64,7 @@ final class DebugController extends Controller {
                 'content' => $content,
                 'filename' => $request['file']
             ], 
-            'Debug > Logs : ' . $request['file']
+            'Debug > Log : ' . $request['file']
         );
     }
 }
