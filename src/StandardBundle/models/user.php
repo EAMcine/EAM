@@ -9,6 +9,7 @@ use \StandardBundle\Traits\SecurityTrait as SecurityTrait;
 final class User extends Model {
     protected static string|null $_pkName = 'email';
     protected static string $_table = 'users';
+    private array|null $_permissions = null;
     
     /**
      * @param string $email
@@ -52,37 +53,59 @@ final class User extends Model {
         $user = new User($data);
         $user->insert();
 
+        $user->refreshPermissions();
+
         return $user;
     }
 
-    private function getPermissionList() : array|false {
-        $permissions = UserPermission::select('`user` = :user', array(
-            'user' => $this->get('email')
-        ));
-        if ($permissions == false) {
-            return false;
+    private function getPermissions() : array {
+        if ($this->_permissions == null) {
+            $this->refreshPermissions();
         }
-        $group = $this->get('group');
-        if ($group != null) {
-            $group = Group::selectOneByPk($group);
-            if ($group == false) {
-                return false;
-            }
-            $permissions = array_merge($permissions, $group->getPermissionList());
-        }
-        return UserPermission::getPermissions($permissions);
+        return $this->_permissions;
     }
 
-    public function can(string $permission) : bool {
-        $permissions = $this->getPermissionList();
-        if ($permissions) {
-            foreach ($permissions as $p) {
-                if ($p == $permission) {
-                    return true;
-                }
+    private function refreshPermissions() : void {
+        $this->_permissions = array();
+        $usersPermissions = UserPermission::select('`user` = ?', array($this->get('email')));
+        $groupsPermissions = GroupPermission::selectOneByPk($this->get('group'))->getPermissions();
+        if ($usersPermissions == false && $groupsPermissions == false) {
+            return;
+        }
+        if ($usersPermissions != false) {
+            foreach ($usersPermissions as $userPermission) {
+                $this->_permissions[] = $userPermission->get('permission');
             }
         }
-        return false;
+        if ($groupsPermissions != false) {
+            foreach ($groupsPermissions as $groupPermission) {
+                $this->_permissions[] = $groupPermission->get('permission');
+            }
+        }
+    }
+
+    public function can(array|string $permissions) : bool {
+        if (is_array($permissions)) {
+            foreach ($permissions as $permission) {
+                if (!$this->can($permission)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            $permissionNode = explode('.', $permissions);
+            while (count($permissionNode) > 0) {
+                $permission = implode('.', $permissionNode) . '.*';
+                if (in_array($permission, $this->getPermissions())) {
+                    return true;
+                }
+                array_pop($permissionNode);
+            }
+            if (in_array('*', $this->getPermissions())) {
+                return true;
+            }
+            return false;
+        }
     }
 
     public static function select(string $where = null, array $params = null) : array|false {

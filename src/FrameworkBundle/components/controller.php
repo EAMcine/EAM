@@ -2,11 +2,25 @@
 
 namespace Framework\Components;
 
+use \tidy as tidy;
+
 abstract class Controller {
 
     protected function render(string $viewName, array $data = [], string $viewTitle = null) {
         $viewName = 'AppBundle\\Views\\' . $viewName;
         new $viewName($data, $viewTitle);
+        $output = ob_get_clean();
+        $tidyConfig = array(
+          'indent' => true,
+          'indent-spaces' => 4,
+          'wrap' => 0,
+          'output-xhtml' => true,
+          'show-errors' => 0,
+        );
+        $tidy = new tidy();
+        $tidy->parseString($output, $tidyConfig);
+        $tidy->cleanRepair();
+        echo $tidy;
     }
 
     public function redirect(string $url) {

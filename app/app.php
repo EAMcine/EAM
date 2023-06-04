@@ -67,18 +67,5 @@ final class Main {
         });
 
         $router->run();
-
-        $output = ob_get_clean();
-        $tidyConfig = array(
-          'indent' => true,
-          'indent-spaces' => 4,
-          'wrap' => 0,
-          'output-xhtml' => true,
-          'show-errors' => 0,
-        );
-        $tidy = new tidy();
-        $tidy->parseString($output, $tidyConfig);
-        $tidy->cleanRepair();
-        echo $tidy;
     }
 }

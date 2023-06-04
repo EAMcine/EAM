@@ -83,6 +83,11 @@ trait BddTrait {
             else
                 $debugPermission = Permission::selectOneByPk('debug');
 
+            if (Permission::selectOneByPk('debug.*') == false)
+                $debugAllPermission = Permission::create('debug.*', 'Permission de debug globale', 'Permission de debug globale, donne accès à toutes les fonctionnalités de debug.');
+            else
+                $debugAllPermission = Permission::selectOneByPk('debug.*');
+
             if (Permission::selectOneByPk('debug.phpinfo') == false)
                 $phpinfoPermission = Permission::create('debug.phpinfo', 'Permission de phpinfo', 'Permission de phpinfo, donne accès à la fonctionnalité phpinfo().');
             else
@@ -102,6 +107,11 @@ trait BddTrait {
                 $adminPermission = Permission::create('admin', 'Permission d\'administration', 'Permission d\'administration, donne accès aux fonctionnalités d\'administration.');
             else
                 $adminPermission = Permission::selectOneByPk('admin');
+
+            if (Permission::selectOneByPk('admin.*') == false)
+                $adminAllPermission = Permission::create('admin.*', 'Permission d\'administration globale', 'Permission d\'administration globale, donne accès à toutes les fonctionnalités d\'administration.');
+            else
+                $adminAllPermission = Permission::selectOneByPk('admin.*');
 
             if (Permission::selectOneByPk('admin.users') == false)
                 $usersPermission = Permission::create('admin.users', 'Permission d\'utilisateurs', 'Permission d\'utilisateurs, donne accès aux fonctionnalités d\'administration des utilisateurs.');
@@ -180,19 +190,14 @@ trait BddTrait {
 
             // Attribution des permissions
 
-            if (GroupPermission::selectOneByPk($developer, $globalPermission) == false)
-                GroupPermission::create($developer, $globalPermission);
-
-            if (GroupPermission::selectOneByPk($admin, $adminPermission) == false)
-                GroupPermission::create($admin, $adminPermission);
-
-            
-
-
-
             if ($developer->can($globalPermission) == false)
                 GroupPermission::create($developer, $globalPermission);
-            
+
+            if ($admin->can($adminAllPermission) == false)
+                GroupPermission::create($admin, $adminAllPermission);
+
+            if ($admin->can($adminPermission) == false)
+                GroupPermission::create($admin, $adminPermission);
 
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());

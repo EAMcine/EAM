@@ -7,7 +7,11 @@ get | /bddInit/ | AppBundle\Controllers\TestController | bddInitAction
 
 # DefaultController
 get | / | AppBundle\Controllers\DefaultController | indexAction
-get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
+get | /about/ | AppBundle\Controllers\DefaultController | aboutAction
+get | /contact/ | AppBundle\Controllers\DefaultController | contactAction
+post | /contact/ | AppBundle\Controllers\DefaultController | contactPostAction
+get | /legal/ | AppBundle\Controllers\DefaultController | legalAction
+post | /theme/ | AppBundle\Controllers\DefaultController | themePostAction
 
 # DebugController
 get | /debug/ | AppBundle\Controllers\DebugController | indexAction
