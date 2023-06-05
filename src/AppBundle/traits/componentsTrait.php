@@ -51,6 +51,7 @@ trait ComponentsTrait {
             <a id="account">Compte</a>
         </nav>
         </header>
+
         <?php
         $this->aside();
     }
