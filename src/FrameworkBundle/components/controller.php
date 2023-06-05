@@ -16,6 +16,7 @@ abstract class Controller {
           'wrap' => 0,
           'output-xhtml' => true,
           'show-errors' => 0,
+          'drop-empty-elements' => false,
         );
         $tidy = new tidy();
         $tidy->parseString($output, $tidyConfig);
