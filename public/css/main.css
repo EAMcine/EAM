@@ -22,9 +22,12 @@
     color: var(--text-color);
 }
 
+
 #body * {
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
+
+
 
 header {
     display: flex;
@@ -301,3 +304,19 @@ footer aside nav a {
     text-decoration: none;
 
 }
+
+main {
+    background-image: url("https://4kwallpapers.com/images/wallpapers/avengers-endgame-marvel-superheroes-marvel-comics-5k-5120x2880-942.jpg");
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#sub{
+    display: grid;
+    place-items: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+

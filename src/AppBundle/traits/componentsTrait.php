@@ -47,6 +47,7 @@ trait componentsTrait {
         <a id="account">Compte</a>
         </nav>
         </header>
+
         <?php
     }
 
