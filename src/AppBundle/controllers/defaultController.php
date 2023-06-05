@@ -3,8 +3,6 @@
 namespace AppBundle\Controllers;
 
 use Framework\Components\Controller as Controller;
-use Framework\Routing\Router as Router;
-use Framework\Routing as Routing;
 
 final class DefaultController extends Controller {
 

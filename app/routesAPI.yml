@@ -2,4 +2,4 @@
 # route format:
 # method | url | controller | action
 get | / | ApiBundle\Controllers\DefaultController | redirectAction
-get | /ping/ | ApiBundle\Controllers\DefaultController | pingAction
+get | /ping | ApiBundle\Controllers\DefaultController | pingAction
