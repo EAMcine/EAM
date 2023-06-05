@@ -73,16 +73,131 @@ trait BddTrait {
 
             // Création des permissions
 
-            if (Permission::selectOneByPk('DEBUG') == false)
-                $debug = Permission::create('DEBUG', 'Permission de debug', 'Permission de debug, donne accès aux fonctionnalités de debug.');
+            if (Permission::selectOneByPk('*') == false)
+                $globalPermission = Permission::create('*', 'Permission globale', 'Permission globale, donne accès à toutes les fonctionnalités.');
             else
-                $debug = Permission::selectOneByPk('DEBUG');
+                $globalPermission = Permission::selectOneByPk('*');
+
+            if (Permission::selectOneByPk('debug') == false)
+                $debugPermission = Permission::create('debug', 'Permission de debug', 'Permission de debug, donne accès aux fonctionnalités de debug.');
+            else
+                $debugPermission = Permission::selectOneByPk('debug');
+
+            if (Permission::selectOneByPk('debug.*') == false)
+                $debugAllPermission = Permission::create('debug.*', 'Permission de debug globale', 'Permission de debug globale, donne accès à toutes les fonctionnalités de debug.');
+            else
+                $debugAllPermission = Permission::selectOneByPk('debug.*');
+
+            if (Permission::selectOneByPk('debug.phpinfo') == false)
+                $phpinfoPermission = Permission::create('debug.phpinfo', 'Permission de phpinfo', 'Permission de phpinfo, donne accès à la fonctionnalité phpinfo().');
+            else
+                $phpinfoPermission = Permission::selectOneByPk('debug.phpinfo');
+
+            if (Permission::selectOneByPk('debug.routes') == false)
+                $routesPermission = Permission::create('debug.routes', 'Permission de routes', 'Permission de routes, donne accès à la fonctionnalité de listing des routes.');
+            else
+                $routesPermission = Permission::selectOneByPk('debug.routes');
+
+            if (Permission::selectOneByPk('debug.logs') == false)
+                $logsPermission = Permission::create('debug.logs', 'Permission de logs', 'Permission de logs, donne accès à la fonctionnalité de listing des logs.');
+            else
+                $logsPermission = Permission::selectOneByPk('debug.logs');
+
+            if (Permission::selectOneByPk('admin') == false)
+                $adminPermission = Permission::create('admin', 'Permission d\'administration', 'Permission d\'administration, donne accès aux fonctionnalités d\'administration.');
+            else
+                $adminPermission = Permission::selectOneByPk('admin');
+
+            if (Permission::selectOneByPk('admin.*') == false)
+                $adminAllPermission = Permission::create('admin.*', 'Permission d\'administration globale', 'Permission d\'administration globale, donne accès à toutes les fonctionnalités d\'administration.');
+            else
+                $adminAllPermission = Permission::selectOneByPk('admin.*');
+
+            if (Permission::selectOneByPk('admin.users') == false)
+                $usersPermission = Permission::create('admin.users', 'Permission d\'utilisateurs', 'Permission d\'utilisateurs, donne accès aux fonctionnalités d\'administration des utilisateurs.');
+            else
+                $usersPermission = Permission::selectOneByPk('admin.users');
+
+            if (Permission::selectOneByPk('admin.users.list') == false)
+                $usersListPermission = Permission::create('admin.users.list', 'Permission de listing des utilisateurs', 'Permission de listing des utilisateurs, donne accès à la fonctionnalité de listing des utilisateurs.');
+            else
+                $usersListPermission = Permission::selectOneByPk('admin.users.list');
+
+            if (Permission::selectOneByPk('admin.users.add') == false)
+                $usersAddPermission = Permission::create('admin.users.add', 'Permission d\'ajout d\'utilisateurs', 'Permission d\'ajout d\'utilisateurs, donne accès à la fonctionnalité d\'ajout d\'utilisateurs.');
+            else
+                $usersAddPermission = Permission::selectOneByPk('admin.users.add');
+
+            if (Permission::selectOneByPk('admin.users.edit') == false)
+                $usersEditPermission = Permission::create('admin.users.edit', 'Permission d\'édition d\'utilisateurs', 'Permission d\'édition d\'utilisateurs, donne accès à la fonctionnalité d\'édition d\'utilisateurs.');
+            else
+                $usersEditPermission = Permission::selectOneByPk('admin.users.edit');
+
+            if (Permission::selectOneByPk('admin.users.delete') == false)
+                $usersDeletePermission = Permission::create('admin.users.delete', 'Permission de suppression d\'utilisateurs', 'Permission de suppression d\'utilisateurs, donne accès à la fonctionnalité de suppression d\'utilisateurs.');
+            else
+                $usersDeletePermission = Permission::selectOneByPk('admin.users.delete');
+
+            if (Permission::selectOneByPk('admin.groups') == false)
+                $groupsPermission = Permission::create('admin.groups', 'Permission de groupes', 'Permission de groupes, donne accès aux fonctionnalités d\'administration des groupes.');
+            else
+                $groupsPermission = Permission::selectOneByPk('admin.groups');
+
+            if (Permission::selectOneByPk('admin.groups.list') == false)
+                $groupsListPermission = Permission::create('admin.groups.list', 'Permission de listing des groupes', 'Permission de listing des groupes, donne accès à la fonctionnalité de listing des groupes.');
+            else
+                $groupsListPermission = Permission::selectOneByPk('admin.groups.list');
+
+            if (Permission::selectOneByPk('admin.groups.add') == false)
+                $groupsAddPermission = Permission::create('admin.groups.add', 'Permission d\'ajout de groupes', 'Permission d\'ajout de groupes, donne accès à la fonctionnalité d\'ajout de groupes.');
+            else
+                $groupsAddPermission = Permission::selectOneByPk('admin.groups.add');
+
+            if (Permission::selectOneByPk('admin.groups.edit') == false)
+                $groupsEditPermission = Permission::create('admin.groups.edit', 'Permission d\'édition de groupes', 'Permission d\'édition de groupes, donne accès à la fonctionnalité d\'édition de groupes.');
+            else
+                $groupsEditPermission = Permission::selectOneByPk('admin.groups.edit');
+
+            if (Permission::selectOneByPk('admin.groups.delete') == false)
+                $groupsDeletePermission = Permission::create('admin.groups.delete', 'Permission de suppression de groupes', 'Permission de suppression de groupes, donne accès à la fonctionnalité de suppression de groupes.');
+            else
+                $groupsDeletePermission = Permission::selectOneByPk('admin.groups.delete');
+
+            if (Permission::selectOneByPk('admin.permissions') == false)
+                $permissionsPermission = Permission::create('admin.permissions', 'Permission de permissions', 'Permission de permissions, donne accès aux fonctionnalités d\'administration des permissions.');
+            else
+                $permissionsPermission = Permission::selectOneByPk('admin.permissions');
+
+            if (Permission::selectOneByPk('admin.permissions.list') == false)
+                $permissionsListPermission = Permission::create('admin.permissions.list', 'Permission de listing des permissions', 'Permission de listing des permissions, donne accès à la fonctionnalité de listing des permissions.');
+            else
+                $permissionsListPermission = Permission::selectOneByPk('admin.permissions.list');
+
+            if (Permission::selectOneByPk('admin.permissions.add') == false)
+                $permissionsAddPermission = Permission::create('admin.permissions.add', 'Permission d\'ajout de permissions', 'Permission d\'ajout de permissions, donne accès à la fonctionnalité d\'ajout de permissions.');
+            else
+                $permissionsAddPermission = Permission::selectOneByPk('admin.permissions.add');
+
+            if (Permission::selectOneByPk('admin.permissions.edit') == false)
+                $permissionsEditPermission = Permission::create('admin.permissions.edit', 'Permission d\'édition de permissions', 'Permission d\'édition de permissions, donne accès à la fonctionnalité d\'édition de permissions.');
+            else
+                $permissionsEditPermission = Permission::selectOneByPk('admin.permissions.edit');
+
+            if (Permission::selectOneByPk('admin.permissions.delete') == false)
+                $permissionsDeletePermission = Permission::create('admin.permissions.delete', 'Permission de suppression de permissions', 'Permission de suppression de permissions, donne accès à la fonctionnalité de suppression de permissions.');
+            else
+                $permissionsDeletePermission = Permission::selectOneByPk('admin.permissions.delete');
 
             // Attribution des permissions
 
-            if ($developer->can($debug) == false)
-                GroupPermission::create($developer, $debug);
-            
+            if ($developer->can($globalPermission) == false)
+                GroupPermission::create($developer, $globalPermission);
+
+            if ($admin->can($adminAllPermission) == false)
+                GroupPermission::create($admin, $adminAllPermission);
+
+            if ($admin->can($adminPermission) == false)
+                GroupPermission::create($admin, $adminPermission);
 
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());

@@ -34,17 +34,15 @@ final class Main {
         $router = Routing\Router::getInstance();
         $routesLoader = Routing\RoutesLoader::getInstance();
 
-        if (!file_exists(__DIR__ . '/' . SITE_NAME . ".log")) {
-            $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "w");
+        if (!file_exists(__DIR__ . '/' . SITE_NAME . "app.log")) {
+            $logfile = fopen(__DIR__ . '/' . SITE_NAME . "app.log", "w");
             fwrite($logfile, 0);
             fclose($logfile);
-            $loader->loadFile('../src/StandardBundle/traits/bddTrait.php');
-            \StandardBundle\traits\bddTrait::bddInit();
         }
         
-        $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "r");
-        $numberOfConnections = $logfile ? fread($logfile, filesize(__DIR__ . '/' . SITE_NAME . ".log")) : 0;
-        $logfile = fopen(__DIR__ . '/' . SITE_NAME . ".log", "w");
+        $logfile = fopen(__DIR__ . '/' . SITE_NAME . "app.log", "r");
+        $numberOfConnections = $logfile ? fread($logfile, filesize(__DIR__ . '/' . SITE_NAME . "app.log")) : 0;
+        $logfile = fopen(__DIR__ . '/' . SITE_NAME . "app.log", "w");
         fwrite($logfile, $numberOfConnections + 1);
         fclose($logfile);
 
@@ -69,18 +67,5 @@ final class Main {
         });
 
         $router->run();
-
-        $output = ob_get_clean();
-        $tidyConfig = array(
-          'indent' => true,
-          'indent-spaces' => 4,
-          'wrap' => 0,
-          'output-xhtml' => true,
-          'show-errors' => 0,
-        );
-        $tidy = new tidy();
-        $tidy->parseString($output, $tidyConfig);
-        $tidy->cleanRepair();
-        echo $tidy;
     }
 }

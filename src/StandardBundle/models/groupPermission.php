@@ -41,14 +41,6 @@ final class GroupPermission extends Model {
         return $groupPermission;
     }
 
-    public static function getPermissions(array $permissions) : array|false {
-        $result = array();
-        foreach ($permissions as $permission) {
-            $result[] = $permission->get('permission');
-        }
-        return $result;
-    }
-
     public static function select(string $where = null, array $params = null) : array|false {
         $result = Database::select(static::getTable(), $where, $params);
         if ($result == false) {

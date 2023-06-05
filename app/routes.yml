@@ -2,16 +2,23 @@
 # route format:
 # method | url | controller | action
 
+# TestController // delete this routes after testing
+get | /bddInit/ | AppBundle\Controllers\TestController | bddInitAction
+
 # DefaultController
 get | / | AppBundle\Controllers\DefaultController | indexAction
-get | /test/{id}/ | AppBundle\Controllers\DefaultController | testAction
+get | /about/ | AppBundle\Controllers\DefaultController | aboutAction
+get | /contact/ | AppBundle\Controllers\DefaultController | contactAction
+post | /contact/ | AppBundle\Controllers\DefaultController | contactPostAction
+get | /legal/ | AppBundle\Controllers\DefaultController | legalAction
+post | /theme/ | AppBundle\Controllers\DefaultController | themePostAction
 
 # DebugController
 get | /debug/ | AppBundle\Controllers\DebugController | indexAction
 get | /debug/phpinfo/ | AppBundle\Controllers\DebugController | phpinfoAction
-get | /debug/routes/ | AppBundle\Controllers\DebugController| showRoutesAction
-get | /debug/logs/ | AppBundle\Controllers\DebugController | showLogsAction
-get | /debug/logs/{file}/ | AppBundle\Controllers\DebugController | showLogAction
+get | /debug/routes/ | AppBundle\Controllers\DebugController| routesAction
+get | /debug/logs/ | AppBundle\Controllers\DebugController | logsAction
+get | /debug/log/{file}/ | AppBundle\Controllers\DebugController | logAction
 
 # UserController
 get | /register/ | AppBundle\Controllers\UserController | registerAction

@@ -1,0 +1,36 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Debug extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Debug';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Debug</h1>
+        <section>
+            <h2>PHPInfo</h2>
+            <p><a href="<?= HOME_URL; ?>/debug/phpinfo/">PHPInfo</a></p>
+        </section>
+        <section>
+            <h2>Routes</h2>
+            <p><a href="<?= HOME_URL; ?>/debug/routes/">Routes</a></p>
+        </section>
+        <section>
+            <h2>Logs</h2>
+            <p><a href="<?= HOME_URL; ?>/debug/logs/">Logs</a></p>
+        </section>
+        </main>
+        <?php $this->footer(); ?>
+        </body>
+        </html>
+        <?php 
+    }
+}

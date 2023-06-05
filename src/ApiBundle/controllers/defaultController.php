@@ -7,7 +7,7 @@ use Framework\Components\Controller as Controller;
 final class DefaultController extends Controller {
 
     public function redirectAction() {
-        $this->redirect(HOME_URL . '/api/');
+        $this->redirect(HOME_URL . '/');
     }
 
     public function pingAction() {    

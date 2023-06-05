@@ -8,6 +8,7 @@ use Framework\Core\Database as Database;
 final class Group extends Model {
     protected static string|null $_pkName = 'code';
     protected static string $_table = 'groups';
+    private array|null $_permissions = null;
     
     /**
      * @param string $code
@@ -40,39 +41,57 @@ final class Group extends Model {
 
         $group = new Group($data);
         $group->insert();
+        $group->refreshPermissions();
 
         return $group;
     }
 
-    private function getPermissionList() : array|false {
-        $permissions = GroupPermission::select('`group` = :group', array(
-            'group' => $this->get('code')
-        ));
-        if ($permissions == false) {
-            return false;
+    public function getPermissions() : array {
+        if ($this->_permissions == null) {
+            $this->refreshPermissions();
         }
-        $subgroup = $this->get('subgroup');
-        if ($subgroup != null) {
-            $subgroup = Group::selectOneByPk($subgroup);
-            if ($subgroup == false) {
-                return false;
-            }
-            $permissions = array_merge($permissions, $subgroup->getPermissionList());
-        }
-        return GroupPermission::getPermissions($permissions);
+        return $this->_permissions;
     }
-        
 
-    public function can(string $permission) : bool {
-        $permissions = $this->getPermissionList();
-        if ($permissions) {
-            foreach ($permissions as $p) {
-                if ($p == $permission) {
-                    return true;
+    private function refreshPermissions() : void {
+        $this->_permissions = array();
+        $groupsPermissions = GroupPermission::select('`group` = ?', array($this->get('code')));
+        if ($groupsPermissions == false) {
+            return;
+        }
+        foreach ($groupsPermissions as $groupPermission) {
+            $this->_permissions[] = $groupPermission->get('permission');
+        }
+        if ($this->get('subgroup') != null) {
+            $subgroup = Group::selectOneByPk($this->get('subgroup'));
+            if ($subgroup != false) {
+                $this->_permissions = array_merge($this->_permissions, $subgroup->getPermissions());
+            }
+        }
+    }
+
+    public function can(string|array $permissions) : bool {
+        if (is_array($permissions)) {
+            foreach ($permissions as $permission) {
+                if (!$this->can($permission)) {
+                    return false;
                 }
             }
+            return true;
+        } else {
+            $permissionNode = explode('.', $permissions);
+            while (count($permissionNode) > 0) {
+                $permission = implode('.', $permissionNode) . '.*';
+                if (in_array($permission, $this->getPermissions())) {
+                    return true;
+                }
+                array_pop($permissionNode);
+            }
+            if (in_array('*', $this->getPermissions())) {
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 
     public static function select(string $where = null, array $params = null) : array|false {
