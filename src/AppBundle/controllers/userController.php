@@ -6,7 +6,6 @@ use Framework\Components\Controller as Controller;
 use StandardBundle\Models\User as User;
 use StandardBundle\Models\UserToken as UserToken;
 use StandardBundle\Traits\SecurityTrait as SecurityTrait;
-use StandardBundle\Models\Group as Group;
 
 final class UserController extends Controller {
 

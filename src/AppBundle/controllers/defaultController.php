@@ -3,8 +3,6 @@
 namespace AppBundle\Controllers;
 
 use Framework\Components\Controller as Controller;
-use Framework\Routing\Router as Router;
-use Framework\Routing as Routing;
 
 final class DefaultController extends Controller {
 
@@ -24,7 +22,14 @@ final class DefaultController extends Controller {
     }
 
     public function contactAction() {
-        $this->render('Contact');
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['error']);
+        $alert = $_SESSION['alert'] ?? null;
+        unset($_SESSION['alert']);
+        $this->render('Contact', [
+            'error' => $error,
+            'alert' => $alert
+        ]);
     }
 
     public function contactPostAction() {

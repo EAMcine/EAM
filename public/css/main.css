@@ -23,7 +23,7 @@
 }
 
 #body * {
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out, label 0.5s ease-in-out, placeholder 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
 
 header {
@@ -242,4 +242,62 @@ footer {
     justify-content: center;
     background-color: var(--background-3-color);
     overflow: hidden;
+}
+
+footer p {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    color: var(--text-2-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+footer aside {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    color: var(--text-2-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+footer aside nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    color: var(--text-2-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+footer aside nav a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    color: var(--text-2-color);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
 }
