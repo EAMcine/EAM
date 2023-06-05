@@ -13,7 +13,7 @@ trait componentsTrait {
         <meta http-equiv="<?= HTTP_EQUIV; ?>" content="<?= HTTP_EQUIV_CONTENT ?>">
         <meta name="<?= NAME_VIEWPORT; ?>" content="<?= CONTENT_VIEWPORT; ?>">
         <title><?= $this->viewTitle() . SEPARATOR . SITE_NAME; ?></title>
-        <link id="theme-style" theme="light" rel="stylesheet" href="/css/light-theme.css">
+        <link id="theme-style" theme="<?= $_SESSION['theme'] ?? 'light'; ?>" rel="stylesheet" href="/css/<?= $_SESSION['theme'] ?? 'light'; ?>-theme.css">
         <link rel="stylesheet" href="/css/loading.css">
         <link rel="stylesheet" href="/css/main.css">
         <script src="/js/jquery.js"></script>
@@ -43,8 +43,8 @@ trait componentsTrait {
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <h1 class="header-title"><?= $this->viewTitle(); ?></h1>
         <nav class="header-menu">
-        <a href="#">Theme</a>
-        <a href="#">Compte</a>
+        <a id="switchTheme">Thème</a>
+        <a id="account">Compte</a>
         </nav>
         </header>
         <?php
@@ -55,5 +55,21 @@ trait componentsTrait {
         </div>
         <script src="/js/postloader.js" type="module"></script>
         <?php
+    }
+
+    protected function switchTheme() {
+        ?>
+        <script src="/js/switchTheme.js" type="module"></script>
+        <?php
+    }
+
+    protected function footer() {
+        ?>
+        <footer role="footer">
+        <p>© <?= date('Y') . SEPARATOR . DEV_NAME; ?></p>
+        </footer>
+        <?php
+        $this->postLoader();
+        $this->switchTheme();
     }
 }

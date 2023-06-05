@@ -1,0 +1,35 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Logs extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Debug > Logs';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Logs</h1>
+        <h2>Logs disponibles</h2>
+        <?php $this->linkLogs(); ?>        
+        </main>
+        <?php $this->footer(); ?>
+        </body>
+        </html>
+        <?php 
+    }
+
+    private function linkLogs() {
+        $logs = $this->get('logs');
+        foreach ($logs as $log) {
+            ?>
+            <a href="/debug/log/<?= $log ?>/"><?= $log ?></a><br>  
+            <?php
+        }
+    }
+}

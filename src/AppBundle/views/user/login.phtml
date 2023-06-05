@@ -1,0 +1,37 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Login extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Connexion';
+
+    protected function render() {
+        $this->head(); 
+        $this->header();
+        ?>    
+        <main>
+        <h1>Connexion</h1>
+        <form action="" method="post">
+            <span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </span>
+            <span>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+            </span>
+            <pre><?= $this->get('error') ?? null ?></pre>
+            <button type="submit">Se connecter</button>
+        </form>
+        </main>
+        <?php $this->footer(); ?>
+        <script src="/js/views/login.js" type="module" namespace="login"></script>
+        </body>
+        </html>
+        <?php
+    }
+}

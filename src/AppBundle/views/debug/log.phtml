@@ -1,0 +1,26 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Log extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Debug > Log';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Log <?= $this->get('filename') ?></h1>
+        <h2>Contenu</h2>
+        <pre><?= $this->get('content') ?></pre>
+        </main>
+        <?php $this->footer(); ?>
+        </body>
+        </html>
+        <?php 
+    }
+}

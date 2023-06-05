@@ -1,0 +1,29 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class PHPInfo extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Debug > PHPInfo';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>PHPInfo</h1>
+        <section>
+            <div style="width: 100%; height: 100%; overflow: auto;">
+            <?php phpinfo(); ?>
+            </div>
+        </section>
+        </main>
+        <?php $this->footer(); ?>
+        </body>
+        </html>
+        <?php 
+    }
+}

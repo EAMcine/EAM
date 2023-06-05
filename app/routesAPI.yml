@@ -1,5 +1,5 @@
 # routes for the API bundle
 # route format:
 # method | url | controller | action
-get | /api/ | ApiBundle\Controllers\defaultController | redirectAction
-get | /api/ping/ | ApiBundle\Controllers\defaultController | pingAction
+get | / | ApiBundle\Controllers\DefaultController | redirectAction
+get | /ping/ | ApiBundle\Controllers\DefaultController | pingAction

@@ -4,7 +4,7 @@ namespace AppBundle\Views;
 
 use Framework\Components\View as View;
 
-final class index extends View {
+final class Index extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
     protected static string|null $defaultViewTitle = 'Accueil';
@@ -17,12 +17,14 @@ final class index extends View {
         <h1><span id="title">Bienvenue sur </span><span id="title_name"><?= SITE_NAME; ?></span><span class="loading typewriter no-select">|</span></h1>
         <p id="ping" class="no-select">Ping de l'API en approche . . .</p>
         <button id="ping_button">Ping l'API</button>
+        <p><?= var_dump($_SESSION); ?></p>
+        <p><?= $this->get('error'); ?></p>
+        <p><?= $this->get('alert'); ?></p>
         </main>
-        <?php $this->postLoader(); ?>
+        <?php $this->footer(); ?>
         <script src="/js/views/index.js" type="module" namespace="index"></script>
         </body>
         </html>
         <?php
     }
-
 }
