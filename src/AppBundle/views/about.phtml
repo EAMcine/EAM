@@ -1,0 +1,27 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class About extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'À propos';
+
+    protected function render() {
+        $this->head(); 
+        $this->header();
+        ?>    
+        <main>
+        <h1>À propos</h1>
+        <p>Site réalisé par <?= DEV_NAME; ?>.</p>
+        <p>Site réalisé dans le cadre du Cube N°3 au CESI Lyon.</p>
+        <p>Site réalisé en PHP sans Framework.</p>
+        </main>
+        <?php $this->footer(); ?>
+        </body>
+        </html>
+        <?php
+    }
+}

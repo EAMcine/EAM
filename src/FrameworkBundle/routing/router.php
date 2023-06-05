@@ -104,9 +104,16 @@ class Router {
       $controller->$action();
       return true;
     }
-    
+
+    if (substr($route, -1) == '/') {
+      $route = substr($route, 0, -1);
+    }
     $route = explode('/', $route);
-    $request = explode('/', $_SERVER['REQUEST_URI']);
+    $request = $_SERVER['REQUEST_URI'];
+    if (substr($request, -1) == '/') {
+      $request = substr($request, 0, -1);
+    }
+    $request = explode('/', $request);
     $params = [];
     if (count($route) != count($request)) {
       return false;
@@ -123,9 +130,12 @@ class Router {
         }
       }
     }
-
-    $controller = new $controller();
-    $controller->$action($params);
-    return true;
+    try {
+      $controller = new $controller();
+      $controller->$action($params);
+      return true;
+    } catch (\Exception $e) {
+      return false;
+    }
   }
 }

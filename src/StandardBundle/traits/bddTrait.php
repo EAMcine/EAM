@@ -118,11 +118,6 @@ trait BddTrait {
             else
                 $usersPermission = Permission::selectOneByPk('admin.users');
 
-            if (Permission::selectOneByPk('admin.users.list') == false)
-                $usersListPermission = Permission::create('admin.users.list', 'Permission de listing des utilisateurs', 'Permission de listing des utilisateurs, donne accès à la fonctionnalité de listing des utilisateurs.');
-            else
-                $usersListPermission = Permission::selectOneByPk('admin.users.list');
-
             if (Permission::selectOneByPk('admin.users.add') == false)
                 $usersAddPermission = Permission::create('admin.users.add', 'Permission d\'ajout d\'utilisateurs', 'Permission d\'ajout d\'utilisateurs, donne accès à la fonctionnalité d\'ajout d\'utilisateurs.');
             else
@@ -143,11 +138,6 @@ trait BddTrait {
             else
                 $groupsPermission = Permission::selectOneByPk('admin.groups');
 
-            if (Permission::selectOneByPk('admin.groups.list') == false)
-                $groupsListPermission = Permission::create('admin.groups.list', 'Permission de listing des groupes', 'Permission de listing des groupes, donne accès à la fonctionnalité de listing des groupes.');
-            else
-                $groupsListPermission = Permission::selectOneByPk('admin.groups.list');
-
             if (Permission::selectOneByPk('admin.groups.add') == false)
                 $groupsAddPermission = Permission::create('admin.groups.add', 'Permission d\'ajout de groupes', 'Permission d\'ajout de groupes, donne accès à la fonctionnalité d\'ajout de groupes.');
             else
@@ -167,11 +157,6 @@ trait BddTrait {
                 $permissionsPermission = Permission::create('admin.permissions', 'Permission de permissions', 'Permission de permissions, donne accès aux fonctionnalités d\'administration des permissions.');
             else
                 $permissionsPermission = Permission::selectOneByPk('admin.permissions');
-
-            if (Permission::selectOneByPk('admin.permissions.list') == false)
-                $permissionsListPermission = Permission::create('admin.permissions.list', 'Permission de listing des permissions', 'Permission de listing des permissions, donne accès à la fonctionnalité de listing des permissions.');
-            else
-                $permissionsListPermission = Permission::selectOneByPk('admin.permissions.list');
 
             if (Permission::selectOneByPk('admin.permissions.add') == false)
                 $permissionsAddPermission = Permission::create('admin.permissions.add', 'Permission d\'ajout de permissions', 'Permission d\'ajout de permissions, donne accès à la fonctionnalité d\'ajout de permissions.');

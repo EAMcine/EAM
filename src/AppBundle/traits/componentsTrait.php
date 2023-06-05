@@ -67,6 +67,15 @@ trait componentsTrait {
         ?>
         <footer role="footer">
         <p>© <?= date('Y') . SEPARATOR . DEV_NAME; ?></p>
+        <aside>
+            <nav>
+            <a href="#body">Haut de page</a>
+            <a href="<?= HOME_URL; ?>">Accueil</a>
+            <a href="<?= HOME_URL; ?>/about">À propos</a>
+            <a href="<?= HOME_URL; ?>/legal">CGU/CGV</a>
+            <a href="<?= HOME_URL; ?>/contact">Contact</a>
+            </nav>
+        </aside>
         </footer>
         <?php
         $this->postLoader();

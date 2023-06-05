@@ -9,6 +9,7 @@ class testController extends Controller {
 
     public function bddInitAction() {
         bddTrait::bddInit();
+        $_SESSION['alert'] = 'Base de données initialisée';
         $this->redirect('/');
     }
 }
