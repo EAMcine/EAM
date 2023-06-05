@@ -6,3 +6,12 @@ window.addEventListener('load', async function () {
     $('.loading').addClass('loaded');
     $('.loaded').removeClass('loading');
 });
+let $burger = $('.burger-menu');
+$burger.on('click', function () {
+  $burger.toggleClass('active');
+});
+let $aside = $('#aside-menu');
+let $asideOpener = $('#asideOpener');
+$asideOpener.on('click', function () {
+  $aside.toggleClass('active');
+});
