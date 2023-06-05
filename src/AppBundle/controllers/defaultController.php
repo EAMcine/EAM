@@ -22,7 +22,14 @@ final class DefaultController extends Controller {
     }
 
     public function contactAction() {
-        $this->render('Contact');
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['error']);
+        $alert = $_SESSION['alert'] ?? null;
+        unset($_SESSION['alert']);
+        $this->render('Contact', [
+            'error' => $error,
+            'alert' => $alert
+        ]);
     }
 
     public function contactPostAction() {

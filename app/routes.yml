@@ -29,5 +29,26 @@ get | /logout | AppBundle\Controllers\UserController | logoutAction
 get | /confirm/{email}/{token} | AppBundle\Controllers\UserController | confirmAction
 get | /account | AppBundle\Controllers\UserController | accountAction
 
+# AdminController
+get | /admin | AppBundle\Controllers\AdminController | indexAction
+get | /admin/users | AppBundle\Controllers\AdminController | usersAction
+get | /admin/user/{email} | AppBundle\Controllers\AdminController | userAction
+get | /admin/user/add | AppBundle\Controllers\AdminController | userAddAction
+post | /admin/user/add | AppBundle\Controllers\AdminController | userAddPostAction
+get | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditAction
+post | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditPostAction
+get | /admin/user/{email}/delete | AppBundle\Controllers\AdminController | userDeleteAction
+get | /admin/user/{email}/confirm | AppBundle\Controllers\AdminController | userConfirmAction
+get | /admin/groups | AppBundle\Controllers\AdminController | groupsAction
+get | /admin/group/{code} | AppBundle\Controllers\AdminController | groupAction
+get | /admin/group/{code}/edit | AppBundle\Controllers\AdminController | groupEditAction
+post | /admin/group/{code}/edit | AppBundle\Controllers\AdminController | groupEditPostAction
+get | /admin/group/{code}/delete | AppBundle\Controllers\AdminController | groupDeleteAction
+get | /admin/permissions | AppBundle\Controllers\AdminController | permissionsAction
+get | /admin/permission/{code} | AppBundle\Controllers\AdminController | permissionAction
+get | /admin/permission/{code}/edit | AppBundle\Controllers\AdminController | permissionEditAction
+post | /admin/permission/{code}/edit | AppBundle\Controllers\AdminController | permissionEditPostAction
+get | /admin/permission/{code}/delete | AppBundle\Controllers\AdminController | permissionDeleteAction
+
 # 404 error action
 any | /404/ | AppBundle\Controllers\DefaultController | errorAction

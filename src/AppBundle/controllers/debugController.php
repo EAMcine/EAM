@@ -39,6 +39,9 @@ final class DebugController extends Controller {
     public function logsAction() {
         $this->canDebug('debug.logs');
         $logs = array();
+        if (!file_exists(__DIR__ . '../../../../app/logs')) {
+            mkdir(__DIR__ . '../../../../app/logs', 0777, true);
+        }
         $files = scandir(__DIR__ . '../../../../app/logs');
         foreach ($files as $file) {
             if ($file == '.' || $file == '..') {
