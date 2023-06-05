@@ -2,7 +2,7 @@
 
 namespace AppBundle\Traits;
 
-trait componentsTrait {
+trait ComponentsTrait {
 
     protected function head() {
         ?>
@@ -40,14 +40,33 @@ trait componentsTrait {
         $this->preLoader();
         ?>
         <header role="header">
+        <div class="burger-wrapper">
+            <div class="burger-menu" id="asideOpener">
+                <span></span>
+            </div>
+        </div>
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
-        <h1 class="header-title"><?= $this->viewTitle(); ?></h1>
         <nav class="header-menu">
-        <a id="switchTheme">Thème</a>
-        <a id="account">Compte</a>
+            <a id="switchTheme">Thème</a>
+            <a id="account">Compte</a>
         </nav>
         </header>
         <?php
+        $this->aside();
+    }
+
+    protected function aside() {
+        ?>
+        <aside id="aside-menu">
+        <?=
+            $this->getAvailableLinks();
+        ?>
+        </aside> 
+        <?php
+    }
+
+    private function getAvailableLinks() {
+        
     }
 
     protected function postLoader() {

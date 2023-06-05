@@ -40,10 +40,25 @@ final class AdminController extends Controller {
         ]);
     }
 
-    // public function userAddAction() {
-    //     $this->canAdmin('admin.users.add');
-    //     $this->render('UserAdd');
-    // }
+    public function userAddAction() {
+        $this->canAdmin('admin.users.add');
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['error']);
+        $alert = $_SESSION['alert'] ?? null;
+        unset($_SESSION['alert']);
+        $this->render('UserAdd',[
+            'error' => $error,
+            'alert' => $alert
+        ]);
+    }
+
+    public function userAddPostAction() {
+        $this->canAdmin('admin.users.add');
+        if (!(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['birthday']) && isset($_POST['gender']) && isset($_POST['group']) && isset($_POST['active']))) {
+            $_SESSION['error'] = 'Tous les champs sont obligatoires';
+            $this->redirect('/admin/user/add');
+        }
+    }
 
     public function userEditAction($request) {
         $this->canAdmin('admin.users.edit');
