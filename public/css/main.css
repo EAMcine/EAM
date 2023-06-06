@@ -310,6 +310,7 @@ footer {
     justify-content: center;
     background-color: var(--background-3-color);
     overflow: hidden;
+    z-index: 9999999999999999999999999999;
 }
 
 footer p {

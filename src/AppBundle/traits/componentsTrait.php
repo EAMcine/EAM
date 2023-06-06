@@ -41,9 +41,13 @@ trait ComponentsTrait {
         ?>
         <header role="header">
         <div class="burger-wrapper">
+        <?php
+        if ($this->getAvailableLinks()) :
+        ?>
             <div class="burger-menu" id="asideOpener">
                 <span></span>
             </div>
+        <?php endif; ?>
         </div>
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
@@ -57,7 +61,8 @@ trait ComponentsTrait {
     }
 
     protected function aside() {
-        $links = $this->getAvailableLinks() ?? [];
+        $links = $this->getAvailableLinks();
+        if (isset($links)) :
         ?>
         <aside id="aside-menu">
         <?php
@@ -67,9 +72,12 @@ trait ComponentsTrait {
         ?>
         </aside> 
         <?php
+        endif;
     }
 
-    private function getAvailableLinks() : array {
+    private function getAvailableLinks() : array|null {
+        if (!isset($_SESSION['user'])) 
+            return null;
         $user = $_SESSION['user'];
         $links = [];
         if ($user) {
