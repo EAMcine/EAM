@@ -231,7 +231,7 @@ form * {
 form > span {
     display: grid;
     width: 100%;
-    height: 3vw;
+    height: 100%;
     margin: 0.25vw;
     padding: 0.25vw;
     align-items: center;
@@ -247,7 +247,7 @@ form > span {
 form label {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 2vw;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -264,6 +264,7 @@ form input, form textarea, form select, form button, form option {
     height: 100%;
     margin: 0.25vw;
     padding: 0.25vw;
+    resize: none;
     align-items: center;
     justify-content: center;
     background-color: var(--background-2-color);
@@ -275,6 +276,10 @@ form input, form textarea, form select, form button, form option {
     color: var(--text-color);
     opacity: 1;
     height: 100%;
+}
+
+form textarea {
+    height: 10vw;
 }
 
 form input[type="submit"], form button[type="submit"] {
@@ -306,6 +311,7 @@ footer {
     min-height: 50px;
     padding: 0;
     margin: 0;
+    margin-top: auto;
     align-items: center;
     justify-content: center;
     background-color: var(--background-3-color);
@@ -384,7 +390,7 @@ footer aside nav a {
 
 #homepage-2 {
     display: flex;
-    background-color: red;
+    background-color: var(--background-2-color);
     height: 100vh;
     width: 100%;
     background-position: center;

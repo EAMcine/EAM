@@ -6,6 +6,7 @@ use Framework\Components\Controller as Controller;
 use StandardBundle\Models\User as User;
 use StandardBundle\Models\UserToken as UserToken;
 use StandardBundle\Traits\SecurityTrait as SecurityTrait;
+use StandardBundle\Models\Group as Group;
 
 final class UserController extends Controller {
 
@@ -102,19 +103,23 @@ final class UserController extends Controller {
         } else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
-        $this->redirect('/');
+        $this->redirect('/account/');
     } 
 
-    // TODO: Make view => /account/
     public function accountAction() {
         $user = $_SESSION['user'] ?? null;
-        if ($user) {
-            $this->render('Account', array(
-                'user' => $user
-            ));
-        } else {
+        if (!$user) {
             $_SESSION['error'] = 'Veuillez vous connecter pour accéder à votre compte';
             $this->redirect('/login/');
         }
+        if (!$user->get('active')) {
+            $_SESSION['error'] = 'Veuillez activer votre compte pour accéder à votre compte';
+            $this->redirect('/login/');
+        }
+        $group = Group::selectOneByPk($user->get('group'));
+        $this->render('Account', array(
+            'user' => $user,
+            'group' => $group
+        ));
     }
 }

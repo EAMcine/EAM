@@ -52,7 +52,7 @@ trait ComponentsTrait {
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
             <a id="switchTheme">Thème</a>
-            <a id="account">Connexion</a>
+            <a id="account" href="/login">Connexion</a>
         </nav>
         </header>
 
@@ -82,10 +82,10 @@ trait ComponentsTrait {
         $links = [];
         if ($user) {
             if ($user->can('debug')) {
-                $links['Debug'] = "/debug/";
+                $links['Debug'] = "/debug";
             }
             if ($user->can('admin')) {
-                $links['Administration'] = "/admin/";
+                $links['Administration'] = "/admin";
             }
         }
         return $links;
