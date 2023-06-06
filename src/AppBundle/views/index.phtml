@@ -6,22 +6,32 @@ use Framework\Components\View as View;
 
 final class Index extends View {
     use \AppBundle\Traits\ComponentsTrait;
+    use \AppBundle\Traits\UserTrait;
 
     protected static string|null $defaultViewTitle = 'Accueil';
 
     protected function render() {
         $this->head(); 
         $this->header();
-        ?>    
+        if (!$this->getSessionUser()) {
+        ?>
         <main>
-            <p><?= $this->get('error'); ?></p>
-        <p><?= $this->get('alert'); ?></p>
-            <section class="hidden">
-                <h1 id="sub">Vos films préférés, dès 4,99€ par mois.</h1>
-            </section>
+        <?php if ($this->get('error')) echo '<p id="error">' . $this->get('error') . '.<p>'; ?>
+        <?php if ($this->get('alert')) echo '<p id="alert">' . $this->get('alert') . '.<p>'; ?>
+        <section id="homepage-1">
+            <h1 id="writing-title">Vos films préférés, dès 4,99€ par mois.</h1>
+        </section>
+        <section id="homepage-2"></section>
         </main>
-
-        <?php $this->footer(); ?>
+        <?php 
+        } else {
+        ?>
+        <main>
+            <p><?= var_dump($this->getSessionUser()); ?></p>
+        </main>
+        <?php
+        }
+        $this->footer(); ?>
         <script src="/js/views/index.js" type="module" namespace="index"></script>
         </body>
         </html>
