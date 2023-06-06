@@ -48,7 +48,7 @@ trait ComponentsTrait {
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
             <a id="switchTheme">Thème</a>
-            <a id="account">Compte</a>
+            <a id="account">Connexion</a>
         </nav>
         </header>
 
