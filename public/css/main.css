@@ -418,3 +418,6 @@ footer aside nav a {
     backdrop-filter: blur(10px) brightness(0.5);
 }
 
+#wsh{
+ align-items: center;
+}

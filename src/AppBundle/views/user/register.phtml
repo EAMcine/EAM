@@ -14,7 +14,11 @@ final class Register extends View {
         $this->header();
         ?>    
         <main>
-        <form action="" method="post">
+            <br>
+            <br>
+            <br>
+            <br>
+        <form action="" method="post" id="wsh">
             <span>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="Email" required>
@@ -35,8 +39,8 @@ final class Register extends View {
                 <label for="gender">Genre</label>
                 <select name="gender" id="gender" required>
                     <option value="male">Homme</option>
-                    <option value="female">Femme</option>
-                    <option value="other" selected>Autre</option>
+                    <option value="female" selected>Femme</option>
+                    <option value="other">Autre</option>
                 </select>
             </span>
             <span>

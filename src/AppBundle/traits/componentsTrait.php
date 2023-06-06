@@ -5,6 +5,7 @@ namespace AppBundle\Traits;
 include_once __DIR__ . '/userTrait.php';
 
 trait ComponentsTrait {
+
     use \AppBundle\Traits\UserTrait;
 
     protected function head() {
@@ -54,18 +55,7 @@ trait ComponentsTrait {
         </div>
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
-            <?php
-            if ($this->getSessionUser()) {
-                ?>
-                <a id="account" href="/account">Compte</a>
-                <a id="logout" href="/logout">Déconnexion</a>
-                <?php
-            } else {
-                ?>
-                <a id="account" href="/login">Connexion</a>
-                <?php
-            }
-            ?>
+            <a id="account" href="/login">Connexion</a>
         </nav>
         </header>
 
@@ -120,15 +110,13 @@ trait ComponentsTrait {
     protected function footer() {
         ?>
         <footer role="footer">
-        <p>© <?= date('Y') . SEPARATOR . DEV_NAME; ?></p>
+        <p>©<?= date('Y') . SEPARATOR;?> EAM+ ALL RIGHTS RESERVED</p>
         <aside>
             <nav>
-            <a href="#body">Haut de page</a>
-            <a href="<?= HOME_URL; ?>">Accueil</a>
-            <a href="<?= HOME_URL; ?>/about">À propos</a>
-            <a href="<?= HOME_URL; ?>/legal">CGU/CGV</a>
+            <a href="<?= HOME_URL; ?>/about">Contributeur</a>
             <a href="<?= HOME_URL; ?>/contact">Contact</a>
             <a id="switchTheme">Thème</a>
+            <a href="#body">Haut de page</a>
             </nav>
         </aside>
         </footer>
