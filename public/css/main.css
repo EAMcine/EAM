@@ -90,11 +90,11 @@ header {
 }
 
 .burger-menu.active > span::before {
-    transform: rotateZ(45deg) translateY(0) scaleX(200%);
+    transform: rotateZ(45deg) translateY(0) scaleX(170%);
 }
 
 .burger-menu.active > span::after {
-    transform: rotateZ(-45deg) translateY(-2.4px) scaleX(200%);
+    transform: rotateZ(-45deg) translateY(-2.4px) scaleX(170%);
 }
 
 .header-logo {
@@ -129,7 +129,7 @@ header {
 }
 
 .header-menu a {
-    margin: 1vw;
+    margin: clamp(2px, 0.5vw, 8px);
     text-decoration: none;
     color: var(--title-color);
     display: block;
