@@ -28,14 +28,14 @@ final class Contact extends View {
             <label for="message">Message</label>
             <textarea name="message" id="message" required></textarea>
         </span>
-        <pre>
+        <p>
         <?= $this->get('error'); ?>
         <?= $this->get('alert'); ?>
-        </pre>
+        </p>
         <input type="submit" value="Envoyer">
         </form>
-        </main>
         <?php $this->footer(); ?>
+        </main>
         </body>
         </html>
         <?php

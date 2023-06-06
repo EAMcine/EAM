@@ -28,6 +28,7 @@ abstract class Controller {
         // set HTTP method to GET for redirection
         $_SERVER['REQUEST_METHOD'] = 'GET';
         header("Location: $url");
+        die();
     }
 
     public function json(mixed $data) {

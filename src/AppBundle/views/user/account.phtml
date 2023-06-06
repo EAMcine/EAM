@@ -1,0 +1,42 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Account extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Mon compte';
+
+    protected function render() {
+        $this->head(); 
+        $this->header();
+        ?>    
+        <main>
+        <h1>Mon compte</h1>
+        <p>Nom : <?= $this->get('user')->get('lastname'); ?></p>
+        <p>Prénom : <?= $this->get('user')->get('firstname'); ?></p>
+        <p>Email : <?= $this->get('user')->get('email'); ?></p>
+        <p>Genre : 
+            <?php switch($this->get('user')->get('gender')) {
+                case 'male':
+                    echo 'Homme';
+                    break;
+                case 'female':
+                    echo 'Femme';
+                    break;
+                default:
+                    echo 'Autre';
+                    break;
+        }; ?>
+        </p>
+        <p>Groupe : <?= $this->get('group')->get('name'); ?></p>
+        <?php $this->footer(); ?>
+        </main>
+        <!-- <script src="/js/views/account.js" type="module" namespace="account"></script> -->
+        </body>
+        </html>
+        <?php
+    }
+}

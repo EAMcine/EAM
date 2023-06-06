@@ -2,7 +2,10 @@
 
 namespace AppBundle\Traits;
 
+include_once __DIR__ . '/userTrait.php';
+
 trait ComponentsTrait {
+    use \AppBundle\Traits\UserTrait;
 
     protected function head() {
         ?>
@@ -41,14 +44,28 @@ trait ComponentsTrait {
         ?>
         <header role="header">
         <div class="burger-wrapper">
+        <?php
+        if ($this->getAvailableLinks()) :
+        ?>
             <div class="burger-menu" id="asideOpener">
                 <span></span>
             </div>
+        <?php endif; ?>
         </div>
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
-            <a id="switchTheme">Thème</a>
-            <a id="account">Compte</a>
+            <?php
+            if ($this->getSessionUser()) {
+                ?>
+                <a id="account" href="/account">Compte</a>
+                <a id="logout" href="/logout">Déconnexion</a>
+                <?php
+            } else {
+                ?>
+                <a id="account" href="/login">Connexion</a>
+                <?php
+            }
+            ?>
         </nav>
         </header>
 
@@ -57,7 +74,8 @@ trait ComponentsTrait {
     }
 
     protected function aside() {
-        $links = $this->getAvailableLinks() ?? [];
+        $links = $this->getAvailableLinks();
+        if (isset($links)) :
         ?>
         <aside id="aside-menu">
         <?php
@@ -67,17 +85,20 @@ trait ComponentsTrait {
         ?>
         </aside> 
         <?php
+        endif;
     }
 
-    private function getAvailableLinks() : array {
+    private function getAvailableLinks() : array|null {
+        if (!isset($_SESSION['user'])) 
+            return null;
         $user = $_SESSION['user'];
         $links = [];
         if ($user) {
             if ($user->can('debug')) {
-                $links['Debug'] = "/debug/";
+                $links['Debug'] = "/debug";
             }
             if ($user->can('admin')) {
-                $links['Administration'] = "/admin/";
+                $links['Administration'] = "/admin";
             }
         }
         return $links;
@@ -107,6 +128,7 @@ trait ComponentsTrait {
             <a href="<?= HOME_URL; ?>/about">À propos</a>
             <a href="<?= HOME_URL; ?>/legal">CGU/CGV</a>
             <a href="<?= HOME_URL; ?>/contact">Contact</a>
+            <a id="switchTheme">Thème</a>
             </nav>
         </aside>
         </footer>
