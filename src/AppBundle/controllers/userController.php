@@ -24,7 +24,7 @@ final class UserController extends Controller {
             if ($user) {
                 if (SecurityTrait::verify($_POST['password'], $user->get('password'))) {
                     $_SESSION['user'] = $user;
-                    $this->redirect('/');
+                    $this->redirect('/account/');
                 } else {
                     $_SESSION['error'] = 'Mot de passe incorrect';
                 }         
