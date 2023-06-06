@@ -2,7 +2,11 @@
 
 namespace AppBundle\Traits;
 
+include_once __DIR__ . '/userTrait.php';
+
 trait ComponentsTrait {
+
+    use \AppBundle\Traits\UserTrait;
 
     protected function head() {
         ?>
