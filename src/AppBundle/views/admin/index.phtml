@@ -1,0 +1,24 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Admin extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Admin';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Admin</h1>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+}
