@@ -15,12 +15,12 @@ final class DebugController extends Controller {
     }
 
     public function phpinfoAction() {
-        $this->canDebug('debug.phpinfo');
+        $this->canDebug('phpinfo');
         $this->render('PHPInfo');
     }
 
     public function routesAction() {
-        $this->canDebug('debug.routes');
+        $this->canDebug('routes');
         $router = Router::getInstance();
         $router->reset();
         $routesLoader = Routing\RoutesLoader::getInstance();
@@ -37,7 +37,7 @@ final class DebugController extends Controller {
     }
 
     public function logsAction() {
-        $this->canDebug('debug.logs');
+        $this->canDebug('logs');
         $logs = array();
         if (!file_exists(__DIR__ . '../../../../app/logs')) {
             mkdir(__DIR__ . '../../../../app/logs', 0777, true);
@@ -55,7 +55,7 @@ final class DebugController extends Controller {
     }
 
     public function logAction($request) {
-        $this->canDebug('debug.logs');
+        $this->canDebug('logs');
         $file = $request['file'];
         $file = __DIR__ . '../../../../app/logs/' . $file . '.log';
         if (!file_exists($file)) {

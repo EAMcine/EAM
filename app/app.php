@@ -9,7 +9,6 @@ $loader = new ClassLoader();
 $loader->loadFolder('../src/FrameworkBundle/');
 
 use Framework\Routing as Routing;
-use \tidy as tidy;
 
 Main::run();
 

@@ -11,13 +11,8 @@ trait AdminTrait {
         }
         $user = $_SESSION['user'];
         $user = $user->refreshUser();
-        if ($permissionNode) {
-            if (!$user->can($permissionNode)) {
-                $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-                $this->redirect('/');
-            }
-        }
-        if (!$user->can('admin')) {
+        $permissionNode = 'admin.' . $permissionNode ?? 'admin';
+        if (!$user->can($permissionNode)) {
             $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
             $this->redirect('/');
         }

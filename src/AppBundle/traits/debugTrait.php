@@ -11,13 +11,8 @@ trait DebugTrait {
         }
         $user = $_SESSION['user'];
         $user = $user->refreshUser();
-        if ($permissionNode) {
-            if (!$user->can($permissionNode)) {
-                $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
-                $this->redirect('/');
-            }
-        }
-        if (!$user->can('debug')) {
+        $permissionNode = 'debug.' . $permissionNode ?? 'debug';
+        if (!$user->can($permissionNode)) {
             $_SESSION['error'] = 'Vous n\'avez pas les droits pour accéder à cette page';
             $this->redirect('/');
         }

@@ -4,16 +4,17 @@ namespace AppBundle\Views;
 
 use Framework\Components\View as View;
 
-final class Register extends View {
+final class UserAdd extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
-    protected static string|null $defaultViewTitle = 'Inscription';
+    protected static string|null $defaultViewTitle = 'Ajout Utilisateur';
 
-    protected function render() {
+    public function render() {
         $this->head(); 
         $this->header();
-        ?>    
+        ?>
         <main>
+        <h1>Ajout Utilisateur</h1>
         <form action="" method="post">
             <span>
                 <label for="email">Email</label>
@@ -48,6 +49,21 @@ final class Register extends View {
                 <label for="passwordConfirm">Confirmer le mot de passe</label>
                 <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
             </span>
+            <span>
+                <label for="role">Groupe</label>
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>Sélectionner un groupe</option>
+                    <?= $this->get('groups')->showOptions(); ?>
+                </select>
+            </span>
+            <span>
+                <label for="status">Statut</label>
+                <select name="status" id="status" required>
+                    <option value="" disabled selected>Sélectionner un statut</option>
+                    <option value="1">Actif</option>
+                    <option value="0">Inactif</option>
+                </select>
+            </span>
             <pre><?= $this->get('error') ?? null ?></pre>
             <button type="submit">S'inscrire</button>
             <div class="login-connection">
@@ -57,9 +73,8 @@ final class Register extends View {
         </form>
         <?php $this->footer(); ?>
         </main>
-        <script src="/js/views/register.js" type="module" namespace="register"></script>
         </body>
         </html>
-        <?php
+        <?php 
     }
 }

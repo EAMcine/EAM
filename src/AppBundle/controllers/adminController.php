@@ -15,7 +15,7 @@ final class AdminController extends Controller {
     }
 
     public function usersAction() {
-        $this->canAdmin('admin.users');
+        $this->canAdmin('users');
         $error = $_SESSION['error'] ?? null;
         unset($_SESSION['error']);
         $alert = $_SESSION['alert'] ?? null;
@@ -27,7 +27,7 @@ final class AdminController extends Controller {
     }
 
     public function userAction($request) {
-        $this->canAdmin('admin.users');
+        $this->canAdmin('users');
         $error = $_SESSION['error'] ?? null;
         unset($_SESSION['error']);
         $alert = $_SESSION['alert'] ?? null;
@@ -41,7 +41,7 @@ final class AdminController extends Controller {
     }
 
     public function userAddAction() {
-        $this->canAdmin('admin.users.add');
+        $this->canAdmin('users.add');
         $error = $_SESSION['error'] ?? null;
         unset($_SESSION['error']);
         $alert = $_SESSION['alert'] ?? null;
@@ -53,7 +53,7 @@ final class AdminController extends Controller {
     }
 
     public function userAddPostAction() {
-        $this->canAdmin('admin.users.add');
+        $this->canAdmin('users.add');
         if (!(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['birthday']) && isset($_POST['gender']) && isset($_POST['group']) && isset($_POST['active']))) {
             $_SESSION['error'] = 'Tous les champs sont obligatoires';
             $this->redirect('/admin/user/add');
@@ -61,7 +61,7 @@ final class AdminController extends Controller {
     }
 
     public function userEditAction($request) {
-        $this->canAdmin('admin.users.edit');
+        $this->canAdmin('users.edit');
         $user = \StandardBundle\Models\User::selectOneByPk($request['email']);
         $this->render('UserEdit', [
             'user' => $user
@@ -69,7 +69,7 @@ final class AdminController extends Controller {
     }
 
     public function userEditPostAction($request) {
-        $this->canAdmin('admin.users.edit');
+        $this->canAdmin('users.edit');
         $user = \StandardBundle\Models\User::selectOneByPk($request['email']);
         if (!(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['birthday']) && isset($_POST['gender']) && isset($_POST['group']) && isset($_POST['active']))) {
             $_SESSION['error'] = 'Tous les champs sont obligatoires';
