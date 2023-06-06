@@ -57,17 +57,30 @@ trait ComponentsTrait {
     }
 
     protected function aside() {
+        $links = $this->getAvailableLinks() ?? [];
         ?>
         <aside id="aside-menu">
-        <?=
-            $this->getAvailableLinks();
+        <?php
+            foreach ($links as $name => $route) {
+                echo '<a href="' . HOME_URL . $route . '">' . $name . '</a>';
+            }            
         ?>
         </aside> 
         <?php
     }
 
-    private function getAvailableLinks() {
-        
+    private function getAvailableLinks() : array {
+        $user = $_SESSION['user'];
+        $links = [];
+        if ($user) {
+            if ($user->can('debug')) {
+                $links['Debug'] = "/debug/";
+            }
+            if ($user->can('admin')) {
+                $links['Administration'] = "/admin/";
+            }
+        }
+        return $links;
     }
 
     protected function postLoader() {

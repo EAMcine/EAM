@@ -22,17 +22,14 @@
     color: var(--text-color);
 }
 
-
 #body * {
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
 
-
-
 header {
     display: flex;
     flex-direction: row;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 9999999999999999999;
     width: 100%;
@@ -61,8 +58,9 @@ header {
     width: clamp(25px, 5vw, 50px);
     justify-content: center;
     cursor: pointer;
-    overflow: hidden;
     transition: all 0.5s ease-in-out;
+    padding: 4px;
+    overflow: hidden;
 }
 
 .burger-menu > span, .burger-menu > span::before, .burger-menu > span::after {
@@ -76,11 +74,11 @@ header {
 }
 
 .burger-menu > span::before {
-    transform: translateY(calc(clamp(10px, 2vw, 20px)*-1 - 2px));
+    transform: translateY(calc(clamp(10px, 2vw, 20px)*-1 + 2px));
 }
 
 .burger-menu > span::after {
-    transform: translateY(calc(clamp(10px, 2vw, 20px) - 2px));
+    transform: translateY(calc(clamp(10px, 2vw, 20px) - 6px));
 }
 
 .burger-menu.active {
@@ -132,7 +130,7 @@ header {
 
 #aside-menu {
     visibility: hidden;
-    position: sticky;
+    position: fixed;
     top: clamp(50px, 10vw, 100px); 
     right: 0;
     z-index: 99999999999999999999999999999999999999999;
@@ -140,12 +138,17 @@ header {
     height: 0;
     background-color: var(--background-2-color);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     transition: transform 0.5s ease-in-out;
     transform: translateX(100%);
     overflow: hidden;
+}
+
+#aside-menu > a {
+    margin: 1vw;
+    text-decoration: none;
+    color: var(--title-color);
 }
 
 #aside-menu.active {
@@ -155,8 +158,10 @@ header {
 }
 
 main {
-    width: 100%;
+    width: 100vw;
     display: flex;
+    position: absolute;
+    top: clamp(50px, 10vw, 100px); 
     min-height: 100vh;
     flex-direction: column;
     align-items: center;
@@ -365,18 +370,33 @@ footer aside nav a {
 
 }
 
-main {
+#homepage-1 {
+    display: flex;
     background-image: url("https://4kwallpapers.com/images/wallpapers/avengers-endgame-marvel-superheroes-marvel-comics-5k-5120x2880-942.jpg");
-    height: 100%;
+    height: 100vh;
+    width: 100%;
     background-position: center;
     background-size: cover;
+    align-items: center;
+    justify-content: center;
 }
 
-#sub{
-    display: grid;
-    place-items: center;
+#homepage-2 {
+    display: flex;
+    background-color: red;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
     align-items: center;
-    min-height: 100vh;
+    justify-content: center;
+}
+
+#writing-title {
+    width: auto;
+    padding: 1em;
+    border-radius: 1em;
     color: #fff;
+    backdrop-filter: blur(10px) brightness(0.5);
 }
 
