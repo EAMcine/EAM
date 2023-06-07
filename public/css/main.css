@@ -401,9 +401,10 @@ footer aside nav a {
 
 #homepage-2 {
     display: flex;
-    background-color: var(--background-2-color);
+    background-color: #000000;
     height: 100vh;
     width: 100%;
+    flex-direction: column;
     background-position: center;
     background-size: cover;
     align-items: center;
@@ -421,3 +422,20 @@ footer aside nav a {
 #wsh{
  align-items: center;
 }
+
+#annonce{
+    width: auto;
+    padding: 1em;
+    border-radius: 1em;
+    color: #fff;
+    backdrop-filter: blur(10px) brightness(0.5);
+}
+
+.boite-transparente {
+    border: 1px solid #000;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+}
+
