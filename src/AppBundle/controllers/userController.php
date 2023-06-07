@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controllers;
 
-use Framework\Components\Controller as Controller;
+use AppBundle\Controllers\DefaultController as Controller;
 use StandardBundle\Models\User as User;
 use StandardBundle\Models\UserToken as UserToken;
 use StandardBundle\Traits\SecurityTrait as SecurityTrait;

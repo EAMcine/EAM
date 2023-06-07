@@ -2,7 +2,7 @@
 
 namespace ApiBundle\Controllers;
 
-use Framework\Components\Controller as Controller;
+use AppBundle\Controllers\DefaultController as Controller;
 
 final class DefaultController extends Controller {
 

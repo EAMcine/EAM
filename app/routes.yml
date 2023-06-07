@@ -5,13 +5,13 @@
 # TestController // delete this routes after testing
 get | /bddInit | AppBundle\Controllers\TestController | bddInitAction
 
-# DefaultController
-get | / | AppBundle\Controllers\DefaultController | indexAction
-get | /about | AppBundle\Controllers\DefaultController | aboutAction
-get | /contact | AppBundle\Controllers\DefaultController | contactAction
-post | /contact | AppBundle\Controllers\DefaultController | contactPostAction
-get | /legal | AppBundle\Controllers\DefaultController | legalAction
-post | /theme | AppBundle\Controllers\DefaultController | themePostAction
+# IndexController
+get | / | AppBundle\Controllers\IndexController | indexAction
+get | /about | AppBundle\Controllers\IndexController | aboutAction
+get | /contact | AppBundle\Controllers\IndexController | contactAction
+post | /contact | AppBundle\Controllers\IndexController | contactPostAction
+get | /legal | AppBundle\Controllers\IndexController | legalAction
+post | /theme | AppBundle\Controllers\IndexController | themePostAction
 
 # DebugController
 get | /debug | AppBundle\Controllers\DebugController | indexAction
@@ -65,4 +65,4 @@ post | /contribution/{id}/edit | AppBundle\Controllers\ContributorController | c
 get | /contribution/{id}/delete | AppBundle\Controllers\ContributorController | contributionDeleteAction
 
 # 404 error action
-any | /404/ | AppBundle\Controllers\DefaultController | errorAction
+any | /404/ | AppBundle\Controllers\IndexController | errorAction

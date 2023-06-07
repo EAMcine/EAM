@@ -2,7 +2,7 @@
 
 namespace AppBundle\controllers;
 
-use Framework\Components\Controller as Controller;
+use AppBundle\Controllers\DefaultController as Controller;
 
 class SubscribeController extends Controller {
 
