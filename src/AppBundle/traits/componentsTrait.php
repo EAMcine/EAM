@@ -110,7 +110,7 @@ trait ComponentsTrait {
     protected function footer() {
         ?>
         <footer role="footer">
-        <p>©<?= date('Y') . SEPARATOR;?> EAM+ ALL RIGHTS RESERVED</p>
+        <p>© <?= date('Y');?> EAM+ ALL RIGHTS RESERVED</p>
         <aside>
             <nav>
             <a href="<?= HOME_URL; ?>/about">Contributeur</a>
