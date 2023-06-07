@@ -19,9 +19,10 @@ final class User extends Model {
      * @param string $birthday
      * @param string $gender
      * @param string $group
+     * @param bool $active = false
      */
     public static function create(mixed ...$args) : User|false {
-        if (count($args) != 7)
+        if (count($args) != 7 && count($args) != 8)
             return false;
 
         $email = $args[0];
@@ -31,6 +32,7 @@ final class User extends Model {
         $birthday = $args[4];
         $gender = $args[5];
         $group = $args[6];
+        $active = $args[7] ?? false;
 
         if ($group instanceof Group) {
             $group = $group->get('code');
@@ -44,7 +46,7 @@ final class User extends Model {
             'birthday' => $birthday,
             'gender' => $gender,
             'group' => $group,
-            'active' => 0
+            'active' => $active
         ];
 
         if (self::selectOneByPk($email))

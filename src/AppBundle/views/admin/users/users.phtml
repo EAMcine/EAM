@@ -1,0 +1,49 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Users extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Utilisateurs';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Utilisateurs</h1>
+        <?= $this->listUsers($this->get('users')); ?>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+
+    private function listUsers(array|null $users): string {
+        if (is_null($users)) {
+            return '<p>Aucun utilisateur trouvé (vous êtes connectés donc impossible théoriquement)</p>';
+        }
+        $html = '<table>';
+        $html .= '<thead><tr><th>Email</th><th>Prénom</th><th>Nom</th><th>Anniversaire</th><th>Genre</th><th>Groupe</th><th>Actif</th><th>Actions</th></tr></thead>';
+        $html .= '<tbody>';
+        foreach ($users as $user) {
+            $html .= '<tr>';
+            $html .= '<td>' . $user->getPk() . '</td>';
+            $html .= '<td>' . $user->get('firstname') . '</td>';
+            $html .= '<td>' . $user->get('lastname') . '</td>';
+            $html .= '<td>' . $user->get('birthday') . '</td>';
+            $html .= '<td>' . $user->get('gender') . '</td>';
+            $html .= '<td>' . $user->get('group') . '</td>';
+            $html .= '<td>' . $user->get('active') . '</td>';
+            $html .= '<td><a href="/admin/user/' . $user->getPk() . '">Voir</a></td>';
+            $html .= '</tr>';
+        }
+        $html .= '</tbody>';
+        $html .= '</table>';
+        return $html;
+    }
+}

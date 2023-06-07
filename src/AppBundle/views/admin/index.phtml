@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Admin extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Admin';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Admin</h1>
+        <h2>Utilisateurs :</h2>
+        <ul>
+            <li><a href="/admin/users">Liste des utilisateurs</a></li>
+            <li><a href="/admin/user/add">Créer un utilisateur</a></li>
+        </ul>
+        <h2>Groupes :</h2>
+        <ul>
+            <li><a href="/admin/groups">Liste des groupes</a></li>
+            <li><a href="/admin/group/add">Créer un groupe</a></li>
+        </ul>
+        <h2>Factures :</h2>
+        <ul>
+            <li><a href="/admin/invoices">Liste des factures</a></li>
+            <li><a href="/admin/invoice/add">Créer une facture</a></li>
+        </ul>
+        <a href="/">Retour</a>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+}

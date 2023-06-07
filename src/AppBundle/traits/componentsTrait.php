@@ -55,7 +55,12 @@ trait ComponentsTrait {
         </div>
         <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
+            <?php if(!$this->getSessionUser()): ?>
             <a id="account" href="/login">Connexion</a>
+            <?php else: ?>
+            <a id="account" href="/account">Compte</a>
+            <a id="logout" href="/logout">Déconnexion</a>
+            <?php endif; ?>
         </nav>
         </header>
 
@@ -92,6 +97,14 @@ trait ComponentsTrait {
             }
         }
         return $links;
+    }
+
+    protected function showOptions(array|null $options, string $selected = null) {
+        if (isset($options)) {
+            foreach ($options as $optionValue => $optionName) {
+                echo '<option value="' . $optionValue . '" ' . ($selected == $optionValue ? 'selected' : '') . '>' . $optionName . '</option>';
+            }
+        }
     }
 
     protected function postLoader() {
