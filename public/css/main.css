@@ -419,10 +419,6 @@ footer aside nav a {
     backdrop-filter: blur(10px) brightness(0.5);
 }
 
-#wsh{
- align-items: center;
-}
-
 #annonce{
     width: auto;
     padding: 1em;
@@ -431,11 +427,85 @@ footer aside nav a {
     backdrop-filter: blur(10px) brightness(0.5);
 }
 
-.boite-transparente {
-    border: 1px solid #000;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    width: 400px;
-    height: 300px;
+#abonnement{
+    color: white;
 }
+
+.price-card{
+    padding: 3rem 2rem 4rem;
+    order: -1;
+}
+
+.price-card{
+    background-color: #fff;
+    box-shadow: -10px 0px 16px -2px rgba(0, 0, 0, .1);
+    position: relative;
+    padding: 3rem 1rem 3rem;
+    border-radius: 25px;
+    margin-bottom: 3rem;
+    border: 3px solid #b5260d;
+}
+
+#abonnement-titre{
+    margin-top: 0.1rem;
+    color: #1a1a1a;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    display: block;
+    box-sizing: border-box;
+}
+
+.value{
+    color: #000000;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 5.5rem;
+    text-align: center;
+}
+
+.join{
+    align-items: center;
+}
+
+.bouton {
+    text-transform: uppercase;
+    padding: 1.2rem 2rem;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.15rem;
+    min-width: 220px;
+    margin-top: 3rem;
+    background-color: #b5260d;
+    color: #fff;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.description li{
+    font-size: 1.15rem;
+    display: flex;
+    font-weight: 400;
+    box-sizing: border-box;
+    color: #4b4f57;
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+
 
