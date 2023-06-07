@@ -28,7 +28,7 @@ final class Logs extends View {
         $logs = $this->get('logs');
         foreach ($logs as $log) {
             ?>
-            <a href="/debug/log/<?= $log ?>/"><?= $log ?></a><br>  
+            <a href="/debug/log/<?= $log ?>"><?= $log ?></a><br>  
             <?php
         }
     }

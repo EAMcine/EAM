@@ -43,7 +43,7 @@ final class UserEdit extends View {
             </span>
             <span>
                 <label for="password">Mot de passe</label>
-                <input name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required value="<?= $this->get('user')->get('password') ?>">
+                <input name="password" id="password" placeholder="Mot de passe" required value="<?= $this->get('user')->get('password') ?>">
             </span>
             <span>
                 <label for="group">Groupe</label>

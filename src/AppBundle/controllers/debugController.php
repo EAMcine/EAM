@@ -60,7 +60,7 @@ final class DebugController extends Controller {
         $file = __DIR__ . '../../../../app/logs/' . $file . '.log';
         if (!file_exists($file)) {
             $_SESSION['error'] = 'Le fichier de log n\'existe pas';
-            $this->redirect('/debug/logs/');
+            $this->redirect('/debug/logs');
         }
         $content = file_get_contents($file);
         $this->render('Log', [
