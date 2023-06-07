@@ -43,33 +43,25 @@ final class UserAdd extends View {
             </span>
             <span>
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
+                <input name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
             </span>
             <span>
-                <label for="passwordConfirm">Confirmer le mot de passe</label>
-                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
-            </span>
-            <span>
-                <label for="role">Groupe</label>
-                <select name="role" id="role" required>
+                <label for="group">Groupe</label>
+                <select name="group" id="group" required>
                     <option value="" disabled selected>Sélectionner un groupe</option>
-                    <?= $this->get('groups')->showOptions(); ?>
+                    <?= $this->showOptions($this->get('groupsOptions')); ?>
                 </select>
             </span>
             <span>
-                <label for="status">Statut</label>
-                <select name="status" id="status" required>
+                <label for="active">Statut</label>
+                <select name="active" id="active" required>
                     <option value="" disabled selected>Sélectionner un statut</option>
                     <option value="1">Actif</option>
                     <option value="0">Inactif</option>
                 </select>
             </span>
-            <pre><?= $this->get('error') ?? null ?></pre>
-            <button type="submit">S'inscrire</button>
-            <div class="login-connection">
-                <br>
-                <p>Déjà inscrit ? <a href="/login" class="register-link">Se connecter</a></p>
-            </div>
+            <p><?= $this->get('error') ?? null ?></p>
+            <button type="submit">Ajouter</button>
         </form>
         <?php $this->footer(); ?>
         </main>

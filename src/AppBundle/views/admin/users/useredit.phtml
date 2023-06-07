@@ -1,0 +1,72 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class UserEdit extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Modification Utilisateur';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Modification Utilisateur : <?= $this->get('user')->getPk(); ?></h1>
+        <form action="" method="post">
+            <span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email" required value="<?= $this->get('user')->getPk(); ?>">           
+            </span>
+            <span>
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom" required value="<?= $this->get('user')->get('firstname') ?>">
+            </span>
+            <span>
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Nom" required value="<?= $this->get('user')->get('lastname') ?>">
+            </span>
+
+            <span>
+                <label for="birthday">Date de naissance</label>
+                <input type="date" name="birthday" id="birthday" placeholder="Date de naissance" required value="<?= $this->get('user')->get('birthday') ?>">
+            </span>
+            <span>
+                <label for="gender">Genre</label>
+                <select name="gender" id="gender" required>
+                    <option value="male" <?= $this->get('user')->get('gender')=='male' ? 'selected' : '' ?>>Homme</option>
+                    <option value="female" <?= $this->get('user')->get('gender')=='female' ? 'selected' : '' ?>>Femme</option>
+                    <option value="other" <?= $this->get('user')->get('gender')=='other' ? 'selected' : '' ?>>Autre</option>
+                </select>
+            </span>
+            <span>
+                <label for="password">Mot de passe</label>
+                <input name="password" id="password" placeholder="Mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required value="<?= $this->get('user')->get('password') ?>">
+            </span>
+            <span>
+                <label for="group">Groupe</label>
+                <select name="group" id="group" required>
+                    <?= $this->showOptions($this->get('groupsOptions'), $this->get('user')->get('group')); ?>
+                    </select>
+            </span>
+            <span>
+                <label for="active">Statut</label>
+                <select name="active" id="active" required>
+                    <option value="1" <?= $this->get('user')->get('status')=='1' ? 'selected' : '' ?>>Actif</option>
+                    <option value="0" <?= $this->get('user')->get('status')=='0' ? 'selected' : '' ?>>Inactif</option>
+                </select>
+            </span>
+            <pre>
+                <?= $this->get('error') ?? null ?>
+            </pre>
+            <button type="submit">Modifier</button>
+        </form>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+}

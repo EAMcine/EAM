@@ -29,12 +29,16 @@ get | /logout | AppBundle\Controllers\UserController | logoutAction
 get | /confirm/{email}/{token} | AppBundle\Controllers\UserController | confirmAction
 get | /account | AppBundle\Controllers\UserController | accountAction
 
+# InvoiceController
+get | /invoice | AppBundle\Controllers\InvoiceController | indexAction
+get | /invoice/add | AppBundle\Controllers\InvoiceController | addInvoiceAction
+
 # AdminController
 get | /admin | AppBundle\Controllers\AdminController | indexAction
 get | /admin/users | AppBundle\Controllers\AdminController | usersAction
-get | /admin/user/{email} | AppBundle\Controllers\AdminController | userAction
 get | /admin/user/add | AppBundle\Controllers\AdminController | userAddAction
 post | /admin/user/add | AppBundle\Controllers\AdminController | userAddPostAction
+get | /admin/user/{email} | AppBundle\Controllers\AdminController | userAction
 get | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditAction
 post | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditPostAction
 get | /admin/user/{email}/delete | AppBundle\Controllers\AdminController | userDeleteAction

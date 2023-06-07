@@ -16,8 +16,14 @@ final class PHPInfo extends View {
         <main>
         <h1>PHPInfo</h1>
         <section>
-            <div style="width: 100%; height: 100%; overflow: auto;">
-            <?php phpinfo(); ?>
+            <div style="width: 100%; height: 100%; overflow: hidden;">
+                <?php 
+                ob_start();
+                phpinfo();
+                $phpinfo = ob_get_clean();
+                $phpinfo = preg_replace('#<style[^>]*>.*?</style>#is', '', $phpinfo);
+                echo $phpinfo;
+                 ?>
             </div>
         </section>
         <?php $this->footer(); ?>
