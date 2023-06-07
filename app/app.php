@@ -51,6 +51,7 @@ final class Main {
         ob_start();
 
         $loader->loadFolder('../src/AppBundle/traits/');
+        $loader->loadFile('../src/AppBundle/controllers/defaultController.php');
         $loader->loadFolder('../src/AppBundle/');
         $routesLoader->scanRoutesFile('app/routes.yml');
 

@@ -6,6 +6,10 @@ use \tidy as tidy;
 
 abstract class Controller {
 
+    protected function __construct() {
+                
+    }
+
     protected function render(string $viewName, array $data = [], string $viewTitle = null) {
         $viewName = 'AppBundle\\Views\\' . $viewName;
         new $viewName($data, $viewTitle);

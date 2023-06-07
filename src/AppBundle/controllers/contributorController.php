@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controllers;
 
-use Framework\Components\Controller as Controller;
+use AppBundle\Controllers\DefaultController as Controller;
+use AppBundle\Models\Contribution as Contribution;
 
 final class ContributorController extends Controller {
     use \AppBundle\Traits\ContributorTrait;
@@ -19,6 +20,7 @@ final class ContributorController extends Controller {
 
     public function contributionAction($request) {
         $this->canContributor('contributions');
+        // $contribution = Contribution::selectOneByPk($request['id']);
         $contribution = $request['id'];
         $this->render('Contribution', [
             'contribution' => $contribution

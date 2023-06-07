@@ -1,0 +1,39 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Contributions extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Mes contributions';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Mes contributions</h1>
+        <?= $this->showContributions($this->get('contributions')); ?>
+        <a href="<?= HOME_URL; ?>/contributions/add">Ajouter une contribution</a>
+        <a href="<?= HOME_URL; ?>/contributeur">Retour</a>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+
+    private function showContributions(array|null $contributions) : string {
+        if (is_null($contributions)) {
+            return '<p>Aucune contribution</p>';
+        }
+        $html = '<ul>';
+        foreach ($contributions as $contribution) {
+            $html .= '<li><a href="' . HOME_URL . '/contribution/' . $contribution->getPk() . '">' . $contribution->get() . '</a></li>';
+        }
+        $html .= '</ul>';
+        return $html;
+    }
+}

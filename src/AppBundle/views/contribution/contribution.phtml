@@ -1,0 +1,37 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Contribution extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Contribution';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Contribution : <?= $this->get('contribution')->get('title'); ?></h1>
+        <img src="<?= $this->get('contribution')->get('imagepath'); ?>" alt="Affiche du film : <?= $this->get('contribution')->get('title'); ?>">
+        <section>
+            <h2>Sinopsis</h2>
+            <p><?= $this->get('contribution')->get('sinopsis'); ?></p>
+        </section>
+        <section>
+            <h2>Avis</h2>
+            <p><?= $this->get('contribution')->get('review'); ?></p>
+        </section>
+        <section>
+            <h2>Note</h2>
+            <p><?= $this->get('contribution')->get('note'); ?></p>
+        </section>    
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+}

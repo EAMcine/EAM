@@ -4,25 +4,26 @@ namespace AppBundle\Views;
 
 use Framework\Components\View as View;
 
-final class Debug extends View {
+final class Contributor extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
-    protected static string|null $defaultViewTitle = 'Contributeur';
+    protected static string|null $defaultViewTitle = 'Espace contributeur';
 
     public function render() {
         $this->head(); 
         $this->header();
         ?>
         <main>
-        <h1>Contributeur</h1>
+        <h1>Espace contributeur</h1>
         <section>
-            <h2>Contributions</h2>
+            <h2>Mes contributions en cours</h2>
             <p><a href="<?= HOME_URL; ?>/contributions">Contributions</a></p>
         </section>
         <section>
             <h2>Ajouter une contribution</h2>
             <p><a href="<?= HOME_URL; ?>/contributions/add">Ajouter une contribution</a></p>
         </section>
+        <a href="<?= HOME_URL; ?>/">Accueil</a>
         <?php $this->footer(); ?>
         </main>
         </body>
