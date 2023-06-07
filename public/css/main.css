@@ -61,6 +61,7 @@ header {
     transition: all 0.5s ease-in-out;
     padding: 4px;
     overflow: hidden;
+    border-radius: 8px;
 }
 
 .burger-menu > span, .burger-menu > span::before, .burger-menu > span::after {
@@ -74,15 +75,11 @@ header {
 }
 
 .burger-menu > span::before {
-    transform: translateY(calc(clamp(10px, 2vw, 20px)*-1 + 2px));
+    transform: translateY(calc(clamp(8px, 1.6vw, 16px)*-1 + 2px));
 }
 
 .burger-menu > span::after {
-    transform: translateY(calc(clamp(10px, 2vw, 20px) - 6px));
-}
-
-.burger-menu.active {
-    border-radius: 8px;
+    transform: translateY(calc(clamp(8px, 1.6vw, 16px) - 6px));
 }
 
 .burger-menu.active > span {
@@ -90,11 +87,11 @@ header {
 }
 
 .burger-menu.active > span::before {
-    transform: rotateZ(45deg) translateY(0) scaleX(170%);
+    transform: rotateZ(45deg) translateY(0) scaleX(250%);
 }
 
 .burger-menu.active > span::after {
-    transform: rotateZ(-45deg) translateY(-2.4px) scaleX(170%);
+    transform: rotateZ(-45deg) translateY(-2.5px) scaleX(250%);
 }
 
 .header-logo {
@@ -104,12 +101,12 @@ header {
     padding: 1em;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 .header-logo img {
     width: auto;
     height: 80%;
+    cursor: pointer;
 }
 
 .header-menu {
@@ -312,6 +309,27 @@ form input[type="submit"], form button[type="submit"] {
 form input[type="submit"]:hover, form button[type="submit"]:hover {
     background-color: var(--background-color);
     color: var(--text-2-color);
+}
+
+table {
+    /* display: table; */
+    width: 80%;
+    margin: 2vw;
+    padding: 2vw;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-2-color);
+    border-collapse: separate;
+    border-color: #000;
+    border-spacing: 0;
+    color: var(--text-color);
+    border-radius: 1vw;
+}
+
+th, td {
+    padding: 0.5vw;
+    text-align: center;
+    border: 0.1vw solid var(--background-3-color);
 }
 
 footer {

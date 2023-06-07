@@ -24,7 +24,7 @@ final class UserController extends Controller {
             if ($user) {
                 if (SecurityTrait::verify($_POST['password'], $user->get('password'))) {
                     $_SESSION['user'] = $user;
-                    $this->redirect('/account/');
+                    $this->redirect('/account');
                 } else {
                     $_SESSION['error'] = 'Mot de passe incorrect';
                 }         
@@ -34,7 +34,7 @@ final class UserController extends Controller {
         } else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
-        $this->redirect('/login/');
+        $this->redirect('/login');
     }
 
     public function logoutAction() {
@@ -77,7 +77,7 @@ final class UserController extends Controller {
         } else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
-        $this->redirect('/register/');
+        $this->redirect('/register');
     }
 
     public function confirmAction($request) {
@@ -103,18 +103,18 @@ final class UserController extends Controller {
         } else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
-        $this->redirect('/account/');
+        $this->redirect('/account');
     } 
 
     public function accountAction() {
         $user = $_SESSION['user'] ?? null;
         if (!$user) {
             $_SESSION['error'] = 'Veuillez vous connecter pour accéder à votre compte';
-            $this->redirect('/login/');
+            $this->redirect('/login');
         }
         if (!$user->get('active')) {
             $_SESSION['error'] = 'Veuillez activer votre compte pour accéder à votre compte';
-            $this->redirect('/login/');
+            $this->redirect('/login');
         }
         $group = Group::selectOneByPk($user->get('group'));
         $this->render('Account', array(

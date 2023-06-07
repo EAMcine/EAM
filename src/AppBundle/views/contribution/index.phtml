@@ -7,25 +7,21 @@ use Framework\Components\View as View;
 final class Debug extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
-    protected static string|null $defaultViewTitle = 'Debug';
+    protected static string|null $defaultViewTitle = 'Contributeur';
 
     public function render() {
         $this->head(); 
         $this->header();
         ?>
         <main>
-        <h1>Debug</h1>
+        <h1>Contributeur</h1>
         <section>
-            <h2>PHPInfo</h2>
-            <p><a href="<?= HOME_URL; ?>/debug/phpinfo">PHPInfo</a></p>
+            <h2>Contributions</h2>
+            <p><a href="<?= HOME_URL; ?>/contributions">Contributions</a></p>
         </section>
         <section>
-            <h2>Routes</h2>
-            <p><a href="<?= HOME_URL; ?>/debug/routes">Routes</a></p>
-        </section>
-        <section>
-            <h2>Logs</h2>
-            <p><a href="<?= HOME_URL; ?>/debug/logs">Logs</a></p>
+            <h2>Ajouter une contribution</h2>
+            <p><a href="<?= HOME_URL; ?>/contributions/add">Ajouter une contribution</a></p>
         </section>
         <?php $this->footer(); ?>
         </main>

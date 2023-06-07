@@ -81,6 +81,15 @@ abstract class Model {
         return false;
     }
 
+    public function setPk(mixed $pk) : bool {
+        if (isset($this->_data[self::getPkName()])) {
+            $this->_data[self::getPkName()] = $pk;
+            $this->_pk = $pk;
+            return true;
+        }
+        return false;
+    }
+
     public function getData() : array {
         return $this->_data;
     }

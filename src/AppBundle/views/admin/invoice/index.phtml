@@ -1,0 +1,24 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Invoice extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Factures';
+
+    protected function render() {
+        $this->head(); 
+        $this->header();
+        ?>    
+        <main>
+        <h1>Factures</h1>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php
+    }
+}

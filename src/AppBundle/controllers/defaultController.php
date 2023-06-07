@@ -35,7 +35,7 @@ final class DefaultController extends Controller {
     public function contactPostAction() {
         // TODO: Save the contact form in the database
         $_SESSION['alert'] = 'Votre message a bien été envoyé';
-        $this->redirect('/contact/');
+        $this->redirect('/contact');
     }
 
     public function legalAction() {
