@@ -443,7 +443,7 @@ footer aside nav a {
     padding: 3rem 1rem 3rem;
     border-radius: 25px;
     margin-bottom: 3rem;
-    border: 3px solid #b5260d;
+    border: 5px solid #b8b8b8;
 }
 
 #abonnement-titre{
@@ -477,7 +477,7 @@ footer aside nav a {
     font-size: 1.15rem;
     min-width: 220px;
     margin-top: 3rem;
-    background-color: #b5260d;
+    background-color: #b8b8b8;
     color: #fff;
     line-height: 1.5;
     border-radius: 0.25rem;
@@ -499,6 +499,40 @@ footer aside nav a {
     box-sizing: border-box;
     color: #4b4f57;
     line-height: 1.5;
+}
+
+.homepage-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10rem;
+    background-color: #000000;
+    width: 100%;
+
+}
+
+#contibuteur{
+    color: #b8b8b8;
+
+}
+
+#color-gap{
+    color: black;
+}
+
+#formuka {
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+    background-color: inherit;
+}
+
+#wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 
