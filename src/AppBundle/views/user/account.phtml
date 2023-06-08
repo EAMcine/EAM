@@ -12,10 +12,32 @@ final class Account extends View {
     protected function render() {
         $this->head(); 
         $this->header();
-        ?>    
+        ?>
         <main>
             <br>
         <h1>Bonjour <?= $this->get('user')->get('firstname'); ?></h1>
+            <br>
+            <br>
+            <br>
+            <section class="title-container">
+                <h2 id="selection">Recommandé pour vous</h2>
+                <br>
+
+            </section>
+
+                <br>
+                <br>
+            <section class="favoris">
+                <h2 id="liked">Mes favoris</h2>
+            </section>
+
+                <br>
+                <br>
+
+            <section class="dejavu">
+                <h2 id="historique">Mon historique</h2>
+
+            </section>
 
         <?php $this->footer(); ?>
         </main>

@@ -601,3 +601,55 @@ footer aside nav a {
 .success {
     background-color: #00ff00;
 }
+
+
+.title-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    background-position: center;
+    background-size: cover;
+    align-items: center;
+
+}
+
+.dejavu {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    background-position: center;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#historique {
+    width: auto;
+    padding: 1em;
+    border-radius: 1em;
+
+}
+#liked {
+    width: auto;
+    padding: 1em;
+    border-radius: 1em;
+
+}
+
+#selection {
+    width: auto;
+    padding: 1em;
+    border-radius: 1em;
+
+}
+
+
+
+
+
+
+
+
