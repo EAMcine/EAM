@@ -1,0 +1,24 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class Billing extends View
+{
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Facturation';
+
+    protected function render() {
+        $this->head();
+        $this->header();
+        ?>
+<main>
+    <?php
+
+    ?>
+</main>
+<?php
+    }
+}

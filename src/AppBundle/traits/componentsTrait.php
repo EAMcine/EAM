@@ -60,7 +60,7 @@ trait ComponentsTrait {
             <?php if(!$this->getSessionUser()): ?>
             <a id="account" href="/login">Connexion</a>
             <?php else: ?>
-            <a id="account" href="/account">Compte</a>
+            <a id="billing" href="/billing">Facturation</a>
             <a id="logout" href="/logout">Déconnexion</a>
             <?php endif; ?>
         </nav>
