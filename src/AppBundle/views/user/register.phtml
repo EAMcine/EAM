@@ -48,7 +48,6 @@ final class Register extends View {
                 <label for="passwordConfirm">Confirmer le mot de passe</label>
                 <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmer le mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\._])[A-Za-z\d@$!%*?&\._]{12,}$" required>
             </span>
-            <pre><?= $this->get('error') ?? null ?></pre>
             <button type="submit">S'inscrire</button>
             <div class="login-connection">
                 <br>

@@ -39,7 +39,6 @@ final class ContributionAdd extends View {
             <p>Les formats d'image possibles sont : <?= $this->listImageTypes(); ?></p>
             <input type="submit" value="Ajouter">
         </form>
-        <a href="/contributions">Retour</a>
         <?php $this->footer(); ?>
         </main>
         </body>
@@ -53,7 +52,7 @@ final class ContributionAdd extends View {
         }
         $html = '';
         foreach ($this->get('imagetypes') as $imageType) {
-            $html .= '.' . $imageType->get('receivedFormat') . ', ';
+            $html .= '.' . $imageType->get('receivedformat') . ', ';
         }
         return substr($html, 0, -2). '.';
     }

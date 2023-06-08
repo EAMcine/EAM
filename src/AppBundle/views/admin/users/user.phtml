@@ -23,8 +23,6 @@ final class User extends View {
             <li>Groupe : <?= $this->get('user')->get('group'); ?></li>
             <li>Actif : <?= $this->get('user')->get('active'); ?></li>
         </ul>
-        <p><?= $this->get('alert'); ?></p>
-        <p><?= $this->get('error'); ?></p>
         <a href="/admin/user/<?= $this->get('user')->getPk(); ?>/edit">Modifier</a>
         <a href="/admin/user/<?= $this->get('user')->getPk(); ?>/delete">Supprimer</a>
         <?= !$this->get('user')->get('active') ? '<a href="/admin/user/' . $this->get('user')->getPk() . '/confirm">Activer</a>' : ''; ?>
