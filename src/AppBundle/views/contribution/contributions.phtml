@@ -16,7 +16,7 @@ final class Contributions extends View {
         <main>
         <h1>Mes contributions</h1>
         <?= $this->showContributions($this->get('contributions')); ?>
-        <a href="<?= HOME_URL; ?>/contributions/add">Ajouter une contribution</a>
+        <a href="<?= HOME_URL; ?>/contribution/add">Ajouter une contribution</a>
         <a href="<?= HOME_URL; ?>/contributeur">Retour</a>
         <?php $this->footer(); ?>
         </main>
@@ -31,7 +31,7 @@ final class Contributions extends View {
         }
         $html = '<ul>';
         foreach ($contributions as $contribution) {
-            $html .= '<li><a href="' . HOME_URL . '/contribution/' . $contribution->getPk() . '">' . $contribution->get() . '</a></li>';
+            $html .= '<li><a href="' . HOME_URL . '/contribution/' . $contribution->getPk() . '">' . $contribution->getPk() . '. ' . $contribution->get('title') . '</a></li>';
         }
         $html .= '</ul>';
         return $html;

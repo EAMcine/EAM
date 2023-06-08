@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Views;
+
+use Framework\Components\View as View;
+
+final class ContributionAdd extends View {
+    use \AppBundle\Traits\ComponentsTrait;
+
+    protected static string|null $defaultViewTitle = 'Ajouter une contribution';
+
+    public function render() {
+        $this->head(); 
+        $this->header();
+        ?>
+        <main>
+        <h1>Ajouter une contribution</h1>
+        <form action="/contribution/add" method="post" enctype="multipart/form-data">
+            <span>
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title" required>
+            </span>
+            <span>
+                <label for="sinopsis">Sinopsis</label>
+                <textarea name="sinopsis" id="sinopsis" required></textarea>
+            </span>
+            <span>
+                <label for="review">Avis</label>
+                <textarea name="review" id="review" required></textarea>
+            </span>
+            <span>
+                <label for="note">Note</label>
+                <input type="number" name="note" id="note" min="0" max="10" required>
+            </span>
+            <span>
+                <label for="image">Affiche</label>
+                <input type="file" name="image" id="image" required>
+            </span>
+            <p>Les formats d'image possibles sont : <?= $this->listImageTypes(); ?></p>
+            <input type="submit" value="Ajouter">
+        </form>
+        <a href="/contributions">Retour</a>
+        <?php $this->footer(); ?>
+        </main>
+        </body>
+        </html>
+        <?php 
+    }
+
+    private function listImageTypes() : string {
+        if (is_null($this->get('imagetypes'))) {
+            return 'Aucun format d\'image disponible.';
+        }
+        $html = '';
+        foreach ($this->get('imagetypes') as $imageType) {
+            $html .= '.' . $imageType->get('receivedFormat') . ', ';
+        }
+        return substr($html, 0, -2). '.';
+    }
+}

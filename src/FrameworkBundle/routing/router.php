@@ -98,8 +98,6 @@ class Router {
   private static function route(string $route, string $controller, string $action) : bool {
 
     if ($route == '/404/') {
-      $controller = 'AppBundle\\Controllers\\defaultController';
-      $action = 'errorAction';
       $controller = new $controller();
       $controller->$action();
       return true;

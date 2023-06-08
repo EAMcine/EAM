@@ -11,11 +11,11 @@ use StandardBundle\Models\Group as Group;
 final class UserController extends Controller {
 
     public function loginAction() {
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $this->render('Login', array(
-            'error' => $error
-        ));
+        if (isset($_SESSION['user'])) {
+            $this->set('alert', 'Vous êtes déjà connecté');
+            $this->redirect('/account');
+        }
+        $this->render('Login');
     }
 
     public function loginPostAction() {
@@ -43,11 +43,7 @@ final class UserController extends Controller {
     }
 
     public function registerAction() {
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $this->render('Register', array(
-            'error' => $error
-        ));
+        $this->render('Register');
     }
 
     public function registerPostAction() {

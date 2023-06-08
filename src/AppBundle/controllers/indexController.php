@@ -7,14 +7,7 @@ use AppBundle\Controllers\DefaultController as Controller;
 final class IndexController extends Controller {
 
     public function indexAction() {
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $alert = $_SESSION['alert'] ?? null;
-        unset($_SESSION['alert']);
-        $this->render('Index', [
-            'error' => $error,
-            'alert' => $alert
-        ]);
+        $this->render('Index');
     }
 
     public function aboutAction() {
@@ -22,14 +15,7 @@ final class IndexController extends Controller {
     }
 
     public function contactAction() {
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $alert = $_SESSION['alert'] ?? null;
-        unset($_SESSION['alert']);
-        $this->render('Contact', [
-            'error' => $error,
-            'alert' => $alert
-        ]);
+        $this->render('Contact');
     }
 
     public function contactPostAction() {

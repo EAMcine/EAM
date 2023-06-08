@@ -14,10 +14,6 @@ final class Login extends View {
         $this->header();
         ?>    
         <main>
-            <br>
-            <br>
-            <br>
-            <br>
         <form action="" method="post">
             <span>
                 <label for="email">Email</label>
@@ -27,7 +23,6 @@ final class Login extends View {
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe" required>
             </span>
-            <pre><?= $this->get('error') ?? null ?></pre>
             <button type="submit">Se connecter</button>
             <div class="login-register">
                 <br>
@@ -36,7 +31,7 @@ final class Login extends View {
         </form>
         <?php $this->footer(); ?>
         </main>
-        <script src="/js/views/login.js" type="module" namespace="login"></script>
+        <!-- <script src="/js/views/login.js" type="module" namespace="login"></script> -->
         </body>
         </html>
         <?php
