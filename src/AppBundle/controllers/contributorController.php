@@ -4,6 +4,7 @@ namespace AppBundle\Controllers;
 
 use AppBundle\Controllers\DefaultController as Controller;
 use AppBundle\Models\Contribution as Contribution;
+use StandardBundle\Models\ImageFormat;
 
 final class ContributorController extends Controller {
     use \AppBundle\Traits\ContributorTrait;
@@ -29,6 +30,7 @@ final class ContributorController extends Controller {
 
     public function contributionAddAction() {
         $this->canContributor('contributions.add');
+        $this->set('imageTypes', ImageFormat::selectAll());
         $this->render('ContributionAdd');
     }
 

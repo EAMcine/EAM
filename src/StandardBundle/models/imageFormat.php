@@ -10,8 +10,8 @@ final class ImageFormat extends Model {
     protected static string $_table = 'imageformats';
     
     /**
-     * @param string $receivedFormat
-     * @param string $outputFormat
+     * @param string $receivedformat
+     * @param string $localformat
      */
     public static function create(mixed ...$args) : ImageFormat|false {
         if (count($args) != 2)
@@ -21,8 +21,8 @@ final class ImageFormat extends Model {
         $outputFormat = $args[1];
 
         $data = [
-            'receivedFormat' => $receivedFormat,
-            'outputFormat' => $outputFormat
+            'receivedformat' => $receivedFormat,
+            'localformat' => $outputFormat
         ];
 
         if (self::selectOneByPk($receivedFormat))

@@ -16,45 +16,27 @@ final class AdminController extends Controller {
 
     public function usersAction() {
         $this->canAdmin('users');
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $alert = $_SESSION['alert'] ?? null;
-        unset($_SESSION['alert']);
         $this->render('Users', [
-            'error' => $error,
-            'alert' => $alert,
             'users' => User::selectAll()
         ]);
     }
 
     public function userAction($request) {
         $this->canAdmin('users');
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $alert = $_SESSION['alert'] ?? null;
-        unset($_SESSION['alert']);
         $user = \StandardBundle\Models\User::selectOneByPk($request['email']);
         $this->render('User', [
-            'error' => $error,
-            'alert' => $alert,
             'user' => $user
         ], 'Utilisateur : ' . $user->getPk());
     }
 
     public function userAddAction() {
         $this->canAdmin('users.add');
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
-        $alert = $_SESSION['alert'] ?? null;
-        unset($_SESSION['alert']);
         $groups = \StandardBundle\Models\Group::selectAll();
         $groupsOptions = [];
         foreach ($groups as $group) {
             $groupsOptions[$group->getPk()] = $group->get('name');
         }
         $this->render('UserAdd',[
-            'error' => $error,
-            'alert' => $alert,
             'groupsOptions' => $groupsOptions
         ]);
     }
@@ -95,12 +77,9 @@ final class AdminController extends Controller {
         foreach ($groups as $group) {
             $groupsOptions[$group->getPk()] = $group->get('name');
         }
-        $error = $_SESSION['error'] ?? null;
-        unset($_SESSION['error']);
         $this->render('UserEdit', [
             'user' => $user,
             'groupsOptions' => $groupsOptions,
-            'error' => $error
         ], 'Modifier l\'utilisateur ' . $user->getPk());
     }
 

@@ -5,14 +5,15 @@ namespace Framework\Components;
 use \tidy as tidy;
 
 abstract class Controller {
+    protected array $_data = [];
 
     protected function __construct() {
-                
+        $this->_data = [];                
     }
 
     protected function render(string $viewName, array $data = [], string $viewTitle = null) {
         $viewName = 'AppBundle\\Views\\' . $viewName;
-        new $viewName($data, $viewTitle);
+        new $viewName(array_merge($this->_data, $data), $viewTitle);
         $output = ob_get_clean();
         $tidyConfig = array(
           'indent' => true,
@@ -28,6 +29,10 @@ abstract class Controller {
         echo $tidy;
     }
 
+    protected function set(mixed $key, mixed $value) : void {
+        $this->_data[$key] = $value;
+    }
+
     public function redirect(string $url) {
         // set HTTP method to GET for redirection
         $_SERVER['REQUEST_METHOD'] = 'GET';
@@ -37,7 +42,7 @@ abstract class Controller {
 
     public function json(mixed $data) {
         header('Content-Type: application/json');
-        echo json_encode($data);
+        echo json_encode(array_merge($this->_data, $data));
     }
 
     public function error(int $code, string $message) {

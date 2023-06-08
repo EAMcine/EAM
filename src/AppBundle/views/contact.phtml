@@ -14,8 +14,6 @@ final class Contact extends View {
         $this->header();
         ?>    
         <main>
-            <br>
-            <br>
             <h2>Une question ?</h2>
         <form action="/contact/" method="post">
         <span>
@@ -30,10 +28,6 @@ final class Contact extends View {
             <label for="message">Message</label>
             <textarea name="message" id="message" required></textarea>
         </span>
-        <p>
-        <?= $this->get('error'); ?>
-        <?= $this->get('alert'); ?>
-        </p>
         <input type="submit" value="Envoyer">
         </form>
         <?php $this->footer(); ?>

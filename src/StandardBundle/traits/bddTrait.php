@@ -7,6 +7,7 @@ use StandardBundle\Models\Group as Group;
 use StandardBundle\Models\GroupPermission;
 use StandardBundle\Models\Permission;
 use StandardBundle\Models\User;
+use StandardBundle\Models\ImageFormat;
 
 trait BddTrait {
 
@@ -291,6 +292,18 @@ trait BddTrait {
 
             foreach ($users as $row) {
                 User::create($row[0], SecurityTrait::hash($row[1]), $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
+            }
+
+            // Création des ImageFormats
+
+            $imageFormats = [
+                array('jpg', 'jpeg'),
+                array('jpeg', 'jpeg'),
+                array('png', 'png'),
+            ];
+
+            foreach ($imageFormats as $row) {
+                ImageFormat::create($row[0], $row[1]);
             }
 
         } catch (\Exception $e) {

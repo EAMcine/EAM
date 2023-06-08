@@ -437,7 +437,7 @@ footer aside nav a {
     backdrop-filter: blur(10px) brightness(0.5);
 }
 
-#annonce{
+#annonce {
     width: auto;
     padding: 1em;
     border-radius: 1em;
@@ -445,16 +445,16 @@ footer aside nav a {
     backdrop-filter: blur(10px) brightness(0.5);
 }
 
-#abonnement{
+#abonnement {
     color: white;
 }
 
-.price-card{
+.price-card {
     padding: 3rem 2rem 4rem;
     order: -1;
 }
 
-.price-card{
+.price-card {
     background-color: #fff;
     box-shadow: -10px 0px 16px -2px rgba(0, 0, 0, .1);
     position: relative;
@@ -464,7 +464,7 @@ footer aside nav a {
     border: 5px solid #b8b8b8;
 }
 
-#abonnement-titre{
+#abonnement-titre {
     margin-top: 0.1rem;
     color: #1a1a1a;
     font-size: 1.25rem;
@@ -475,7 +475,7 @@ footer aside nav a {
     box-sizing: border-box;
 }
 
-.value{
+.value {
     color: #000000;
     font-size: 5rem;
     font-weight: 700;
@@ -483,7 +483,7 @@ footer aside nav a {
     text-align: center;
 }
 
-.join{
+.join {
     align-items: center;
 }
 
@@ -510,7 +510,7 @@ footer aside nav a {
     text-align: center;
 }
 
-.description li{
+.description li {
     font-size: 1.15rem;
     display: flex;
     font-weight: 400;
@@ -530,12 +530,12 @@ footer aside nav a {
 
 }
 
-#contibuteur{
+#contributeur {
     color: #b8b8b8;
 
 }
 
-#color-gap{
+#color-gap {
     color: black;
 }
 
@@ -546,26 +546,58 @@ footer aside nav a {
     background-color: inherit;
 }
 
-#wrap{
+#wrap {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
 }
 
-#par-mois{
+#par-mois {
     font-size: 40%;
 }
 
-#abonnement-titre{
+#abonnement-titre {
     margin-top: -5%;
 }
 
+.error, .alert, .success {
+    position: fixed;
+    top: clamp(50px, 10vw, 100px);
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 99999999999999999999999999999999999999999999;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    animation: hide 3s ease-in-out forwards;
+}
 
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+        top: -100px;
+    }
+}
 
+.error {
+    background-color: #ff0000;
+}
 
+.alert {
+    background-color: #ffae00;
+}
 
-
-
-
-
+.success {
+    background-color: #00ff00;
+}

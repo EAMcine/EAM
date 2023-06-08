@@ -15,7 +15,7 @@ final class Contribution extends View {
         ?>
         <main>
         <h1>Contribution : <?= $this->get('contribution')->get('title'); ?></h1>
-        <img src="<?= $this->get('contribution')->get('imagepath'); ?>" alt="Affiche du film : <?= $this->get('contribution')->get('title'); ?>">
+        <img src="<?= $this->get('contribution')->getImagePath(); ?>" alt="Affiche du film : <?= $this->get('contribution')->get('title'); ?>">
         <section>
             <h2>Sinopsis</h2>
             <p><?= $this->get('contribution')->get('sinopsis'); ?></p>

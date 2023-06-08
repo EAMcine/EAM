@@ -3,10 +3,12 @@
 namespace AppBundle\Traits;
 
 include_once __DIR__ . '/userTrait.php';
+include_once __DIR__ . '/viewTrait.php';
 
 trait ComponentsTrait {
 
     use \AppBundle\Traits\UserTrait;
+    use \AppBundle\Traits\ViewTrait;
 
     protected function head() {
         ?>
@@ -66,6 +68,7 @@ trait ComponentsTrait {
 
         <?php
         $this->aside();
+        $this->sessionInfo();
     }
 
     protected function aside() {
@@ -94,6 +97,9 @@ trait ComponentsTrait {
             }
             if ($user->can('admin')) {
                 $links['Administration'] = "/admin";
+            }
+            if ($user->can('contributions')) {
+                $links['Espace contributeur'] = "/contributor";
             }
         }
         return $links;
@@ -126,7 +132,7 @@ trait ComponentsTrait {
         <p>© <?= date('Y');?> EAM+ ALL RIGHTS RESERVED</p>
         <aside>
             <nav>
-            <a href="<?= HOME_URL; ?>/about">Contributeur</a>
+            <a href="<?= HOME_URL; ?>/about">À propos</a>
             <a href="<?= HOME_URL; ?>/contact">Contact</a>
             <a id="switchTheme">Thème</a>
             <a href="#body">Haut de page</a>
