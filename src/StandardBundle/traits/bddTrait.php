@@ -41,8 +41,8 @@ trait BddTrait {
             $bdd->query('ALTER TABLE `users_permissions` ADD FOREIGN KEY (`permission`) REFERENCES `permissions`(`code`);');
 
             // Création des triggers
-            $bdd->query('CREATE TRIGGER IF NOT EXISTS `delete_groups_permissions` AFTER DELETE ON `groups` FOR EACH ROW DELETE FROM `groups_permissions` WHERE `group` = OLD.`code`;');
-            $bdd->query('CREATE TRIGGER IF NOT EXISTS `delete_users_permissions` AFTER DELETE ON `users` FOR EACH ROW DELETE FROM `users_permissions` WHERE `user` = OLD.`email`;');
+            $bdd->query('CREATE TRIGGER `delete_groups_permissions` AFTER DELETE ON `groups` FOR EACH ROW DELETE FROM `groups_permissions` WHERE `group` = OLD.`code`;');
+            $bdd->query('CREATE TRIGGER `delete_users_permissions` AFTER DELETE ON `users` FOR EACH ROW DELETE FROM `users_permissions` WHERE `user` = OLD.`email`;');
 
             // Création des évènements récurrents
             $bdd->query('SET GLOBAL event_scheduler = ON;');
