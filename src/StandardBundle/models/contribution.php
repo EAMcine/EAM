@@ -96,8 +96,8 @@ final class Contribution extends Model {
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `user` varchar(320) NOT NULL,
             `title` varchar(255) NOT NULL,
-            `sinopsis` varchar(65535) NOT NULL,
-            `review` varchar(65535) NOT NULL,
+            `sinopsis` text(65535) NOT NULL,
+            `review` text(65535) NOT NULL,
             `note` int(11) NOT NULL,
             PRIMARY KEY (`id`)
             )';
