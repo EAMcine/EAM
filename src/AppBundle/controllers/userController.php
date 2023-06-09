@@ -61,8 +61,7 @@ final class UserController extends Controller {
                 if ($user) {
                     $token = UserToken::create($_POST['email']);
                     // TODO: Send email with activation token (/confirm/{email}/{token})
-                    $_SESSION['user'] = $user;
-                    $_SESSION['alert'] = 'Utilisateur créé avec succès';
+                    $_SESSION['alert'] = 'Utilisateur créé avec succès, veuillez confirmer votre compte via le lien envoyé par email';
                     $this->redirect('/');
                 } else {
                     $_SESSION['error'] = 'Utilisateur déjà existant';
