@@ -14,29 +14,37 @@ final class ContributionAdd extends View {
         $this->header();
         ?>
         <main>
-        <h1>Ajouter une contribution</h1>
+        <h1>Proposer un film</h1>
         <form action="/contribution/add" method="post" enctype="multipart/form-data">
             <span>
                 <label for="title">Titre</label>
                 <input type="text" name="title" id="title" required>
             </span>
             <span>
-                <label for="sinopsis">Sinopsis</label>
-                <textarea name="sinopsis" id="sinopsis" required></textarea>
+                <label for="director">Réalisateur(trice)</label>
+                <textarea name="director" id="director" required></textarea>
+            </span>
+            <span>
+                <label for="genre">Genre</label>
+                <textarea name="genre" id="genre" required></textarea>
+            </span>
+            <span>
+                <label for="date">Date de sortie</label>
+                <input type="date" id="date" required></input>
+            </span>
+            <span>
+                <label for="actor">Acteurs</label>
+                <textarea name="actor" id="actor" required></textarea>
             </span>
             <span>
                 <label for="review">Avis</label>
                 <textarea name="review" id="review" required></textarea>
             </span>
             <span>
-                <label for="note">Note</label>
-                <input type="number" name="note" id="note" min="0" max="10" required>
-            </span>
-            <span>
                 <label for="image">Affiche</label>
                 <input type="file" name="image" id="image" required>
             </span>
-            <p>Les formats d'image possibles sont : <?= $this->listImageTypes(); ?></p>
+            <p>Formats d'images acceptés : <?= $this->listImageTypes(); ?></p>
             <input type="submit" value="Ajouter">
         </form>
         <?php $this->footer(); ?>

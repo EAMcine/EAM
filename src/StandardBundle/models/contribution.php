@@ -12,9 +12,13 @@ final class Contribution extends Model {
     /**
      * @param string|User $user
      * @param string $title
-     * @param string $sinopsis
+     * @param string $genre
      * @param string $review
-     * @param int $note
+     * @param int $date
+     * @param string $actor
+     * @param string $director
+
+
      */
     public static function create(... $args) : Contribution {
         if(count($args) != 5)
@@ -22,9 +26,13 @@ final class Contribution extends Model {
 
         $user = $args[0];
         $title = $args[1];
-        $sinopsis = $args[2];
+        $genre = $args[2];
         $review = $args[3];
-        $note = $args[4];
+        $director = $args[4];
+        $actor = $args[5];
+        $date = $args[6];
+
+
 
         if ($user instanceof User) {
             $user = $user->get('email');
@@ -33,9 +41,12 @@ final class Contribution extends Model {
         $data = array(
             'user' => $user,
             'title' => $title,
-            'sinopsis' => $sinopsis,
+            'actor' => $actor,
             'review' => $review,
-            'note' => $note
+            'director' => $director,
+            'genre' => $genre,
+            'date' => $date
+
         );
 
         $contribution = new Contribution($data);
@@ -98,7 +109,10 @@ final class Contribution extends Model {
             `title` varchar(255) NOT NULL,
             `sinopsis` text(65535) NOT NULL,
             `review` text(65535) NOT NULL,
-            `note` int(11) NOT NULL,
+            `genre` text(65535) NOT NULL,
+            `actor` text(65535) NOT NULL,
+            `director` text (65535) NOT NULL,
+            `date` int(11) NOT NULL,
             PRIMARY KEY (`id`)
             )';
     }
