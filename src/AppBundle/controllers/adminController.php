@@ -129,4 +129,25 @@ final class AdminController extends Controller {
         }
         $this->redirect('/admin/user/' . $user->getPk());
     }
+
+    public function userDeleteAction($request) {
+        $this->canAdmin('users.delete');
+        $user = \StandardBundle\Models\User::selectOneByPk($request['email']);
+        $user->delete();
+        $_SESSION['alert'] = 'L\'utilisateur a bien été supprimé.';
+        if ($_SESSION['user']->getPk() == $user->getPk()) {
+            unset($_SESSION['user']);
+            $this->redirect('/');
+        }
+        $this->redirect('/admin/users');
+    }
+
+    public function userConfirmAction($request) {
+        $this->canAdmin('users.confirm');
+        $user = \StandardBundle\Models\User::selectOneByPk($request['email']);
+        $user->set('active', 1);
+        $user->update();
+        $_SESSION['alert'] = 'L\'utilisateur a bien été confirmé.';
+        $this->redirect('/admin/user/' . $user->getPk());
+    }
 }

@@ -306,6 +306,30 @@ trait BddTrait {
                 ImageFormat::create($row[0], $row[1]);
             }
 
+            $bdd->query('CREATE TABLE IF NOT EXISTS Films (
+                id INT(11) PRIMARY KEY AUTO_INCREMENT,
+                category VARCHAR(255) NOT NULL,
+                title VARCHAR(255) NOT NULL,
+                imageUrl VARCHAR(1024) NOT NULL,
+                trailerUrl VARCHAR(1024) NOT NULL
+            );');
+
+            $bdd->query("INSERT INTO Films (category, title, imageUrl, trailerUrl) VALUES 
+            ('Action', 'Avengers: Infinity War', 'https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg', 'https://www.youtube.com/watch?v=6ZfuNTqbHE8'),
+            ('Action', 'Avengers: Endgame', 'https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg', 'https://www.youtube.com/watch?v=TcMBFSGVi1c​1​'),
+            ('Action', 'John Wick 3', 'https://fr.web.img5.acsta.net/pictures/19/05/21/15/23/4992794.jpg', 'https://www.youtube.com/watch?v=M7XM597XO94'),
+            ('Action', 'Die Hard', 'https://image.tmdb.org/t/p/original/2lECpi35Hnbpa4y46JX0aY3AWTy.jpg', 'https://www.youtube.com/watch?v=2TQ-pOvI6Xo'),
+            ('Action', 'Mad Max: Fury Road', 'https://fr.web.img3.acsta.net/pictures/15/04/14/18/30/215297.jpg', 'https://www.youtube.com/watch?v=hEJnMQG9ev8'),
+            ('Action', 'Mission: Impossible - Fallout', 'https://image.tmdb.org/t/p/original/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg', 'https://www.youtube.com/watch?v=wb49-oV0F78'),
+            ('Comedie', 'The Hangover', 'https://m.media-amazon.com/images/I/91jlCn9bM1L._RI_.jpg', 'https://www.youtube.com/watch?v=tcdUhdOlz9M'),
+            ('Comedie', 'Superbad', 'https://m.media-amazon.com/images/I/51HShnByGEL._AC_UF894,1000_QL80_.jpg', 'https://www.youtube.com/watch?v=LvKvus3vCEY​'),
+            ('Comedie', 'Step Brothers', 'https://m.media-amazon.com/images/M/MV5BODViZDg3ZjYtMzhiYS00YTVkLTk4MzktYWUxMTlkYjc1NjdlXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg', 'https://www.youtube.com/watch?v=cKPNums7NUo​'),
+            ('Comedie', 'Bridesmaids', 'https://akns-images.eonline.com/eol_images/Entire_Site/2016411/rs_600x600-160511104024-600.bridesmaids.cm.51116.jpg?fit=around%7C1200:1200&output-quality=90&crop=1200:1200;center,top', 'https://www.youtube.com/watch?v=xI0g1gaXr-Y'),
+            ('Comedie', 'Anchorman: The Legend of Ron Burgundy', 'https://m.media-amazon.com/images/M/MV5BMTQ2MzYwMzk5Ml5BMl5BanBnXkFtZTcwOTI4NzUyMw@@._V1_FMjpg_UX1000_.jpg', 'https://www.youtube.com/watch?v=QvJ1K0_JzFI'),
+            ('Science-Fiction', 'Inception', 'https://image.tmdb.org/t/p/original/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg', 'https://www.youtube.com/watch?v=YoHD9XEInc0'),
+            ('Science-Fiction', 'Interstellar', 'https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg', 'https://www.youtube.com/watch?v=VaOijhK3CRU'),
+            ('Science-Fiction', 'The Matrix', 'https://image.tmdb.org/t/p/original/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg', 'https://www.youtube.com/watch?v=vKQi3bBA1y8');");
+
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }

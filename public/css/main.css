@@ -573,20 +573,26 @@ footer aside nav a {
     font-weight: bold;
     font-size: 1.2rem;
     box-sizing: border-box;
-    animation: hide 3s ease-in-out forwards;
+    animation: hide 5s ease-in-out forwards;
 }
 
 @keyframes hide {
     0% {
         opacity: 1;
+        transform: translateX(0);
+    }
+    70% {
+        opacity: 1;
+        transform: translateX(0);
     }
     90% {
         opacity: 1;
+        transform: translateX(100%);
     }
     100% {
         opacity: 0;
         display: none;
-        top: -100px;
+        transform: translateX(100%);
     }
 }
 

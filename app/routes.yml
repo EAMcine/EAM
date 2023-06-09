@@ -2,9 +2,6 @@
 # route format:
 # method | url | controller | action
 
-# TestController // delete this routes after testing
-get | /bddInit | AppBundle\Controllers\TestController | bddInitAction
-
 # IndexController
 get | / | AppBundle\Controllers\IndexController | indexAction
 get | /about | AppBundle\Controllers\IndexController | aboutAction
@@ -41,8 +38,8 @@ post | /admin/user/add | AppBundle\Controllers\AdminController | userAddPostActi
 get | /admin/user/{email} | AppBundle\Controllers\AdminController | userAction
 get | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditAction
 post | /admin/user/{email}/edit | AppBundle\Controllers\AdminController | userEditPostAction
-# get | /admin/user/{email}/delete | AppBundle\Controllers\AdminController | userDeleteAction
-# get | /admin/user/{email}/confirm | AppBundle\Controllers\AdminController | userConfirmAction
+get | /admin/user/{email}/delete | AppBundle\Controllers\AdminController | userDeleteAction
+get | /admin/user/{email}/confirm | AppBundle\Controllers\AdminController | userConfirmAction
 # get | /admin/groups | AppBundle\Controllers\AdminController | groupsAction
 # get | /admin/group/{code} | AppBundle\Controllers\AdminController | groupAction
 # get | /admin/group/{code}/edit | AppBundle\Controllers\AdminController | groupEditAction

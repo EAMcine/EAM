@@ -28,7 +28,7 @@ final class Users extends View {
             return '<p>Aucun utilisateur trouvé (vous êtes connectés donc impossible théoriquement)</p>';
         }
         $html = '<table>';
-        $html .= '<thead><tr><th>Email</th><th>Prénom</th><th>Nom</th><th>Anniversaire</th><th>Genre</th><th>Groupe</th><th>Actif</th><th>Actions</th></tr></thead>';
+        $html .= '<thead><tr><th>Email</th><th>Prénom</th><th>Nom</th><th>Anniversaire</th><th>Genre</th><th>Groupe</th><th>Actif</th><th>Voir</th><th>Modifier</th><th>Supprimer</th><th>Activer</th></tr></thead>';
         $html .= '<tbody>';
         foreach ($users as $user) {
             $html .= '<tr>';
@@ -40,6 +40,9 @@ final class Users extends View {
             $html .= '<td>' . $user->get('group') . '</td>';
             $html .= '<td>' . $user->get('active') . '</td>';
             $html .= '<td><a href="/admin/user/' . $user->getPk() . '">Voir</a></td>';
+            $html .= '<td><a href="/admin/user/' . $user->getPk() . '/edit">Modifier</a></td>';
+            $html .= '<td><a href="/admin/user/' . $user->getPk() . '/delete">Supprimer</a></td>';
+            $html .= '<td>' . (!$user->get('active') ? '<a href="/admin/user/' . $user->getPk() . '/confirm">Activer</a>' : '') . '</td>';
             $html .= '</tr>';
         }
         $html .= '</tbody>';
