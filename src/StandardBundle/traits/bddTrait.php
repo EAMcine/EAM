@@ -2,6 +2,8 @@
 
 namespace StandardBundle\Traits;
 
+include_once __DIR__ . '/../../FrameworkBundle/core/classLoader.php';
+
 use Framework\Core\ClassLoader as ClassLoader;
 use StandardBundle\Models\Group as Group;
 use StandardBundle\Models\GroupPermission;
