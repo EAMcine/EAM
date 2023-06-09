@@ -14,11 +14,31 @@ final class Billing extends View {
         $this->header();
         ?>
         <main>
+            <br>
         <h1>Facturation</h1>
-        <h2>Abonnement premium</h2>
-        <p>Abonnez-vous à notre service premium pour profiter de tous nos films et séries en illimité.</p>
-        <h2>Abonnement contributeur</h2>
-        <p>Abonnez-vous à notre service contributeur pour profiter de tous nos films et séries en illimité et pour pouvoir ajouter vos propres films et séries.</p>
+                <br>
+            <div class="price-card">
+                <h1 id="abonnement-titre">Prenium</h1>
+                <div class="price text-center">
+                    <h2 class="value">2€<span id="par-mois">/mo</span></h2>
+                    <br>
+                    <ul class="description">
+                        <li> - Accès illimité à un large catalogue de films</li>
+                        <br>
+                        <li> - Sans publicités</li>
+                        <br>
+                        <li> - Qualité 4K (3840x2160p)</li>
+                        <br>
+                        <li> - Jusqu'à 2 sessions actives en simultanée</li>
+                        <br>
+                        <li class="gray"> - Devenez contributeur EAM+</li>
+                        <br>
+                        <li class="gray"> - Contenu exclusif en avant-première (accès beta...)</li>
+                    </ul>
+                </div>
+                <div class="join">
+                    <a href="/register" class="bouton">Choisir ce plan</a>
+                </div>
         <?php
         $this->footer();
         ?>

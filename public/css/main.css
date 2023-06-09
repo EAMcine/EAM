@@ -530,10 +530,6 @@ footer aside nav a {
 
 }
 
-.gray {
-    color: #b8b8b8;
-
-}
 
 #color-gap {
     color: black;
@@ -702,6 +698,16 @@ footer aside nav a {
     border: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+#prenium{
+    font-size: 1.15rem;
+    display: flex;
+    font-weight: 400;
+    box-sizing: border-box;
+    color: #efefef;
+    line-height: 1.5;
+
 }
 
 
