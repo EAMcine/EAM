@@ -26,6 +26,9 @@ get | /logout | AppBundle\Controllers\UserController | logoutAction
 get | /confirm/{email}/{token} | AppBundle\Controllers\UserController | confirmAction
 get | /account | AppBundle\Controllers\UserController | accountAction
 
+# SubscribeController
+get | /billing | AppBundle\Controllers\SubscribeController | billingAction
+
 # InvoiceController
 # get | /invoice | AppBundle\Controllers\InvoiceController | indexAction
 # get | /invoice/add | AppBundle\Controllers\InvoiceController | addInvoiceAction

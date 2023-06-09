@@ -2,9 +2,13 @@
 
 namespace ApiBundle\Controllers;
 
-use AppBundle\Controllers\DefaultController as Controller;
+use Framework\Components\Controller as Controller;
 
 final class DefaultController extends Controller {
+
+    public function __construct() {
+        parent::__construct();
+    }
 
     public function redirectAction() {
         $this->redirect(HOME_URL . '/');

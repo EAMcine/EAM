@@ -4,8 +4,7 @@ namespace AppBundle\Views;
 
 use Framework\Components\View as View;
 
-final class Billing extends View
-{
+final class Billing extends View {
     use \AppBundle\Traits\ComponentsTrait;
 
     protected static string|null $defaultViewTitle = 'Facturation';
@@ -14,11 +13,16 @@ final class Billing extends View
         $this->head();
         $this->header();
         ?>
-<main>
+        <main>
+        <h1>Facturation</h1>
+        <h2>Abonnement premium</h2>
+        <p>Abonnez-vous à notre service premium pour profiter de tous nos films et séries en illimité.</p>
+        <h2>Abonnement contributeur</h2>
+        <p>Abonnez-vous à notre service contributeur pour profiter de tous nos films et séries en illimité et pour pouvoir ajouter vos propres films et séries.</p>
+        <?php
+        $this->footer();
+        ?>
+    </main>
     <?php
-
-    ?>
-</main>
-<?php
     }
 }

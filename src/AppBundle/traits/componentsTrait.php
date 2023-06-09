@@ -55,7 +55,7 @@ trait ComponentsTrait {
             </div>
         <?php endif; ?>
         </div>
-        <div class="header-logo"><img class="fill" onclick="location.href = '<?php echo HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
+        <div class="header-logo"><img class="fill" onclick="location.href = '<?= HOME_URL; ?>'" src="/img/logo.png" alt="Logo EAM+"></div>
         <nav class="header-menu">
             <?php if(!$this->getSessionUser()): ?>
             <a id="account" href="/login">Connexion</a>
